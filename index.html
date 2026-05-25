@@ -1339,6 +1339,22 @@ h1.opener-title, h2.opener-title{
 .chip.solid.coral{background: var(--toc-coral-500); color: var(--toc-ivory);}
 .chip.solid .d{background: var(--toc-ivory); opacity: .7;}
 .chip .d{width: 6px; height: 6px; background: currentColor;}
+/* SVG icon variant of .d — semantic glyph replaces the generic square.
+   Slightly larger than the dot because shape needs presence to read. */
+.chip svg.d{
+  width: 9px; height: 9px;
+  background: transparent;
+  fill: currentColor;
+  flex-shrink: 0;
+  display: block;
+}
+.chip.solid svg.d{
+  /* Solid badges carry weight — let the icon scale up a touch and
+     inherit the badge's ivory ink rather than the default currentColor. */
+  width: 10px; height: 10px;
+  fill: var(--toc-ivory);
+  opacity: .92;
+}
 
 .card{
   background: var(--toc-bg-raised);
@@ -2587,6 +2603,43 @@ h1.opener-title, h2.opener-title{
     <circle cx="50" cy="50" r="12" stroke="currentColor" stroke-width="1.6" fill="none"/>
     <circle cx="50" cy="50" r="4.5" fill="currentColor"/>
   </symbol>
+
+  <!-- Semantic chip icons. Each 10x10 viewBox, solid fill, currentColor. -->
+
+  <!-- Diamond / gem — Sacred Gold (sacred, rare, the thread) -->
+  <symbol id="icon-gem" viewBox="0 0 10 10">
+    <path d="M5 0 L9 5 L5 10 L1 5 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- Teardrop — Young Living (essential oil, botanical drop) -->
+  <symbol id="icon-drop" viewBox="0 0 10 10">
+    <path d="M5 0 C5 3 9 5 9 7 C9 8.66 7.21 10 5 10 C2.79 10 1 8.66 1 7 C1 5 5 3 5 0 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- Hexagonal cell — ASEA Redox / Cellular Science (molecular / cellular) -->
+  <symbol id="icon-cell" viewBox="0 0 10 10">
+    <path d="M5 0 L9.33 2.5 L9.33 7.5 L5 10 L0.67 7.5 L0.67 2.5 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- Bookmark — Personal Brand (marked, featured, of the founder) -->
+  <symbol id="icon-bookmark" viewBox="0 0 10 10">
+    <path d="M2 0 L8 0 L8 10 L5 7 L2 10 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- Down arrow — Limited (running low, depleting stock) -->
+  <symbol id="icon-arrow-down" viewBox="0 0 10 10">
+    <path d="M3 0 L7 0 L7 5 L9 5 L5 10 L1 5 L3 5 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- Cyclical arrow — Ritual (the daily return, the repeated pattern) -->
+  <symbol id="icon-cycle" viewBox="0 0 10 10">
+    <path d="M5 1.5 A3.5 3.5 0 1 1 1.5 5 H3 A2 2 0 1 0 5 3 V5 L8 2.5 L5 0 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- Four-pointed star — New (spark, the just-released) -->
+  <symbol id="icon-spark" viewBox="0 0 10 10">
+    <path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" fill="currentColor"/>
+  </symbol>
 </svg>
 
 <!-- ═══════════════════════ TOPBAR ═══════════════════════ -->
@@ -3504,11 +3557,11 @@ h1.opener-title, h2.opener-title{
       <div class="demo-section">
         <div class="demo-label"><b>11 · a</b> · Pillar chips — soft</div>
         <div class="demo-row">
-          <span class="chip"><span class="d"></span>Sacred Gold</span>
-          <span class="chip sage"><span class="d"></span>Young Living</span>
-          <span class="chip blue"><span class="d"></span>ASEA Redox</span>
-          <span class="chip violet"><span class="d"></span>Personal Brand</span>
-          <span class="chip coral"><span class="d"></span>Limited</span>
+          <span class="chip"><svg class="d" aria-hidden="true"><use href="#icon-gem"/></svg>Sacred Gold</span>
+          <span class="chip sage"><svg class="d" aria-hidden="true"><use href="#icon-drop"/></svg>Young Living</span>
+          <span class="chip blue"><svg class="d" aria-hidden="true"><use href="#icon-cell"/></svg>ASEA Redox</span>
+          <span class="chip violet"><svg class="d" aria-hidden="true"><use href="#icon-bookmark"/></svg>Personal Brand</span>
+          <span class="chip coral"><svg class="d" aria-hidden="true"><use href="#icon-arrow-down"/></svg>Limited</span>
           <span class="chip outline">Outline</span>
         </div>
       </div>
@@ -3516,11 +3569,11 @@ h1.opener-title, h2.opener-title{
       <div class="demo-section">
         <div class="demo-label"><b>11 · b</b> · Pillar badges — solid</div>
         <div class="demo-row">
-          <span class="chip solid"><span class="d"></span>Sacred Gold</span>
-          <span class="chip solid sage"><span class="d"></span>Young Living</span>
-          <span class="chip solid blue"><span class="d"></span>ASEA Redox</span>
-          <span class="chip solid violet"><span class="d"></span>Personal Brand</span>
-          <span class="chip solid coral"><span class="d"></span>Limited</span>
+          <span class="chip solid"><svg class="d" aria-hidden="true"><use href="#icon-gem"/></svg>Sacred Gold</span>
+          <span class="chip solid sage"><svg class="d" aria-hidden="true"><use href="#icon-drop"/></svg>Young Living</span>
+          <span class="chip solid blue"><svg class="d" aria-hidden="true"><use href="#icon-cell"/></svg>ASEA Redox</span>
+          <span class="chip solid violet"><svg class="d" aria-hidden="true"><use href="#icon-bookmark"/></svg>Personal Brand</span>
+          <span class="chip solid coral"><svg class="d" aria-hidden="true"><use href="#icon-arrow-down"/></svg>Limited</span>
         </div>
         <p style="font-family: var(--toc-font-soul); font-style: italic; font-size: 13.5px; color: var(--toc-ink-700); line-height: 1.55; margin-top: var(--toc-s-3); max-width: 60ch;">For emphasis — hero metrics, primary status, the chip the eye must land on first. Use sparingly: one solid badge per layout, paired with soft or outline chips for context.</p>
       </div>
@@ -3530,7 +3583,7 @@ h1.opener-title, h2.opener-title{
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--toc-s-3);">
           <div class="card tint-sage">
             <div style="display:flex; gap: var(--toc-s-2); margin-bottom: var(--toc-s-3);">
-              <span class="chip sage"><span class="d"></span>Ritual</span>
+              <span class="chip sage"><svg class="d" aria-hidden="true"><use href="#icon-cycle"/></svg>Ritual</span>
               <span class="chip outline">5 min</span>
             </div>
             <div class="card-title" style="font-family: var(--toc-font-soul); color: var(--toc-sage-800);">Morning aromatic anchor.</div>
@@ -3538,8 +3591,8 @@ h1.opener-title, h2.opener-title{
           </div>
           <div class="card tint-blue">
             <div style="display:flex; gap: var(--toc-s-2); margin-bottom: var(--toc-s-3);">
-              <span class="chip blue"><span class="d"></span>Cellular science</span>
-              <span class="chip coral"><span class="d"></span>New</span>
+              <span class="chip blue"><svg class="d" aria-hidden="true"><use href="#icon-cell"/></svg>Cellular science</span>
+              <span class="chip coral"><svg class="d" aria-hidden="true"><use href="#icon-spark"/></svg>New</span>
             </div>
             <div class="card-title" style="font-family: var(--toc-font-mind); font-weight: 500; color: var(--toc-blue-700); font-size: 20px;">Redox signalling, explained.</div>
             <p style="font-size: 13.5px; color: var(--toc-blue-700); opacity: .85;">Your body's native language for cellular renewal — measured, scaled, delivered.</p>
@@ -3548,7 +3601,7 @@ h1.opener-title, h2.opener-title{
       </div>
 
       <div class="plate-caption">
-        <div class="plate-caption-text">Chips inherit pillar colour. Outline chips are neutral and may carry meta — duration, edition, status.</div>
+        <div class="plate-caption-text">Each pillar chip carries a solid filled glyph that names what it is — a gem for Sacred Gold, a drop for Young Living, a cell for ASEA Redox, a bookmark for Personal Brand, a down-arrow for Limited stock, a cycle for Ritual, a spark for New. Outline chips remain unglyphed; they are the neutral carriers for meta — duration, edition, status.</div>
         <div class="plate-caption-meta">Plate 11 · Chips</div>
       </div>
     </div>

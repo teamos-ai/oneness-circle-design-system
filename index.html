@@ -1463,10 +1463,18 @@ h1.opener-title, h2.opener-title{
   isolation: isolate;
   overflow: hidden;
   margin-top: var(--toc-s-24);
-  padding: var(--toc-s-24) var(--gutter) var(--toc-s-16);
+  /* horizontal padding lives on .colophon-inner so the grain bleeds full-bleed */
+  padding: var(--toc-s-24) 0 var(--toc-s-16);
   border-top: .5px solid var(--toc-thread-soft);
   text-align: center;
   background: var(--toc-paper);
+}
+/* Inner column — keeps the text at the established editorial width
+   while the ::before image and ::after veil span the entire viewport. */
+.colophon-inner{
+  max-width: var(--col-bleed);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
 }
 /* Sacred-gold grain ground — the visual thread, brought back at the close */
 .colophon::before{
@@ -4532,18 +4540,20 @@ h1.opener-title, h2.opener-title{
   </div>
 </section>
 
-<!-- ═══════════════════════ COLOPHON ═══════════════════════ -->
-<section class="colophon">
-  <div class="colophon-mark">
-    <svg class="mark" width="36" height="36" style="color: var(--toc-gold-500);"><use href="#oc-mark"/></svg>
-    <span class="name">The Oneness Circle</span>
-  </div>
-  <div class="it">"Sacred Gold and Ivory are the visual thread that tells the audience: this is all <em>one brand, one circle, one leader.</em>"</div>
-  <div class="colophon-meta">Design System · Volume I · Edition II · MMXXVI</div>
-  <div style="margin-top: var(--toc-s-4); font-family: var(--toc-font-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--toc-violet-800); opacity: .68;">XX Plates · Five Anchors · Three Pillars · One Ivory Canvas</div>
-</section>
-
 </div><!-- /.edition -->
+
+<!-- ═══════════════════════ COLOPHON — full-bleed sacred-gold close ═══════════════════════ -->
+<section class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-mark">
+      <svg class="mark" width="36" height="36" style="color: var(--toc-gold-500);"><use href="#oc-mark"/></svg>
+      <span class="name">The Oneness Circle</span>
+    </div>
+    <div class="it">"Sacred Gold and Ivory are the visual thread that tells the audience: this is all <em>one brand, one circle, one leader.</em>"</div>
+    <div class="colophon-meta">Design System · Volume I · Edition II · MMXXVI</div>
+    <div style="margin-top: var(--toc-s-4); font-family: var(--toc-font-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--toc-violet-800); opacity: .68;">XX Plates · Five Anchors · Three Pillars · One Ivory Canvas</div>
+  </div>
+</section>
 
 <script>
   // Shade picker

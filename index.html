@@ -1286,6 +1286,83 @@ h1.opener-title, h2.opener-title{
 .demo-label b{color: var(--toc-violet-800); font-weight: 500;}
 
 /* ───────────────────────────────────────────────────────────
+   SPLIT FEATURE — wide horizontal pairing.
+   Image bleeds the full height on one side; eyebrow + title +
+   dek + a single action sit on the other. Use for spotlight
+   moments. Mirror with .reverse; tint with .tint-dark or any
+   existing card tint class on the text panel via descendant.
+   ─────────────────────────────────────────────────────────── */
+.split-feature{
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;   /* default: image | text */
+  background: var(--toc-bg-raised);
+  border: .5px solid var(--toc-rule);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 360px;
+}
+.split-feature.reverse{grid-template-columns: .85fr 1.15fr;}   /* text | image */
+@media (max-width: 720px){
+  .split-feature, .split-feature.reverse{
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  /* On narrow viewports, keep image on top regardless of variant */
+  .split-feature.reverse .split-feature-text{order: 2;}
+  .split-feature.reverse .split-feature-img{order: 1;}
+}
+.split-feature-img{
+  background-size: cover;
+  background-position: center;
+  min-height: 320px;
+}
+.split-feature-text{
+  padding: clamp(32px, 5vw, 72px) clamp(28px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--toc-s-4);
+  background: var(--toc-bg-raised);
+}
+.split-feature-eyebrow{
+  font-family: var(--toc-font-mind);
+  font-size: 10px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--toc-gold-700);
+}
+.split-feature-title{
+  font-family: var(--toc-font-soul);
+  font-weight: 300;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.04;
+  color: var(--toc-violet-800);
+  letter-spacing: -.012em;
+  text-wrap: balance;
+  max-width: 16ch;
+}
+.split-feature-title em{font-style: italic; color: var(--toc-gold-700);}
+.split-feature-dek{
+  font-family: var(--toc-font-soul);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.55;
+  color: var(--toc-ink-700);
+  max-width: 42ch;
+}
+.split-feature-action{margin-top: var(--toc-s-3);}
+
+/* Dark tint — violet ground, ivory ink, gold action. The image side keeps its photography. */
+.split-feature.tint-dark,
+.split-feature.tint-dark .split-feature-text{background: var(--toc-violet-800);}
+.split-feature.tint-dark .split-feature-eyebrow{color: var(--toc-gold-300);}
+.split-feature.tint-dark .split-feature-title{color: var(--toc-ivory);}
+.split-feature.tint-dark .split-feature-title em{color: var(--toc-gold-300);}
+.split-feature.tint-dark .split-feature-dek{color: rgba(249,249,247,.78);}
+
+/* ───────────────────────────────────────────────────────────
    SHADES / SWATCH
    ─────────────────────────────────────────────────────────── */
 .shades{display:flex; gap: 14px; margin-top: var(--toc-s-4); flex-wrap: wrap;}
@@ -3410,6 +3487,55 @@ h1.opener-title, h2.opener-title{
       <div class="plate-caption">
         <div class="plate-caption-text">Eight tints. One layout commits to one pillar; ivory + dark + outlined function as neutrals across all three.</div>
         <div class="plate-caption-meta">Plate 12.b · Tints</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 · c — Split feature (image-bleed pairing) -->
+  <div class="subhead"><div class="subhead-mark">12 · c</div><div class="subhead-line">Split feature</div></div>
+
+  <div class="col-prose">
+    <p class="prose">A wide horizontal pairing for spotlight moments. The image bleeds the full height of the component on one side; eyebrow, title, dek, and a single action sit on the other. Use it as a hero panel in a bento, as a section break inside long-form pages, or as a standalone invitation. <em>Mirror the orientation between adjacent uses</em> so the eye crosses the page in a measured zig-zag rather than scanning the same edge twice.</p>
+  </div>
+
+  <!-- 12.c.i — Image LEFT, text RIGHT, light ground -->
+  <div class="plate">
+    <div class="plate-fig flush">
+      <div class="split-feature">
+        <div class="split-feature-img" style="background-image: url('images/library/85-portrait-framed-by-green-leaves.png');" role="img" aria-label="A portrait framed by green leaves"></div>
+        <div class="split-feature-text">
+          <div class="split-feature-eyebrow">Founder · in conversation</div>
+          <div class="split-feature-title">The <em>Sovereign Series.</em></div>
+          <p class="split-feature-dek">Quarterly portraits from women in the Circle — what they read, what they ritualised, what they refused.</p>
+          <div class="split-feature-action">
+            <a href="#" class="btn btn-primary">Read the series <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="plate-caption">
+        <div class="plate-caption-text">Image left, text right. The image bleeds the entire height of the component — no inset, no softened corner where the two sides meet. The action stays the primary violet (a quiet, considered invitation rather than a sale).</div>
+        <div class="plate-caption-meta">Plate 12.c.i · Split · image left</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12.c.ii — Text LEFT, image RIGHT, violet ground (the mirror) -->
+  <div class="plate">
+    <div class="plate-fig flush">
+      <div class="split-feature reverse tint-dark">
+        <div class="split-feature-text">
+          <div class="split-feature-eyebrow">In-person · Salon</div>
+          <div class="split-feature-title">The <em>Sunday Threshold.</em></div>
+          <p class="split-feature-dek">A monthly evening for women returning to the body. Eight chairs. One hour. Always lavender.</p>
+          <div class="split-feature-action">
+            <a href="#" class="btn btn-gold">Reserve a chair <span class="arr">→</span></a>
+          </div>
+        </div>
+        <div class="split-feature-img" style="background-image: url('images/library/88-silhouette-on-chair-golden-window.png');" role="img" aria-label="A silhouette on a chair with golden window light"></div>
+      </div>
+      <div class="plate-caption">
+        <div class="plate-caption-text">The mirror — text left, image right — on a violet ground via <span class="mono">.tint-dark</span>. The gold button replaces the violet primary so the action keeps presence against the dark surface. Apply <span class="mono">.reverse</span> together with any tint to flip orientation while preserving the surface.</div>
+        <div class="plate-caption-meta">Plate 12.c.ii · Split · image right · dark</div>
       </div>
     </div>
   </div>

@@ -1459,23 +1459,53 @@ h1.opener-title, h2.opener-title{
    FOOT / COLOPHON
    ─────────────────────────────────────────────────────────── */
 .colophon{
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   margin-top: var(--toc-s-24);
-  padding: var(--toc-s-20) 0 var(--toc-s-8);
+  padding: var(--toc-s-24) var(--gutter) var(--toc-s-16);
   border-top: .5px solid var(--toc-thread-soft);
   text-align: center;
+  background: var(--toc-paper);
 }
+/* Sacred-gold grain ground — the visual thread, brought back at the close */
+.colophon::before{
+  content: "";
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('images/grain/sacred-gold-landscape.png');
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+/* Ivory veil — a soft luminance at center for text legibility, with
+   top + bottom ivory blends so the section breathes into the canvas */
+.colophon::after{
+  content: "";
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 62% 52% at center, rgba(249,249,247,.42) 0%, rgba(249,249,247,0) 72%),
+    linear-gradient(180deg,
+      var(--toc-ivory) 0%,
+      rgba(249,249,247,.55) 12%,
+      rgba(249,249,247,.30) 50%,
+      rgba(249,249,247,.60) 86%,
+      var(--toc-ivory) 100%);
+  pointer-events: none;
+}
+.colophon > *{position: relative; z-index: 1;}
+
 .colophon .it{
   font-family: var(--toc-font-soul); font-style: italic; font-weight: 400;
   font-size: clamp(20px, 2.4vw, 30px); color: var(--toc-violet-800);
   line-height: 1.4; max-width: 56ch; margin: var(--toc-s-8) auto var(--toc-s-6); text-wrap: balance;
 }
-.colophon .it em{color: var(--toc-gold-600);}
+.colophon .it em{color: var(--toc-gold-700);}
 .colophon-mark{display:flex; align-items: center; justify-content: center; gap: var(--toc-s-3); margin-bottom: var(--toc-s-3); color: var(--toc-violet-800);}
 .colophon-mark .name{font-family: var(--toc-font-soul); font-size: 18px;}
 .colophon-meta{
   font-family: var(--toc-font-mono); font-size: 10px;
   letter-spacing: .42em; text-transform: uppercase;
-  color: var(--toc-gold-500); margin-top: var(--toc-s-6);
+  color: var(--toc-gold-700); margin-top: var(--toc-s-6);
 }
 
 /* utilities */
@@ -4510,7 +4540,7 @@ h1.opener-title, h2.opener-title{
   </div>
   <div class="it">"Sacred Gold and Ivory are the visual thread that tells the audience: this is all <em>one brand, one circle, one leader.</em>"</div>
   <div class="colophon-meta">Design System · Volume I · Edition II · MMXXVI</div>
-  <div style="margin-top: var(--toc-s-4); font-family: var(--toc-font-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--toc-ink-500);">XX Plates · Five Anchors · Three Pillars · One Ivory Canvas</div>
+  <div style="margin-top: var(--toc-s-4); font-family: var(--toc-font-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--toc-violet-800); opacity: .68;">XX Plates · Five Anchors · Three Pillars · One Ivory Canvas</div>
 </section>
 
 </div><!-- /.edition -->

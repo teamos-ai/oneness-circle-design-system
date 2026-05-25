@@ -977,6 +977,26 @@ h1.opener-title, h2.opener-title{
   white-space: nowrap;
 }
 .topbar-nav a:hover{color: var(--toc-gold-700);}
+/* Active / hover indicator — a 1px gold thread under the link, scaled
+   in via transform so it doesn't shift the topbar's vertical rhythm. */
+.topbar-nav a::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: var(--toc-gold-500);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--toc-dur-2) var(--toc-ease-out);
+  pointer-events: none;
+}
+.topbar-nav a:hover::after,
+.topbar-nav a.is-active::after{transform: scaleX(1);}
+.topbar-nav a.is-active{color: var(--toc-violet-800);}
+@media (prefers-reduced-motion: reduce){
+  .topbar-nav a::after{transition: none;}
+}
 .topbar-end{font-family: var(--toc-font-mono); color: var(--toc-ink-500); white-space: nowrap; flex-shrink: 0;}
 @media (max-width: 1080px){
   .topbar-nav{display:none;}
@@ -2649,7 +2669,7 @@ h1.opener-title, h2.opener-title{
         <div class="jc-title">Sacred Gold and Ivory are the visual thread — <em>one brand, one circle, one leader</em>.</div>
         <p style="font-family: var(--toc-font-soul); font-style: italic; font-size: 14px; color: var(--toc-ink-700); line-height: 1.55; margin-top: -8px;">From the founder's brief — preserved verbatim into the design system.</p>
         <div class="jc-meta">
-          <span class="chip violet"><span class="d"></span>The visual thread</span>
+          <span class="chip violet"><span class="d"></span>Visual thread</span>
           <span class="chip outline">Five anchors</span>
         </div>
       </div>
@@ -5117,6 +5137,95 @@ h1.opener-title, h2.opener-title{
       if (hideTimer) clearTimeout(hideTimer);
       hideTimer = setTimeout(() => toast.classList.remove('is-visible'), 1700);
     };
+  })();
+
+  // 7 — Scroll-spy · highlight current section in the topbar nav.
+  // The nav has 9 top-level items but the document has 20 chapters, so each
+  // chapter is grouped under the conceptual nav target it belongs to (e.g.
+  // chapters X–XIV all roll up to 'Components'; XV–XVII to 'Patterns').
+  (function(){
+    const navLinks = document.querySelectorAll('.topbar-nav a[href^="#"]');
+    if (!navLinks.length) return;
+
+    const chapterToNavHash = {
+      'principles':   'principles',
+      'colour':       'colour',
+      'typography':   'typography',
+      'spacing':      'typography',  // foundations sub-chapters group under Type
+      'radius':       'typography',
+      'elevation':    'typography',
+      'motion':       'typography',
+      'system':       'system',
+      'tokens':       'system',
+      'components':   'components',
+      'chips':        'components',
+      'cards':        'components',
+      'forms':        'components',
+      'swatch':       'components',
+      'patterns':     'patterns',
+      'application':  'patterns',
+      'guidance':     'patterns',
+      'react':        'react',
+      'gallery':      'gallery',
+      'applications': 'applications'
+    };
+
+    const chapters = Array.from(document.querySelectorAll('section.chapter[id]'));
+
+    const setActiveByHash = (hash) => {
+      navLinks.forEach(a => {
+        const isActive = a.getAttribute('href') === '#' + hash;
+        a.classList.toggle('is-active', isActive);
+        if (isActive){
+          a.setAttribute('aria-current', 'location');
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    const clearActive = () => {
+      navLinks.forEach(a => {
+        a.classList.remove('is-active');
+        a.removeAttribute('aria-current');
+      });
+    };
+
+    const update = () => {
+      // Trigger line at 22% from viewport top — chapters whose top has
+      // crossed above this line are considered 'currently being read'.
+      const refLine = window.innerHeight * 0.22;
+      let currentChapter = null;
+      for (const ch of chapters){
+        const top = ch.getBoundingClientRect().top;
+        if (top <= refLine){
+          currentChapter = ch.id;
+        } else {
+          break;  // chapters are in DOM order — anything below this is also below the line
+        }
+      }
+      if (!currentChapter){ clearActive(); return; }
+      const navHash = chapterToNavHash[currentChapter];
+      if (navHash) setActiveByHash(navHash);
+    };
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking){
+        requestAnimationFrame(() => { update(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Click — instant feedback, before the smooth scroll completes.
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const hash = link.getAttribute('href').slice(1);
+        setActiveByHash(hash);
+      });
+    });
+
+    update();
   })();
 
   // Wire the existing ledger-stop copy-to-clipboard up to the toast.

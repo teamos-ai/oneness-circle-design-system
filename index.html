@@ -191,6 +191,33 @@ body{
   .motion-dot{animation: none;}
 }
 
+/* ───────────────────────────────────────────────────────────
+   SCROLL REVEAL — gentle fade + 16px lift on viewport entry.
+   The class is added by JS (IntersectionObserver) so visitors
+   with no JS see content immediately. Tokens: 720ms / ease-out.
+   ─────────────────────────────────────────────────────────── */
+.reveal{
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--toc-dur-4) var(--toc-ease-out),
+    transform var(--toc-dur-4) var(--toc-ease-out);
+  will-change: opacity, transform;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: none;
+}
+/* Stagger — set via data-reveal-delay so cards in a row cascade. */
+.reveal[data-reveal-delay="1"]{transition-delay: 80ms;}
+.reveal[data-reveal-delay="2"]{transition-delay: 160ms;}
+.reveal[data-reveal-delay="3"]{transition-delay: 240ms;}
+@media (prefers-reduced-motion: reduce){
+  .reveal, .reveal.is-visible{
+    opacity: 1; transform: none; transition: none;
+  }
+}
+
 /* Print — collapse to a quiet, readable specimen */
 @media print{
   .topbar, .hero-cta-row, .ux-copy, .gallery-tags{display: none;}
@@ -1688,6 +1715,47 @@ h1.opener-title, h2.opener-title{
   text-transform: uppercase;
   color: var(--toc-gold-600);
   margin-bottom: var(--toc-s-3);
+}
+
+/* Scroll-reveal demo preview — looping cascade (profile 18.g) */
+.reveal-preview{
+  display: flex; flex-direction: column;
+  gap: var(--toc-s-3);
+  width: 100%;
+  padding: var(--toc-s-6) var(--toc-s-8);
+}
+.reveal-preview .bar{
+  height: 38px;
+  background: var(--toc-bg-raised);
+  border: .5px solid var(--toc-rule);
+  display: flex; align-items: center;
+  padding: 0 var(--toc-s-4);
+  font-family: var(--toc-font-mono);
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--toc-ink-700);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: revealLoop 6s var(--toc-ease-out) infinite;
+}
+.reveal-preview .bar .dot{
+  width: 6px; height: 6px;
+  background: var(--toc-gold-500);
+  margin-right: 12px;
+}
+.reveal-preview .bar:nth-child(1){animation-delay: 0s;}
+.reveal-preview .bar:nth-child(2){animation-delay: .18s;}
+.reveal-preview .bar:nth-child(3){animation-delay: .36s;}
+@keyframes revealLoop{
+  0%   {opacity: 0; transform: translateY(16px);}
+  14%  {opacity: 1; transform: translateY(0);}
+  82%  {opacity: 1; transform: translateY(0);}
+  92%  {opacity: 0; transform: translateY(-6px);}
+  100% {opacity: 0; transform: translateY(16px);}
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal-preview .bar{animation: none; opacity: 1; transform: none;}
 }
 
 /* Interactive grid pattern — light-mode (profile 18.f) */
@@ -3992,9 +4060,95 @@ h1.opener-title, h2.opener-title{
     </div>
   </div>
 
+  <!-- 18.g — Reveal on scroll -->
+  <div class="subhead">
+    <div class="subhead-mark">18 · g</div>
+    <div class="subhead-line">Reveal on scroll</div>
+  </div>
+
+  <div class="col-prose">
+    <p class="prose">The gentle fade and lift that carries every block of this document into view as you scroll. Transform and opacity only — <em>never layout properties</em> — eased with the same ease-out curve the rest of the system uses, held for 720ms, and disabled entirely when the visitor prefers reduced motion. The pattern is global, but the primitive below is sanctioned for product code.</p>
+  </div>
+
+  <div class="plate">
+    <div class="ux-profile">
+      <div class="ux-profile-head">
+        <div>
+          <div class="ux-profile-name">Reveal <em>on scroll</em></div>
+          <p style="font-family: var(--toc-font-soul); font-style: italic; font-size: 14px; color: var(--toc-ink-500); margin-top: 4px;">Wraps any block. Fades + lifts when it enters the viewport. Honours <span style="font-family: var(--toc-font-mono); font-style: normal; font-size: 12px;">prefers-reduced-motion</span>.</p>
+        </div>
+        <div class="ux-profile-meta">
+          <span>Primitive</span><span>720ms · ease-out</span><span>16px lift</span>
+        </div>
+      </div>
+      <div class="ux-body">
+        <div class="ux-preview">
+          <div class="reveal-preview" aria-hidden="true">
+            <div class="bar"><span class="dot"></span>Plate 01 · enters viewport</div>
+            <div class="bar"><span class="dot"></span>Plate 02 · 180ms after</div>
+            <div class="bar"><span class="dot"></span>Plate 03 · 360ms after</div>
+          </div>
+        </div>
+        <div class="ux-code">
+          <button class="ux-copy" data-copy-target="code-reveal">Copy</button>
+<pre id="code-reveal"><span class="t-comment">// components/ui/reveal.tsx</span>
+<span class="t-str">"use client"</span>
+<span class="t-keyword">import</span> { useEffect, useRef } <span class="t-keyword">from</span> <span class="t-str">"react"</span>
+<span class="t-keyword">import</span> { cn } <span class="t-keyword">from</span> <span class="t-str">"@/lib/utils"</span>
+
+<span class="t-keyword">type</span> Props = {
+  children: React.ReactNode
+  delay?: <span class="t-keyword">0</span> | <span class="t-keyword">1</span> | <span class="t-keyword">2</span> | <span class="t-keyword">3</span>
+  className?: <span class="t-keyword">string</span>
+}
+
+<span class="t-keyword">export function</span> Reveal({ children, delay = <span class="t-keyword">0</span>, className }: Props) {
+  <span class="t-keyword">const</span> ref = useRef&lt;HTMLDivElement&gt;(<span class="t-keyword">null</span>)
+
+  useEffect(() =&gt; {
+    <span class="t-keyword">const</span> el = ref.current
+    <span class="t-keyword">if</span> (!el) <span class="t-keyword">return</span>
+    <span class="t-keyword">if</span> (matchMedia(<span class="t-str">"(prefers-reduced-motion: reduce)"</span>).matches) {
+      el.classList.add(<span class="t-str">"is-visible"</span>)
+      <span class="t-keyword">return</span>
+    }
+    <span class="t-keyword">const</span> io = <span class="t-keyword">new</span> IntersectionObserver(
+      ([entry]) =&gt; {
+        <span class="t-keyword">if</span> (entry.isIntersecting) {
+          el.classList.add(<span class="t-str">"is-visible"</span>)
+          io.disconnect()
+        }
+      },
+      { rootMargin: <span class="t-str">"0px 0px -8% 0px"</span>, threshold: <span class="t-keyword">0.06</span> }
+    )
+    io.observe(el)
+    <span class="t-keyword">return</span> () =&gt; io.disconnect()
+  }, [])
+
+  <span class="t-keyword">return</span> (
+    <span class="t-tag">&lt;div</span>
+      <span class="t-attr">ref</span>={ref}
+      <span class="t-attr">data-reveal-delay</span>={delay}
+      <span class="t-attr">className</span>={cn(<span class="t-str">"reveal"</span>, className)}
+    <span class="t-tag">&gt;</span>
+      {children}
+    <span class="t-tag">&lt;/div&gt;</span>
+  )
+}
+
+<span class="t-comment">// app/globals.css — the two rules the class above relies on:</span>
+<span class="t-comment">// .reveal { opacity:0; transform:translateY(16px);</span>
+<span class="t-comment">//           transition: opacity 720ms cubic-bezier(.22,.61,.36,1),</span>
+<span class="t-comment">//                       transform 720ms cubic-bezier(.22,.61,.36,1); }</span>
+<span class="t-comment">// .reveal.is-visible { opacity:1; transform:none; }</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="ux-placeholder-note">
     <span style="font-family: var(--toc-font-soul); font-style: italic;">More profiles awaiting client supply.</span>
-    <span class="mono" style="font-family: var(--toc-font-mono); font-style: normal; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; margin-left: auto;">slot · 18.g – 18.z</span>
+    <span class="mono" style="font-family: var(--toc-font-mono); font-style: normal; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; margin-left: auto;">slot · 18.h – 18.z</span>
   </div>
 </section>
 
@@ -4640,6 +4794,96 @@ h1.opener-title, h2.opener-title{
       }
     }
     svg.innerHTML = markup;
+  })();
+
+  // Scroll reveal — gentle fade + 16px lift on viewport entry.
+  // Wires the IntersectionObserver pattern documented in profile 18.g.
+  // Hero + colophon are intentionally excluded (already in view at start/end).
+  (function(){
+    // Respect the user preference — content shows immediately, no JS class added.
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const selectors = [
+      '.opener', '.subhead',
+      '.plate', '.application', '.browser',
+      '.col-prose', '.prose-wide',
+      '.journal-card', '.toc-item',
+      '.anchors', '.ledger', '.tokens', '.swatch-row',
+      '.specimen', '.demo',
+      '.bento', '.dodont',
+      '.pillars', '.legend', '.formula',
+      '.ux-profile', '.ux-placeholder-note',
+      '.gallery-tags', '.gallery-grid',
+      '.cover-meta', '.cover-cards',
+      '.toc',
+      '.elevation', '.motion-grid', '.ruler', '.radii',
+      '.shades'
+    ];
+    const items = Array.from(document.querySelectorAll(selectors.join(',')));
+    items.forEach(el => el.classList.add('reveal'));
+
+    // Cascade siblings inside a row so they enter one after the other.
+    document.querySelectorAll('.journal-cards .journal-card').forEach((el, i) => {
+      if (i > 0) el.setAttribute('data-reveal-delay', String(Math.min(i, 3)));
+    });
+    document.querySelectorAll('.toc-list .toc-item').forEach((el, i) => {
+      el.setAttribute('data-reveal-delay', String(i % 3));
+    });
+    document.querySelectorAll('.pillar').forEach((el, i) => {
+      el.setAttribute('data-reveal-delay', String(Math.min(i, 3)));
+    });
+
+    // Reveal any item whose top has crossed the trigger line.
+    const TRIGGER = 0.92; // 92% of viewport height — feels natural at typical scroll speeds
+    const revealInView = () => {
+      const vh = window.innerHeight;
+      for (let i = items.length - 1; i >= 0; i--){
+        const el = items[i];
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * TRIGGER && r.bottom > 0){
+          el.classList.add('is-visible');
+          items.splice(i, 1);
+        }
+      }
+    };
+
+    // Primary: IntersectionObserver — efficient, no scroll listener overhead.
+    if ('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+            // Keep items[] in sync for the fallback below.
+            const idx = items.indexOf(entry.target);
+            if (idx > -1) items.splice(idx, 1);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+      items.slice().forEach(el => io.observe(el));
+    }
+
+    // Belt-and-braces: a rAF-throttled scroll handler catches anything the
+    // observer misses (some headless / preview Chromium instances don't fire
+    // IO callbacks reliably) and handles fast-scroll past missed elements.
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        revealInView();
+        ticking = false;
+        if (items.length === 0){
+          window.removeEventListener('scroll', onScroll);
+          window.removeEventListener('resize', onScroll);
+        }
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    // Initial pass — anything already in the first viewport.
+    requestAnimationFrame(() => requestAnimationFrame(revealInView));
   })();
 </script>
 

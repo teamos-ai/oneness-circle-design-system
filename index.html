@@ -195,6 +195,142 @@ body{
 }
 
 /* ───────────────────────────────────────────────────────────
+   DELIGHT — small moments of celebration for the wellness brand.
+   All effects honour prefers-reduced-motion (zeroed below).
+   ─────────────────────────────────────────────────────────── */
+
+/* ── 1. Brand mark breath ─────────────────────────────────
+   The 8-line circle mark in the topbar inhales/exhales over
+   8 seconds. Pauses on hover so deliberate interaction reads
+   as intentional, not nervous. */
+.topbar-mark .mark{
+  transform-origin: center;
+  animation: markBreath 8s var(--toc-ease-in-out) infinite;
+}
+.topbar-mark:hover .mark{animation-play-state: paused;}
+@keyframes markBreath{
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+
+/* ── 2. Time-of-day greeting (hero) ───────────────────────
+   Quiet italic line on the cover. JS sets the text based on
+   the visitor's local hour. Empty until JS runs, so the layout
+   is unchanged if JS is disabled. */
+.hero-greeting{
+  font-family: var(--toc-font-soul);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--toc-violet-800);
+  opacity: 0;
+  transition: opacity 1200ms var(--toc-ease-out) 400ms;
+  padding-bottom: var(--toc-s-3);
+  border-bottom: .5px solid rgba(30,10,46,.18);
+  margin-bottom: var(--toc-s-2);
+  min-width: 14ch;
+  text-align: center;
+}
+.hero-greeting:empty{display: none;}
+.hero-greeting.is-visible{opacity: .72;}
+
+/* ── 3. Scroll-position whisper ────────────────────────────
+   A 1px gold thread on the right edge whose length traces your
+   progress through the document. Quiet at rest, slightly more
+   present while actively scrolling. */
+.scroll-whisper{
+  position: fixed;
+  top: 0; right: 0;
+  width: 1px;
+  height: 0;
+  background: var(--toc-gold-500);
+  z-index: 60;
+  opacity: .28;
+  transition: opacity 480ms var(--toc-ease-out);
+  pointer-events: none;
+}
+.scroll-whisper.is-scrolling{opacity: .68;}
+
+/* ── 4. Coral release ──────────────────────────────────────
+   Three tiny coral squares rise + fade on coral-button click.
+   Marks the rare action moment without becoming a spectacle. */
+.particle{
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: var(--toc-coral-500);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  animation: coralRise 700ms var(--toc-ease-out) forwards;
+  will-change: opacity, transform;
+}
+@keyframes coralRise{
+  0%   { opacity: 0; transform: translate(0, 0) scale(.5); }
+  18%  { opacity: 1; transform: translate(0, -6px) scale(1); }
+  100% { opacity: 0; transform: translate(0, -44px) scale(.7); }
+}
+
+/* ── 5. Copy toast ─────────────────────────────────────────
+   Appears bottom-right when a color token is copied from the
+   apothecary ledger. Includes a small swatch of the copied colour. */
+.copy-toast{
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--toc-violet-800);
+  color: var(--toc-ivory);
+  font-family: var(--toc-font-mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--toc-dur-2) var(--toc-ease-out),
+    transform var(--toc-dur-2) var(--toc-ease-out);
+  pointer-events: none;
+  max-width: 86vw;
+}
+.copy-toast.is-visible{opacity: 1; transform: translateY(0);}
+.copy-toast .swatch{
+  width: 14px; height: 14px;
+  border: .5px solid rgba(249,249,247,.32);
+  flex-shrink: 0;
+}
+.copy-toast .check{color: var(--toc-gold-300);}
+
+/* ── 6. Gallery filter ease ────────────────────────────────
+   Fade out exiting items, fade in returning items with a small
+   stagger so the grid breathes rather than snap-cuts. */
+.gal-item{
+  transition:
+    opacity 320ms var(--toc-ease-out),
+    transform 320ms var(--toc-ease-out);
+}
+.gal-item.is-leaving{
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+/* ── Reduced motion — disable every delight pulse ─────────── */
+@media (prefers-reduced-motion: reduce){
+  .topbar-mark .mark{animation: none;}
+  .scroll-whisper{display: none;}
+  .particle{display: none;}
+  .copy-toast{transition: none;}
+  .gal-item{transition: none;}
+  .hero-greeting{transition: none;}
+}
+
+/* ───────────────────────────────────────────────────────────
    SCROLL REVEAL — gentle fade + 16px lift on viewport entry.
    The class is added by JS (IntersectionObserver) so visitors
    with no JS see content immediately. Tokens: 720ms / ease-out.
@@ -548,23 +684,23 @@ h1.opener-title, h2.opener-title{
 }
 .hero-cta-row .btn{box-shadow: 0 4px 16px rgba(30,10,46,.10);}
 .hero-foot{
-  display: flex; align-items: center; justify-content: center;
-  gap: var(--toc-s-4);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--toc-s-3);
   font-family: var(--toc-font-mono);
   font-size: 9px;
   letter-spacing: .32em;
   text-transform: uppercase;
   color: var(--toc-violet-800);
-  opacity: .58;
   padding-top: var(--toc-s-4);
 }
-.hero-foot span{display: inline-flex; align-items: center; gap: 8px;}
+.hero-foot > span{display: inline-flex; align-items: center; gap: 8px;}
 .hero-foot .dot{width: 4px; height: 4px; background: var(--toc-violet-800);}
 .hero-scroll{
   margin-left: auto;
   margin-right: auto;
   position: relative;
   display: inline-flex; align-items: center; gap: 10px;
+  opacity: .58;
 }
 .hero-scroll .arrow{display: inline-block; animation: heroBob 2.4s ease-in-out infinite;}
 @keyframes heroBob{
@@ -2512,6 +2648,7 @@ h1.opener-title, h2.opener-title{
     </div>
 
     <div class="hero-foot">
+      <span class="hero-greeting" aria-live="polite"></span>
       <span class="hero-scroll">Scroll to explore <span class="arrow">↓</span></span>
     </div>
   </div>
@@ -4849,16 +4986,9 @@ h1.opener-title, h2.opener-title{
     });
   });
 
-  // Click-to-copy on ledger stops
-  document.querySelectorAll('.ledger-stop[style*="--toc"]').forEach(el => {
-    const bg = el.style.background;
-    el.addEventListener('click', () => {
-      const match = bg.match(/var\(--toc-[\w-]+\)/);
-      if (match && navigator.clipboard) {
-        navigator.clipboard.writeText(match[0]).catch(() => {});
-      }
-    });
-  });
+  // Click-to-copy on ledger stops — handler combined with the toast below
+  // (delight #5). Search for "Wire the existing ledger-stop copy-to-clipboard"
+  // for the active implementation.
 
   // React UX profiles — copy JSX
   document.querySelectorAll('.ux-copy').forEach(btn => {
@@ -4881,16 +5011,21 @@ h1.opener-title, h2.opener-title{
     });
   });
 
-  // Gallery — tag filter (with aria-pressed state for screen readers)
+  // Gallery — tag filter with gentle ease (delight #6).
+  // Items already in the grid fade out before hiding; returning items fade
+  // back in with a tiny stagger so the grid breathes rather than snap-cuts.
   (function(){
     const tagRow = document.getElementById('galleryTags');
     const grid = document.getElementById('galleryGrid');
     if (!tagRow || !grid) return;
     const items = Array.from(grid.querySelectorAll('.gal-item'));
     const tags = tagRow.querySelectorAll('.g-tag');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     tags.forEach(b => {
       b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false');
     });
+
     tags.forEach(btn => {
       btn.addEventListener('click', () => {
         tags.forEach(b => {
@@ -4900,14 +5035,151 @@ h1.opener-title, h2.opener-title{
         btn.classList.add('active');
         btn.setAttribute('aria-pressed', 'true');
         const tag = btn.getAttribute('data-tag');
+
+        if (reduced){
+          items.forEach(item => {
+            const itemTags = (item.getAttribute('data-tags') || '').split(/\s+/);
+            item.classList.toggle('hidden', !(tag === 'all' || itemTags.includes(tag)));
+          });
+          return;
+        }
+
+        // Compute which items should be visible
+        let stagger = 0;
         items.forEach(item => {
           const itemTags = (item.getAttribute('data-tags') || '').split(/\s+/);
-          const visible = tag === 'all' || itemTags.includes(tag);
-          item.classList.toggle('hidden', !visible);
+          const shouldShow = tag === 'all' || itemTags.includes(tag);
+          const wasHidden = item.classList.contains('hidden');
+          if (shouldShow && wasHidden){
+            // Re-enter: clear hidden, start invisible, stagger fade in
+            item.classList.remove('hidden');
+            item.classList.add('is-leaving');
+            const delay = stagger;
+            stagger += 24;
+            requestAnimationFrame(() => {
+              setTimeout(() => item.classList.remove('is-leaving'), delay);
+            });
+          } else if (!shouldShow && !wasHidden){
+            // Exit: fade out, then hide
+            item.classList.add('is-leaving');
+            setTimeout(() => {
+              item.classList.add('hidden');
+              item.classList.remove('is-leaving');
+            }, 240);
+          }
         });
       });
     });
   })();
+
+  // ─────────────────────────────────────────────────────────
+  // DELIGHT — small moments of celebration for the wellness brand.
+  // All six features honour prefers-reduced-motion at the CSS layer.
+  // ─────────────────────────────────────────────────────────
+
+  // 2 — Hero greeting · time-of-day acknowledgement
+  (function(){
+    const greet = document.querySelector('.hero-greeting');
+    if (!greet) return;
+    const h = new Date().getHours();
+    const phrase =
+      (h >= 5 && h < 12)  ? 'Slow morning.' :
+      (h >= 12 && h < 18) ? 'Still hours of light.' :
+      (h >= 18 && h < 23) ? 'The hour before words.' :
+                            'Reading by lamp.';
+    greet.textContent = phrase;
+    requestAnimationFrame(() => greet.classList.add('is-visible'));
+  })();
+
+  // 3 — Scroll whisper · 1px gold thread on the right edge
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const whisper = document.createElement('div');
+    whisper.className = 'scroll-whisper';
+    whisper.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(whisper);
+
+    let ticking = false;
+    let hideTimer = null;
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      whisper.style.height = (pct * window.innerHeight) + 'px';
+      whisper.classList.add('is-scrolling');
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => whisper.classList.remove('is-scrolling'), 700);
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking){ requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+
+  // 4 — Coral release · three particles on coral-button click
+  document.addEventListener('click', (e) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const btn = e.target.closest('.btn-coral');
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const top = rect.top + 4;
+    for (let i = 0; i < 3; i++){
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const xOffset = (i - 1) * 8 + (Math.random() - 0.5) * 4;
+      p.style.left = (cx + xOffset) + 'px';
+      p.style.top = top + 'px';
+      p.style.animationDelay = (i * 70) + 'ms';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 900);
+    }
+  });
+
+  // 5 — Copy toast · floating confirmation when a colour token is copied
+  const showCopyToast = (() => {
+    let toast = null;
+    let hideTimer = null;
+    return (text, swatchValue) => {
+      if (!toast){
+        toast = document.createElement('div');
+        toast.className = 'copy-toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        toast.innerHTML =
+          '<span class="swatch" aria-hidden="true"></span>' +
+          '<span class="check" aria-hidden="true">✓</span>' +
+          '<span class="copy-toast-text"></span>';
+        document.body.appendChild(toast);
+      }
+      toast.querySelector('.copy-toast-text').textContent = text;
+      const sw = toast.querySelector('.swatch');
+      sw.style.background = swatchValue || 'transparent';
+      sw.style.display = swatchValue ? 'block' : 'none';
+      requestAnimationFrame(() => toast.classList.add('is-visible'));
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => toast.classList.remove('is-visible'), 1700);
+    };
+  })();
+
+  // Wire the existing ledger-stop copy-to-clipboard up to the toast.
+  // Writes the token reference (e.g. "var(--toc-gold-500)") to clipboard
+  // and shows the floating toast with a swatch of the resolved colour.
+  document.querySelectorAll('.ledger-stop[style*="--toc"]').forEach(el => {
+    el.addEventListener('click', () => {
+      const bg = el.style.background;
+      const match = bg.match(/var\(--toc-[\w-]+\)/);
+      if (!match) return;
+      const tokenRef = match[0];
+      if (navigator.clipboard){
+        navigator.clipboard.writeText(tokenRef).catch(() => {});
+      }
+      const tokenName = tokenRef.match(/--toc-[\w-]+/)[0];
+      const resolved = getComputedStyle(document.documentElement)
+        .getPropertyValue(tokenName).trim();
+      showCopyToast('Copied · ' + tokenRef, resolved);
+    });
+  });
 
   // Interactive grid pattern — build the SVG cells (profile 18.f)
   (function(){

@@ -78,7 +78,10 @@
 
   /* ── SEMANTIC ───────────────────────────────────────────── */
   --toc-bg-canvas:    var(--toc-ivory);
-  --toc-bg-raised:    #ffffff;
+  /* Raised is the brightest surface — sits above ivory canvas. Barely-warm tint
+     toward the brand hue (gold) so it isn't pure #fff. Tested: still reads as
+     'lifted' against the ivory ground, but no longer triggers the AI-slop tell. */
+  --toc-bg-raised:    #fdfbf6;
   --toc-bg-sunk:      var(--toc-ivory-warm);
   --toc-bg-plate:     var(--toc-paper);
   --toc-bg-inverse:   var(--toc-violet-800);
@@ -1029,7 +1032,7 @@ h1.opener-title, h2.opener-title{
 }
 .specimen-body{padding: var(--toc-s-4) 0;}
 .specimen-body.dark{background: var(--toc-violet-800); margin: 0 calc(-1 * var(--toc-s-10)); padding: var(--toc-s-12) var(--toc-s-10);}
-.specimen-body.dark .specimen-text{color: #fff;}
+.specimen-body.dark .specimen-text{color: var(--toc-ivory);}
 .specimen-body.dark .specimen-text em{color: var(--toc-gold-300);}
 .specimen-text{
   color: var(--toc-violet-800);
@@ -1180,14 +1183,14 @@ h1.opener-title, h2.opener-title{
 }
 .btn:hover{transform: translateY(-1px);}
 .btn:active{transform: translateY(0);}
-.btn-primary{background: var(--toc-violet-800); color: #fff;}
+.btn-primary{background: var(--toc-violet-800); color: var(--toc-ivory);}
 .btn-primary:hover{background: var(--toc-violet-700); box-shadow: var(--toc-e-2);}
-.btn-gold{background: var(--toc-gold-500); color: #fff;}
+.btn-gold{background: var(--toc-gold-500); color: var(--toc-ivory);}
 .btn-gold:hover{background: var(--toc-gold-600); box-shadow: var(--toc-e-2);}
-.btn-coral{background: var(--toc-coral-500); color: #fff;}
+.btn-coral{background: var(--toc-coral-500); color: var(--toc-ivory);}
 .btn-coral:hover{background: var(--toc-coral-700); box-shadow: var(--toc-e-2);}
 .btn-secondary{background: transparent; color: var(--toc-violet-800); border: 1px solid var(--toc-violet-800);}
-.btn-secondary:hover{background: var(--toc-violet-800); color: #fff;}
+.btn-secondary:hover{background: var(--toc-violet-800); color: var(--toc-ivory);}
 .btn-ghost{background: var(--toc-gold-50); color: var(--toc-violet-800);}
 .btn-ghost:hover{background: var(--toc-gold-100);}
 .btn-sm{padding: 9px 18px; font-size: 11px;}
@@ -1244,7 +1247,7 @@ h1.opener-title, h2.opener-title{
   font-size: 22px; color: var(--toc-violet-800);
   margin-bottom: var(--toc-s-3); line-height: 1.2;
 }
-.card.tint-dark .card-title{color: #fff;}
+.card.tint-dark .card-title{color: var(--toc-ivory);}
 .card.tint-dark .card-label{color: var(--toc-gold-300);}
 
 .input{
@@ -1538,7 +1541,7 @@ h1.opener-title, h2.opener-title{
   justify-content: center;
 }
 .formula .seg{padding: 8px 14px; background: var(--toc-bg-plate); color: var(--toc-violet-800); border: .5px solid var(--toc-rule);}
-.formula .seg.lock{background: var(--toc-violet-800); color: #fff; border-color: var(--toc-violet-800);}
+.formula .seg.lock{background: var(--toc-violet-800); color: var(--toc-ivory); border-color: var(--toc-violet-800);}
 .formula .sep{color: var(--toc-gold-500); font-weight: 500;}
 
 .legend{
@@ -1716,8 +1719,8 @@ h1.opener-title, h2.opener-title{
   cursor: pointer;
   transition: all var(--toc-dur-2) var(--toc-ease-out);
 }
-.ux-copy:hover{background: rgba(212,175,122,.22); color: #fff;}
-.ux-copy.copied{background: var(--toc-gold-500); color: #fff; border-color: var(--toc-gold-500);}
+.ux-copy:hover{background: rgba(212,175,122,.22); color: var(--toc-ivory);}
+.ux-copy.copied{background: var(--toc-gold-500); color: var(--toc-ivory); border-color: var(--toc-gold-500);}
 .ux-code pre{
   margin: 0;
   font-family: var(--toc-font-mono);
@@ -1927,7 +1930,7 @@ h1.opener-title, h2.opener-title{
 .g-tag:hover{border-color: var(--toc-gold-500); color: var(--toc-gold-700);}
 .g-tag.active{
   background: var(--toc-violet-800);
-  color: #fff;
+  color: var(--toc-ivory);
   border-color: var(--toc-violet-800);
 }
 .g-tag.active .count{color: var(--toc-gold-300);}
@@ -2202,7 +2205,7 @@ h1.opener-title, h2.opener-title{
   text-align: center;
 }
 .social-body.tile-ivory{background: var(--toc-ivory);}
-.social-body.tile-violet{background: var(--toc-violet-800); color: #fff;}
+.social-body.tile-violet{background: var(--toc-violet-800); color: var(--toc-ivory);}
 .social-body.tile-sage{background: var(--toc-sage-100);}
 .social-body.tile-gold{background: var(--toc-gold-100);}
 .social-body::before{
@@ -2731,31 +2734,31 @@ h1.opener-title, h2.opener-title{
               <div class="ledger-key-name">Gold</div>
               <div class="ledger-key-meta">The Thread</div>
             </div>
-            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-gold-50); color: var(--toc-gold-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-gold-100); color: var(--toc-gold-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-gold-200); color: var(--toc-gold-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-gold-300); color: var(--toc-gold-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-gold-400); color: #fff;"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-gold-500); color: #fff;"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-gold-600); color: #fff;"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-gold-700); color: #fff;"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-gold-800); color: #fff;"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-gold-900); color: #fff;"><span class="lbl">900</span></div></div>
+            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-gold-50); color: var(--toc-gold-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-gold-100); color: var(--toc-gold-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-gold-200); color: var(--toc-gold-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-gold-300); color: var(--toc-gold-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-gold-400); color: var(--toc-ivory);"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-gold-500); color: var(--toc-ivory);"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-gold-600); color: var(--toc-ivory);"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-gold-700); color: var(--toc-ivory);"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-gold-800); color: var(--toc-ivory);"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-gold-900); color: var(--toc-ivory);"><span class="lbl">900</span></div></div>
           </div><div class="ledger-row">
             <div class="ledger-key">
               <div class="ledger-key-name">Sage</div>
               <div class="ledger-key-meta">Young Living</div>
             </div>
-            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-sage-50); color: var(--toc-sage-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-sage-100); color: var(--toc-sage-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-sage-200); color: var(--toc-sage-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-sage-300); color: var(--toc-sage-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-sage-400); color: #fff;"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-sage-500); color: #fff;"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-sage-600); color: #fff;"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-sage-700); color: #fff;"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-sage-800); color: #fff;"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-sage-900); color: #fff;"><span class="lbl">900</span></div></div>
+            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-sage-50); color: var(--toc-sage-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-sage-100); color: var(--toc-sage-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-sage-200); color: var(--toc-sage-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-sage-300); color: var(--toc-sage-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-sage-400); color: var(--toc-ivory);"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-sage-500); color: var(--toc-ivory);"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-sage-600); color: var(--toc-ivory);"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-sage-700); color: var(--toc-ivory);"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-sage-800); color: var(--toc-ivory);"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-sage-900); color: var(--toc-ivory);"><span class="lbl">900</span></div></div>
           </div><div class="ledger-row">
             <div class="ledger-key">
               <div class="ledger-key-name">Blue</div>
               <div class="ledger-key-meta">ASEA Redox</div>
             </div>
-            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-blue-50); color: var(--toc-blue-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-blue-100); color: var(--toc-blue-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-blue-200); color: var(--toc-blue-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-blue-300); color: var(--toc-blue-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-blue-400); color: #fff;"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-blue-500); color: #fff;"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-blue-600); color: #fff;"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-blue-700); color: #fff;"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-blue-800); color: #fff;"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-blue-900); color: #fff;"><span class="lbl">900</span></div></div>
+            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-blue-50); color: var(--toc-blue-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-blue-100); color: var(--toc-blue-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-blue-200); color: var(--toc-blue-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-blue-300); color: var(--toc-blue-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-blue-400); color: var(--toc-ivory);"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-blue-500); color: var(--toc-ivory);"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-blue-600); color: var(--toc-ivory);"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-blue-700); color: var(--toc-ivory);"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-blue-800); color: var(--toc-ivory);"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-blue-900); color: var(--toc-ivory);"><span class="lbl">900</span></div></div>
           </div><div class="ledger-row">
             <div class="ledger-key">
               <div class="ledger-key-name">Violet</div>
               <div class="ledger-key-meta">Personal Brand</div>
             </div>
-            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-violet-50); color: var(--toc-violet-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-violet-100); color: var(--toc-violet-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-violet-200); color: var(--toc-violet-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-violet-300); color: var(--toc-violet-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-violet-400); color: #fff;"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-violet-500); color: #fff;"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-violet-600); color: #fff;"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-violet-700); color: #fff;"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-violet-800); color: #fff;"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-violet-900); color: #fff;"><span class="lbl">900</span></div></div>
+            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-violet-50); color: var(--toc-violet-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-violet-100); color: var(--toc-violet-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-violet-200); color: var(--toc-violet-800);"><span class="lbl">200</span></div><div class="ledger-stop" style="background: var(--toc-violet-300); color: var(--toc-violet-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-violet-400); color: var(--toc-ivory);"><span class="lbl">400</span></div><div class="ledger-stop" style="background: var(--toc-violet-500); color: var(--toc-ivory);"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-violet-600); color: var(--toc-ivory);"><span class="lbl">600</span></div><div class="ledger-stop" style="background: var(--toc-violet-700); color: var(--toc-ivory);"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-violet-800); color: var(--toc-ivory);"><span class="lbl">800</span></div><div class="ledger-stop" style="background: var(--toc-violet-900); color: var(--toc-ivory);"><span class="lbl">900</span></div></div>
           </div><div class="ledger-row">
             <div class="ledger-key">
               <div class="ledger-key-name">Coral</div>
               <div class="ledger-key-meta">Action only</div>
             </div>
-            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-coral-50); color: var(--toc-coral-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-coral-100); color: var(--toc-coral-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-300); color: var(--toc-coral-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-500); color: #fff;"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-700); color: #fff;"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-900); color: #fff;"><span class="lbl">900</span></div></div>
+            <div class="ledger-strip"><div class="ledger-stop" style="background: var(--toc-coral-50); color: var(--toc-coral-800);"><span class="lbl">50</span></div><div class="ledger-stop" style="background: var(--toc-coral-100); color: var(--toc-coral-800);"><span class="lbl">100</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-300); color: var(--toc-coral-800);"><span class="lbl">300</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-500); color: var(--toc-ivory);"><span class="lbl">500</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-700); color: var(--toc-ivory);"><span class="lbl">700</span></div><div class="ledger-stop" style="background: var(--toc-bg-plate); color: var(--toc-ink-300);"><span class="lbl">—</span><span class="hex">·</span></div><div class="ledger-stop" style="background: var(--toc-coral-900); color: var(--toc-ivory);"><span class="lbl">900</span></div></div>
           </div>
       </div>
       <div class="plate-caption">
@@ -2818,7 +2821,7 @@ h1.opener-title, h2.opener-title{
         <span class="specimen-tag" style="color: var(--toc-gold-300);">Display · Cormorant 300</span>
         <span class="specimen-figure" style="color: rgba(212,175,122,.6);">Plate 03.a</span>
       </div>
-      <div style="font-family: var(--toc-font-soul); font-weight: 300; font-size: clamp(48px, 6.4vw, 80px); line-height: 1.02; color: #fff; padding: var(--toc-s-10) 0 var(--toc-s-8); text-wrap: balance;">The Art of <em style="font-style: italic; color: var(--toc-gold-300);">Becoming</em> Whole</div>
+      <div style="font-family: var(--toc-font-soul); font-weight: 300; font-size: clamp(48px, 6.4vw, 80px); line-height: 1.02; color: var(--toc-ivory); padding: var(--toc-s-10) 0 var(--toc-s-8); text-wrap: balance;">The Art of <em style="font-style: italic; color: var(--toc-gold-300);">Becoming</em> Whole</div>
       <div class="specimen-stats" style="border-top-color: rgba(212,175,122,.25); color: rgba(249,249,247,.55);">
         <span style="color: rgba(249,249,247,.55);">size 56–72px</span>
         <span style="color: rgba(249,249,247,.55);">leading 1.04</span>
@@ -3357,7 +3360,7 @@ h1.opener-title, h2.opener-title{
         <div style="background: var(--toc-violet-800); padding: var(--toc-s-8); border: .5px solid var(--toc-violet-700);">
           <div class="demo-row">
             <button class="btn btn-gold">Sacred Gold CTA</button>
-            <button class="btn" style="background: transparent; color: #fff; border: 1px solid rgba(212,175,122,.40);">Ghost on dark</button>
+            <button class="btn" style="background: transparent; color: var(--toc-ivory); border: 1px solid rgba(212,175,122,.40);">Ghost on dark</button>
             <button class="btn" style="background: rgba(212,175,122,.16); color: var(--toc-gold-300);">Soft on dark</button>
           </div>
         </div>
@@ -3482,7 +3485,7 @@ h1.opener-title, h2.opener-title{
         <div class="card tint-violet"><div class="card-label" style="color: var(--toc-violet-800);">tint-violet</div><div class="card-title" style="font-size: 16px; color: var(--toc-violet-800);">Leadership.</div></div>
         <div class="card tint-coral"><div class="card-label" style="color: var(--toc-coral-700);">tint-coral</div><div class="card-title" style="font-size: 16px; color: var(--toc-coral-700);">Action zone.</div></div>
         <div class="card tint-dark"><div class="card-label">tint-dark</div><div class="card-title" style="font-size: 16px;">Hero ground.</div></div>
-        <div class="card" style="background: #fff; border: var(--toc-bd-gold);"><div class="card-label">outlined</div><div class="card-title" style="font-size: 16px;">Gold edge.</div></div>
+        <div class="card" style="background: var(--toc-bg-raised); border: var(--toc-bd-gold);"><div class="card-label">outlined</div><div class="card-title" style="font-size: 16px;">Gold edge.</div></div>
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Eight tints. One layout commits to one pillar; ivory + dark + outlined function as neutrals across all three.</div>
@@ -3629,7 +3632,7 @@ h1.opener-title, h2.opener-title{
         </div>
         <button class="btn btn-coral btn-sm">$66 · Add to cart</button>
       </div>
-      <div class="stickybar" style="background: var(--toc-violet-800); color: #fff; box-shadow: none;">
+      <div class="stickybar" style="background: var(--toc-violet-800); color: var(--toc-ivory); box-shadow: none;">
         <div class="stickybar-l">
           <div style="font-size: 13px; color: var(--toc-gold-300);">Circle Loyalty · earn up to 25% on every order.</div>
         </div>
@@ -3668,7 +3671,7 @@ h1.opener-title, h2.opener-title{
             <span class="chip" style="background: rgba(212,175,122,.18); color: var(--toc-gold-300);"><span class="d"></span>Featured · Personal Brand</span>
           </div>
           <div style="position: relative; z-index: 1;">
-            <div style="font-family: var(--toc-font-soul); font-weight: 300; font-size: 44px; color: #fff; line-height: 1.04; margin-bottom: var(--toc-s-3); text-wrap: balance;">The Art of <em style="font-style: italic; color: var(--toc-gold-300);">Becoming.</em></div>
+            <div style="font-family: var(--toc-font-soul); font-weight: 300; font-size: 44px; color: var(--toc-ivory); line-height: 1.04; margin-bottom: var(--toc-s-3); text-wrap: balance;">The Art of <em style="font-style: italic; color: var(--toc-gold-300);">Becoming.</em></div>
             <button class="btn btn-gold btn-sm">Join the Circle <span class="arr">→</span></button>
           </div>
         </div>
@@ -3688,7 +3691,7 @@ h1.opener-title, h2.opener-title{
             <div style="font-family: var(--toc-font-mind); font-weight: 300; font-size: 28px; color: var(--toc-blue-700); line-height: 1.25; max-width: 520px; margin-bottom: var(--toc-s-6); position: relative; z-index: 1;">Most cellular signals don't survive the day.<br>Redox does.</div>
             <div style="display:flex; gap: var(--toc-s-3); align-items: center; flex-wrap: wrap; position: relative; z-index: 1;">
               <div style="display:inline-flex; align-items: center; gap: var(--toc-s-3); background: rgba(255,255,255,.5); padding: 12px 18px 12px 14px; border: .5px solid rgba(11,40,109,.18); backdrop-filter: blur(4px);">
-                <div style="width: 30px; height: 30px; background: var(--toc-blue-500); display:flex; align-items: center; justify-content: center; color: #fff; font-size: 14px;">↑</div>
+                <div style="width: 30px; height: 30px; background: var(--toc-blue-500); display:flex; align-items: center; justify-content: center; color: var(--toc-ivory); font-size: 14px;">↑</div>
                 <div style="display:flex; flex-direction: column; line-height: 1.1;">
                   <span style="font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--toc-blue-700);">Native signalling</span>
                   <span style="font-family: var(--toc-font-soul); font-size: 22px; font-weight: 500; color: var(--toc-blue-700);">17×</span>
@@ -3746,7 +3749,7 @@ h1.opener-title, h2.opener-title{
             <span class="chip" style="background: rgba(255,255,255,.14); color: var(--toc-ivory); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); border: .5px solid rgba(255,255,255,.18);"><span class="d"></span>Found · Moody</span>
           </div>
           <div style="position: relative; z-index: 1;">
-            <div style="font-family: var(--toc-font-soul); font-weight: 300; font-size: clamp(28px, 3vw, 36px); color: #fff; line-height: 1.08; margin-bottom: var(--toc-s-3); text-wrap: balance; max-width: 22ch;">Hold the space.<br><em style="font-style: italic; color: var(--toc-gold-300);">The hour before words.</em></div>
+            <div style="font-family: var(--toc-font-soul); font-weight: 300; font-size: clamp(28px, 3vw, 36px); color: var(--toc-ivory); line-height: 1.08; margin-bottom: var(--toc-s-3); text-wrap: balance; max-width: 22ch;">Hold the space.<br><em style="font-style: italic; color: var(--toc-gold-300);">The hour before words.</em></div>
             <span style="font-family: var(--toc-font-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.62);">Backlit palms · 84</span>
           </div>
         </div>
@@ -3756,7 +3759,7 @@ h1.opener-title, h2.opener-title{
           <div style="position:absolute; inset:0; background: linear-gradient(180deg, rgba(40,59,32,.05) 0%, transparent 45%, rgba(40,59,32,.55) 100%); pointer-events:none; z-index:0;"></div>
           <div style="position: relative; z-index: 1;">
             <div class="card-label" style="color: var(--toc-ivory); opacity: .90;">From the field</div>
-            <div class="card-title" style="color: #fff; font-size: 22px; line-height: 1.18;">Green monstera, <em style="font-style: italic; color: var(--toc-gold-300);">blurred.</em></div>
+            <div class="card-title" style="color: var(--toc-ivory); font-size: 22px; line-height: 1.18;">Green monstera, <em style="font-style: italic; color: var(--toc-gold-300);">blurred.</em></div>
           </div>
         </div>
 
@@ -4687,7 +4690,7 @@ h1.opener-title, h2.opener-title{
           <div class="social-body tile-violet">
             <div>
               <div class="social-kicker" style="color: var(--toc-gold-300);">Sunday salon · XIX</div>
-              <div class="social-h" style="color: #fff;">Sovereign <em>Sunday.</em></div>
+              <div class="social-h" style="color: var(--toc-ivory);">Sovereign <em>Sunday.</em></div>
               <p style="font-family: var(--toc-font-soul); font-style: italic; font-size: 16px; color: rgba(249,249,247,.75); margin-top: var(--toc-s-4); line-height: 1.45;">7pm AEST — members only. Bring a journal and an open hour.</p>
             </div>
           </div>

@@ -1885,55 +1885,7 @@ h1.opener-title, h2.opener-title{
 }
 .ux-placeholder-note .mono{color: var(--toc-gold-700);}
 
-/* Dot pattern preview — light-mode glow (profile 18.e) */
-.dot-pattern-preview{
-  background: var(--toc-ivory);
-  min-height: 320px;
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-}
-.dot-pattern{
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--toc-gold-500) 1.2px, transparent 1.6px);
-  background-size: 18px 18px;
-  background-position: center;
-  -webkit-mask-image: radial-gradient(circle 200px at center, black 30%, transparent 75%);
-  mask-image: radial-gradient(circle 200px at center, black 30%, transparent 75%);
-}
-.dot-pattern-glow{
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 320px; height: 320px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(184,150,90,.32) 0%, rgba(184,150,90,.08) 38%, transparent 70%);
-  pointer-events: none;
-  filter: blur(8px);
-}
-.dot-pattern-caption{
-  position: relative; z-index: 1;
-  font-family: var(--toc-font-soul);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 22px;
-  color: var(--toc-violet-800);
-  letter-spacing: -.005em;
-  text-align: center;
-  pointer-events: none;
-}
-.dot-pattern-caption .mono{
-  display: block;
-  font-family: var(--toc-font-mono);
-  font-style: normal;
-  font-size: 10px;
-  letter-spacing: .32em;
-  text-transform: uppercase;
-  color: var(--toc-gold-600);
-  margin-bottom: var(--toc-s-3);
-}
-
-/* Scroll-reveal demo preview — looping cascade (profile 18.g) */
+/* Scroll-reveal demo preview — looping cascade (profile 18.f) */
 .reveal-preview{
   display: flex; flex-direction: column;
   gap: var(--toc-s-3);
@@ -1974,7 +1926,7 @@ h1.opener-title, h2.opener-title{
   .reveal-preview .bar{animation: none; opacity: 1; transform: none;}
 }
 
-/* Interactive grid pattern — light-mode (profile 18.f) */
+/* Interactive grid pattern — light-mode (profile 18.e) */
 .grid-pattern-preview{
   background: var(--toc-ivory);
   min-height: 320px;
@@ -2139,16 +2091,120 @@ h1.opener-title, h2.opener-title{
   border: .5px solid var(--toc-thread-soft);
   padding: 2px 6px;
 }
-.gal-drop-hint{
+/* Functional drop zone for the gallery (Plate 19.b · open slot) */
+.gal-drop-zone{
   border: .5px dashed var(--toc-thread-soft);
-  padding: var(--toc-s-6);
-  text-align: center;
-  font-family: var(--toc-font-soul); font-style: italic;
-  font-size: 14px; color: var(--toc-ink-500);
   background: var(--toc-bg-plate);
+  padding: var(--toc-s-8) var(--toc-s-6);
   margin-top: var(--toc-s-6);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background var(--toc-dur-2) var(--toc-ease-out),
+    border-color var(--toc-dur-2) var(--toc-ease-out);
+  position: relative;
 }
-.gal-drop-hint .mono{display:block; margin-top: 4px; color: var(--toc-gold-700); font-style: normal;}
+.gal-drop-zone:hover,
+.gal-drop-zone:focus-visible{
+  background: var(--toc-bg-raised);
+  border-color: var(--toc-gold-500);
+  outline: none;
+}
+.gal-drop-zone.is-dragover{
+  background: var(--toc-gold-50);
+  border-color: var(--toc-gold-500);
+  border-style: solid;
+}
+.gal-drop-zone-prompt{
+  display: block;
+  font-family: var(--toc-font-soul);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--toc-ink-700);
+  margin-bottom: var(--toc-s-2);
+}
+.gal-drop-zone-prompt .browse{
+  font-family: var(--toc-font-mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--toc-gold-700);
+  border-bottom: .5px solid var(--toc-gold-500);
+  padding-bottom: 1px;
+}
+.gal-drop-zone-spec{
+  display: block;
+  font-family: var(--toc-font-mono);
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--toc-gold-700);
+  margin-top: var(--toc-s-3);
+}
+.gal-drop-zone-note{
+  display: block;
+  font-family: var(--toc-font-soul);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--toc-ink-500);
+  max-width: 56ch;
+  margin: var(--toc-s-3) auto 0;
+  line-height: 1.5;
+}
+.gal-drop-zone-note .mono{
+  font-family: var(--toc-font-mono);
+  font-style: normal;
+  font-size: 10px;
+  color: var(--toc-gold-700);
+}
+.gal-drop-zone-actions{
+  display: flex;
+  gap: var(--toc-s-3);
+  justify-content: center;
+  margin-top: var(--toc-s-4);
+  padding-top: var(--toc-s-3);
+  border-top: .5px solid var(--toc-rule);
+}
+.gal-drop-zone-actions[hidden]{display: none;}
+.gal-drop-zone-actions button{
+  font-family: var(--toc-font-mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  background: transparent;
+  border: .5px solid var(--toc-rule-strong);
+  color: var(--toc-violet-800);
+  padding: 8px 14px;
+  cursor: pointer;
+  transition:
+    border-color var(--toc-dur-2) var(--toc-ease-out),
+    color var(--toc-dur-2) var(--toc-ease-out);
+}
+.gal-drop-zone-actions button:hover{
+  border-color: var(--toc-gold-500);
+  color: var(--toc-gold-700);
+}
+.gal-drop-zone-actions button.danger{color: var(--toc-coral-700);}
+.gal-drop-zone-actions button.danger:hover{border-color: var(--toc-coral-500);}
+
+/* Preview-added items get a tiny corner mark so they read as session-only */
+.gal-item[data-preview-id]{
+  position: relative;
+}
+.gal-item[data-preview-id]::before{
+  content: "preview";
+  position: absolute;
+  top: 6px; right: 6px;
+  z-index: 2;
+  padding: 3px 6px;
+  background: var(--toc-violet-800);
+  color: var(--toc-ivory);
+  font-family: var(--toc-font-mono);
+  font-size: 8px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
 
 /* ───────────────────────────────────────────────────────────
    MORE IN APPLICATION (chapter XX)
@@ -4249,61 +4305,9 @@ h1.opener-title, h2.opener-title{
     </div>
   </div>
 
-  <!-- 18.e — Dot pattern with glow -->
+  <!-- 18.e — Interactive grid pattern (was 18.f before the dot-pattern profile was retired) -->
   <div class="subhead">
     <div class="subhead-mark">18 · e</div>
-    <div class="subhead-line">Dot pattern with glow</div>
-  </div>
-
-  <div class="plate">
-    <div class="ux-profile">
-      <div class="ux-profile-head">
-        <div>
-          <div class="ux-profile-name">Dot pattern <em>with glow</em></div>
-          <p style="font-family: var(--toc-font-soul); font-style: italic; font-size: 14px; color: var(--toc-ink-500); margin-top: 4px;">Atmospheric ground for empty states, modal overlays, and section breaks. Light register, gold thread.</p>
-        </div>
-        <div class="ux-profile-meta">
-          <span>Atom</span><span>Mode · light</span><span>Stable</span>
-        </div>
-      </div>
-      <div class="ux-body">
-        <div class="ux-preview dot-pattern-preview">
-          <div class="dot-pattern"></div>
-          <div class="dot-pattern-glow"></div>
-          <div class="dot-pattern-caption">
-            <span class="mono">Glow · Sacred Gold</span>
-            Quiet rooms, marked softly.
-          </div>
-        </div>
-        <div class="ux-code">
-          <button class="ux-copy" data-copy-target="code-dotpattern">Copy</button>
-<pre id="code-dotpattern"><span class="t-comment">// components/ui/dot-pattern-with-glow-effect.tsx</span>
-<span class="t-str">"use client"</span>
-<span class="t-keyword">import</span> { cn } <span class="t-keyword">from</span> <span class="t-str">"@/lib/utils"</span>
-<span class="t-keyword">import</span> { DotPattern } <span class="t-keyword">from</span> <span class="t-str">"@/registry/magicui/dot-pattern"</span>
-
-<span class="t-keyword">export function</span> DotPatternWithGlowEffectDemo() {
-  <span class="t-keyword">return</span> (
-    <span class="t-tag">&lt;div</span> <span class="t-attr">className</span>=<span class="t-str">"relative flex h-[500px] w-full</span>
-<span class="t-str">      flex-col items-center justify-center overflow-hidden"</span><span class="t-tag">&gt;</span>
-      <span class="t-tag">&lt;DotPattern</span>
-        <span class="t-attr">glow</span>={<span class="t-keyword">true</span>}
-        <span class="t-attr">className</span>={cn(
-          <span class="t-str">"[mask-image:radial-gradient(300px_circle_at_center,</span>
-<span class="t-str">           toc-ivory,transparent)]"</span>
-        )}
-      <span class="t-tag">/&gt;</span>
-    <span class="t-tag">&lt;/div&gt;</span>
-  )
-}</pre>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 18.f — Interactive grid pattern -->
-  <div class="subhead">
-    <div class="subhead-mark">18 · f</div>
     <div class="subhead-line">Interactive grid pattern</div>
   </div>
 
@@ -4356,9 +4360,9 @@ h1.opener-title, h2.opener-title{
     </div>
   </div>
 
-  <!-- 18.g — Reveal on scroll -->
+  <!-- 18.f — Reveal on scroll -->
   <div class="subhead">
-    <div class="subhead-mark">18 · g</div>
+    <div class="subhead-mark">18 · f</div>
     <div class="subhead-line">Reveal on scroll</div>
   </div>
 
@@ -4444,7 +4448,7 @@ h1.opener-title, h2.opener-title{
 
   <div class="ux-placeholder-note">
     <span style="font-family: var(--toc-font-soul); font-style: italic;">More profiles awaiting client supply.</span>
-    <span class="mono" style="font-family: var(--toc-font-mono); font-style: normal; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; margin-left: auto;">slot · 18.h – 18.z</span>
+    <span class="mono" style="font-family: var(--toc-font-mono); font-style: normal; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; margin-left: auto;">slot · 18.g – 18.z</span>
   </div>
 </section>
 
@@ -4690,9 +4694,25 @@ h1.opener-title, h2.opener-title{
 
       </div>
 
-      <div class="gal-drop-hint">
-        Drop sanctioned imagery here — system will register new tags as added.
-        <span class="mono">slot · 19.b – open</span>
+      <div
+        class="gal-drop-zone"
+        id="galleryDropZone"
+        tabindex="0"
+        role="button"
+        aria-label="Drop images here or press Enter to browse, to add them to the gallery preview"
+      >
+        <span class="gal-drop-zone-prompt">
+          Drop sanctioned imagery here — or <span class="browse">browse files</span>
+        </span>
+        <span class="gal-drop-zone-spec">accepts · jpg · png · webp · max 5 mb · 19.b</span>
+        <span class="gal-drop-zone-note">
+          Preview only — images are read in your browser and persist via localStorage on this device. To add an image permanently to the system, commit the file to <span class="mono">images/library/</span> and add a matching tile in this section.
+        </span>
+        <input type="file" id="galleryFileInput" multiple accept="image/jpeg,image/png,image/webp" hidden>
+        <div class="gal-drop-zone-actions" id="galleryDropActions" hidden>
+          <button type="button" id="galleryDropExport">Copy manifest</button>
+          <button type="button" id="galleryDropClear" class="danger">Clear preview library</button>
+        </div>
       </div>
 
       <div class="plate-caption">
@@ -5042,13 +5062,12 @@ h1.opener-title, h2.opener-title{
   });
 
   // Gallery — tag filter with gentle ease (delight #6).
-  // Items already in the grid fade out before hiding; returning items fade
-  // back in with a tiny stagger so the grid breathes rather than snap-cuts.
+  // Items are queried fresh on each filter so newly-added preview uploads
+  // (from the drop zone in 19.b) are included automatically.
   (function(){
     const tagRow = document.getElementById('galleryTags');
     const grid = document.getElementById('galleryGrid');
     if (!tagRow || !grid) return;
-    const items = Array.from(grid.querySelectorAll('.gal-item'));
     const tags = tagRow.querySelectorAll('.g-tag');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -5066,6 +5085,9 @@ h1.opener-title, h2.opener-title{
         btn.setAttribute('aria-pressed', 'true');
         const tag = btn.getAttribute('data-tag');
 
+        // Re-query so new preview uploads are included on every filter pass.
+        const items = Array.from(grid.querySelectorAll('.gal-item'));
+
         if (reduced){
           items.forEach(item => {
             const itemTags = (item.getAttribute('data-tags') || '').split(/\s+/);
@@ -5074,14 +5096,12 @@ h1.opener-title, h2.opener-title{
           return;
         }
 
-        // Compute which items should be visible
         let stagger = 0;
         items.forEach(item => {
           const itemTags = (item.getAttribute('data-tags') || '').split(/\s+/);
           const shouldShow = tag === 'all' || itemTags.includes(tag);
           const wasHidden = item.classList.contains('hidden');
           if (shouldShow && wasHidden){
-            // Re-enter: clear hidden, start invisible, stagger fade in
             item.classList.remove('hidden');
             item.classList.add('is-leaving');
             const delay = stagger;
@@ -5090,7 +5110,6 @@ h1.opener-title, h2.opener-title{
               setTimeout(() => item.classList.remove('is-leaving'), delay);
             });
           } else if (!shouldShow && !wasHidden){
-            // Exit: fade out, then hide
             item.classList.add('is-leaving');
             setTimeout(() => {
               item.classList.add('hidden');
@@ -5100,6 +5119,202 @@ h1.opener-title, h2.opener-title{
         });
       });
     });
+  })();
+
+  // Gallery drop zone (Plate 19.b) — client-side image preview library.
+  // Accepts drag-drop OR click-to-browse, reads images as data URLs,
+  // auto-suggests a label + tag from the filename, appends them to the
+  // gallery grid, and persists per-browser via localStorage.
+  // NOTE: Vercel-served HTML has no backend, so dropped images are PREVIEW
+  // ONLY in the client's session. The 'Copy manifest' action emits a JSON
+  // list the team can use to commit files permanently.
+  (function(){
+    const zone = document.getElementById('galleryDropZone');
+    const input = document.getElementById('galleryFileInput');
+    const grid = document.getElementById('galleryGrid');
+    const actions = document.getElementById('galleryDropActions');
+    const clearBtn = document.getElementById('galleryDropClear');
+    const exportBtn = document.getElementById('galleryDropExport');
+    if (!zone || !input || !grid) return;
+
+    const STORAGE_KEY = 'toc:gallery:preview-library';
+    const MAX_BYTES = 5 * 1024 * 1024;
+    const previewItems = [];
+
+    // Known tag vocabulary — filenames containing these strings auto-suggest the tag.
+    const knownTags = ['hero','founder','candid','plant','interior','grain','blurred','petal','texture','background'];
+
+    const labelFromFilename = (name) => {
+      const stem = name.replace(/\.[^.]+$/, '');
+      return stem.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim()
+        .replace(/\b\w/g, c => c.toUpperCase());
+    };
+
+    const tagFromFilename = (name) => {
+      const lower = name.toLowerCase();
+      const found = knownTags.find(t => lower.includes(t));
+      return found || 'preview';
+    };
+
+    const createGalItem = (item) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'gal-item';
+      // Always include 'preview' so users can filter to session uploads
+      const tagSet = new Set([item.tag, 'preview']);
+      wrap.setAttribute('data-tags', Array.from(tagSet).join(' '));
+      wrap.setAttribute('data-preview-id', item.id);
+
+      const frame = document.createElement('div');
+      frame.className = 'gal-frame has-image t-photo-3x4';
+      frame.style.backgroundImage = 'url("' + item.dataUrl + '")';
+
+      const label = document.createElement('div');
+      label.className = 'gal-label';
+      label.textContent = item.label;
+
+      const tagrow = document.createElement('div');
+      tagrow.className = 'gal-tagrow';
+      Array.from(tagSet).forEach(t => {
+        const ms = document.createElement('span');
+        ms.className = 'gal-mini-tag';
+        ms.textContent = t;
+        tagrow.appendChild(ms);
+      });
+
+      wrap.appendChild(frame);
+      wrap.appendChild(label);
+      wrap.appendChild(tagrow);
+      return wrap;
+    };
+
+    const persist = () => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(previewItems));
+      } catch(e){
+        console.warn('[Gallery] Could not persist preview library:', e.message);
+      }
+      actions.hidden = previewItems.length === 0;
+    };
+
+    const addImageFile = (file) => {
+      if (!file.type.startsWith('image/')){
+        if (typeof showCopyToast === 'function') showCopyToast('Skipped · not an image', '');
+        return;
+      }
+      if (file.size > MAX_BYTES){
+        if (typeof showCopyToast === 'function') showCopyToast('Skipped · over 5 mb', '');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const item = {
+          id: Date.now() + '-' + Math.random().toString(36).slice(2,8),
+          dataUrl: e.target.result,
+          label: labelFromFilename(file.name),
+          tag: tagFromFilename(file.name),
+          filename: file.name,
+          added: new Date().toISOString(),
+        };
+        previewItems.push(item);
+        grid.appendChild(createGalItem(item));
+        persist();
+        if (typeof showCopyToast === 'function') showCopyToast('Added · ' + item.label, '');
+      };
+      reader.onerror = () => {
+        if (typeof showCopyToast === 'function') showCopyToast('Read failed · ' + file.name, '');
+      };
+      reader.readAsDataURL(file);
+    };
+
+    const handleFiles = (files) => Array.from(files).forEach(addImageFile);
+
+    // Drag handlers
+    ['dragenter','dragover'].forEach(evt => {
+      zone.addEventListener(evt, (e) => {
+        e.preventDefault(); e.stopPropagation();
+        zone.classList.add('is-dragover');
+      });
+    });
+    ['dragleave','drop'].forEach(evt => {
+      zone.addEventListener(evt, (e) => {
+        e.preventDefault(); e.stopPropagation();
+        zone.classList.remove('is-dragover');
+      });
+    });
+    zone.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files){
+        handleFiles(e.dataTransfer.files);
+      }
+    });
+
+    // Click to browse — but ignore clicks on the action buttons
+    zone.addEventListener('click', (e) => {
+      if (e.target.closest('.gal-drop-zone-actions')) return;
+      input.click();
+    });
+    input.addEventListener('change', (e) => {
+      if (e.target.files){
+        handleFiles(e.target.files);
+        input.value = '';
+      }
+    });
+
+    // Keyboard (Enter / Space to open file picker)
+    zone.addEventListener('keydown', (e) => {
+      if (e.target !== zone) return;
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        input.click();
+      }
+    });
+
+    // Clear preview library
+    clearBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!confirm('Clear all preview-only images from this browser session?')) return;
+      document.querySelectorAll('.gal-item[data-preview-id]').forEach(n => n.remove());
+      previewItems.length = 0;
+      persist();
+      if (typeof showCopyToast === 'function') showCopyToast('Preview library cleared', '');
+    });
+
+    // Export manifest — copies a JSON list of filenames + suggested tags
+    // so the team can commit the files to images/library/ with matching metadata.
+    exportBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const manifest = previewItems.map(it => ({
+        filename: it.filename,
+        label: it.label,
+        tag: it.tag,
+        added: it.added,
+      }));
+      const json = JSON.stringify(manifest, null, 2);
+      if (navigator.clipboard){
+        navigator.clipboard.writeText(json).then(() => {
+          if (typeof showCopyToast === 'function')
+            showCopyToast('Copied · manifest of ' + manifest.length + ' items', '');
+        }).catch(() => {
+          console.log('[Gallery] Manifest:\n' + json);
+        });
+      } else {
+        console.log('[Gallery] Manifest:\n' + json);
+      }
+    });
+
+    // Restore on load
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored){
+        const items = JSON.parse(stored);
+        items.forEach(item => {
+          previewItems.push(item);
+          grid.appendChild(createGalItem(item));
+        });
+        actions.hidden = previewItems.length === 0;
+      }
+    } catch(e){
+      console.warn('[Gallery] Could not restore preview library:', e.message);
+    }
   })();
 
   // ─────────────────────────────────────────────────────────
@@ -5300,7 +5515,7 @@ h1.opener-title, h2.opener-title{
     });
   });
 
-  // Interactive grid pattern — build the SVG cells (profile 18.f)
+  // Interactive grid pattern — build the SVG cells (profile 18.e)
   (function(){
     const svg = document.getElementById('grid-pattern-svg');
     if (!svg) return;
@@ -5317,7 +5532,7 @@ h1.opener-title, h2.opener-title{
   })();
 
   // Scroll reveal — gentle fade + 16px lift on viewport entry.
-  // Wires the IntersectionObserver pattern documented in profile 18.g.
+  // Wires the IntersectionObserver pattern documented in profile 18.f.
   // Hero + colophon are intentionally excluded (already in view at start/end).
   (function(){
     // Respect the user preference — content shows immediately, no JS class added.

@@ -827,27 +827,28 @@ h1.opener-title, h2.opener-title{
   border-bottom: .5px solid var(--toc-thread-soft);
 }
 .topbar-inner{
-  max-width: var(--col-bleed);
+  max-width: 1640px;
   margin: 0 auto;
-  padding: 14px var(--gutter);
-  display:flex; align-items:center; justify-content:space-between; gap: var(--toc-s-6);
+  padding: 14px clamp(20px, 2.4vw, 40px);
+  display:flex; align-items:center; justify-content:space-between; gap: var(--toc-s-5);
   font-family: var(--toc-font-mono);
   font-size: 10px;
-  letter-spacing: .22em;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--toc-ink-500);
 }
-.topbar-mark{display:flex; align-items:center; gap: 10px; color: var(--toc-violet-800);}
-.topbar-mark .name{font-family: var(--toc-font-soul); font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--toc-violet-800);}
-.topbar-nav{display:flex; align-items:center; gap: var(--toc-s-6); flex-wrap:wrap;}
+.topbar-mark{display:flex; align-items:center; gap: 10px; color: var(--toc-violet-800); flex-shrink: 0;}
+.topbar-mark .name{font-family: var(--toc-font-soul); font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--toc-violet-800); white-space: nowrap;}
+.topbar-nav{display:flex; align-items:center; gap: clamp(14px, 1.6vw, 28px); flex-wrap: nowrap; min-width: 0;}
 .topbar-nav a{
   text-decoration:none; color: inherit;
   transition: color var(--toc-dur-2) var(--toc-ease-out);
   position: relative;
+  white-space: nowrap;
 }
 .topbar-nav a:hover{color: var(--toc-gold-700);}
-.topbar-end{font-family: var(--toc-font-mono); color: var(--toc-ink-500);}
-@media (max-width: 880px){
+.topbar-end{font-family: var(--toc-font-mono); color: var(--toc-ink-500); white-space: nowrap; flex-shrink: 0;}
+@media (max-width: 1080px){
   .topbar-nav{display:none;}
 }
 
@@ -2325,8 +2326,6 @@ h1.opener-title, h2.opener-title{
     </div>
 
     <div class="hero-foot">
-      <span><span class="dot"></span>Design System</span>
-      <span>Volume I · Edition II</span>
       <span class="hero-scroll">Scroll to explore <span class="arrow">↓</span></span>
     </div>
   </div>

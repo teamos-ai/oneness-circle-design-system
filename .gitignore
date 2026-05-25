@@ -1,0 +1,27 @@
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Vercel build artifacts
+.vercel/
+
+# Node (if anyone ever runs a local server with npm)
+node_modules/
+npm-debug.log*
+
+# Local working drafts
+*.draft.html
+*.bak
+
+# Original brief assets — kept locally for reference, excluded from deploy.
+# ~65MB of client-provided source files (PSDs, large PNGs, original HTML).
+# The design system references the curated images/ folder only.
+_source/uploads/

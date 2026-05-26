@@ -351,7 +351,7 @@ body{
   text-transform: none;
   color: var(--toc-violet-800);
   opacity: 0;
-  transition: opacity 1200ms var(--toc-ease-out) 400ms;
+  transition: opacity 400ms var(--toc-ease-out);
   min-width: 14ch;
   text-align: center;
 }
@@ -3309,7 +3309,7 @@ h1.opener-title, h2.opener-title{
     </div>
 
     <div class="hero-foot">
-      <span class="hero-greeting" aria-live="polite"></span>
+      <span class="hero-greeting" aria-hidden="true"></span>
     </div>
   </div>
 </section>
@@ -6291,18 +6291,104 @@ h1.opener-title, h2.opener-title{
   // All six features honour prefers-reduced-motion at the CSS layer.
   // ─────────────────────────────────────────────────────────
 
-  // 2 — Hero greeting · time-of-day acknowledgement
+  // 2 — Hero greeting · cycling salutations.
+  // Alternates between 'hello' and 'how are you' in many languages —
+  // a different phrase every 5 seconds, crossfaded smoothly. Honours
+  // prefers-reduced-motion by showing a single static greeting and
+  // not cycling. The element is aria-hidden (decorative); the H1
+  // carries the real welcome for assistive tech.
   (function(){
     const greet = document.querySelector('.hero-greeting');
     if (!greet) return;
-    const h = new Date().getHours();
-    const phrase =
-      (h >= 5 && h < 12)  ? 'Slow morning.' :
-      (h >= 12 && h < 18) ? 'Still hours of light.' :
-      (h >= 18 && h < 23) ? 'The hour before words.' :
-                            'Reading by lamp.';
-    greet.textContent = phrase;
+
+    const hellos = [
+      { text: 'Hello.',        lang: 'English'    },
+      { text: 'Hola.',         lang: 'Spanish'    },
+      { text: 'Bonjour.',      lang: 'French'     },
+      { text: 'Ciao.',         lang: 'Italian'    },
+      { text: 'Hallo.',        lang: 'German'     },
+      { text: 'Olá.',          lang: 'Portuguese' },
+      { text: 'Hej.',          lang: 'Swedish'    },
+      { text: 'こんにちは.',     lang: 'Japanese'   },
+      { text: '你好.',          lang: 'Mandarin'   },
+      { text: '안녕하세요.',     lang: 'Korean'     },
+      { text: 'Namaste.',      lang: 'Hindi'      },
+      { text: 'Marhaba.',      lang: 'Arabic'     },
+      { text: 'Shalom.',       lang: 'Hebrew'     },
+      { text: 'Privet.',       lang: 'Russian'    },
+      { text: 'Merhaba.',      lang: 'Turkish'    },
+      { text: 'Xin chào.',     lang: 'Vietnamese' },
+      { text: 'Sawatdee.',     lang: 'Thai'       },
+      { text: 'Kumusta.',      lang: 'Tagalog'    },
+      { text: 'Jambo.',        lang: 'Swahili'    },
+      { text: 'Kia ora.',      lang: 'Maori'      },
+      { text: 'Aloha.',        lang: 'Hawaiian'   },
+      { text: 'Salam.',        lang: 'Indonesian' },
+    ];
+
+    const howAreYous = [
+      { text: 'How are you?',          lang: 'English'    },
+      { text: '¿Cómo estás?',          lang: 'Spanish'    },
+      { text: 'Comment ça va?',        lang: 'French'     },
+      { text: 'Come stai?',            lang: 'Italian'    },
+      { text: "Wie geht's?",           lang: 'German'     },
+      { text: 'Como você está?',       lang: 'Portuguese' },
+      { text: 'Hur mår du?',           lang: 'Swedish'    },
+      { text: 'お元気ですか？',          lang: 'Japanese'   },
+      { text: '你好吗？',                lang: 'Mandarin'   },
+      { text: '잘 지내세요?',            lang: 'Korean'     },
+      { text: 'Aap kaise hain?',       lang: 'Hindi'      },
+      { text: 'Kayf halak?',           lang: 'Arabic'     },
+      { text: 'Mah shlomcha?',         lang: 'Hebrew'     },
+      { text: 'Kak dela?',             lang: 'Russian'    },
+      { text: 'Nasılsın?',             lang: 'Turkish'    },
+      { text: 'Bạn khỏe không?',       lang: 'Vietnamese' },
+      { text: 'Sabai dee mai?',        lang: 'Thai'       },
+      { text: 'Kumusta ka?',           lang: 'Tagalog'    },
+      { text: 'Habari yako?',          lang: 'Swahili'    },
+      { text: 'Kei te pēhea koe?',     lang: 'Maori'      },
+      { text: 'Pehea ʻoe?',            lang: 'Hawaiian'   },
+      { text: 'Apa kabar?',            lang: 'Indonesian' },
+    ];
+
+    const setGreeting = (item) => {
+      greet.textContent = item.text;
+      greet.setAttribute('title', item.lang);
+    };
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Reduced-motion: single static greeting, no cycling.
+    if (reduced){
+      setGreeting(hellos[0]);
+      greet.classList.add('is-visible');
+      return;
+    }
+
+    // Initial — show first hello immediately so the cover never starts empty
+    setGreeting(hellos[0]);
     requestAnimationFrame(() => greet.classList.add('is-visible'));
+
+    // State: alternate hello → how-are-you → hello → …
+    let helloIdx = 0;        // 0 already shown
+    let howIdx   = -1;
+    let nextIsHowAreYou = true;
+
+    // Crossfade: 400ms out → swap text → 400ms in. 5000ms total cadence.
+    setInterval(() => {
+      greet.classList.remove('is-visible');
+      setTimeout(() => {
+        if (nextIsHowAreYou){
+          howIdx = (howIdx + 1) % howAreYous.length;
+          setGreeting(howAreYous[howIdx]);
+        } else {
+          helloIdx = (helloIdx + 1) % hellos.length;
+          setGreeting(hellos[helloIdx]);
+        }
+        nextIsHowAreYou = !nextIsHowAreYou;
+        requestAnimationFrame(() => greet.classList.add('is-visible'));
+      }, 400);
+    }, 5000);
   })();
 
   // Cmd+K / Ctrl+K command palette — chapter jump, token search, icon copy.

@@ -1401,6 +1401,96 @@ h1.opener-title, h2.opener-title{
   color: var(--toc-gold-700); font-weight: 500;
 }
 
+
+/* ───────────────────────────────────────────────────────────
+   ICONOGRAPHY · Chapter XII grid + tile + theme dividers
+   Click a tile to copy the SVG <use> reference to clipboard.
+   ─────────────────────────────────────────────────────────── */
+.icon-theme-head{
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  gap: var(--toc-s-8);
+  align-items: baseline;
+  margin: var(--toc-s-12) auto var(--toc-s-4);
+  max-width: var(--col-wide);
+}
+.icon-theme-head .mark{
+  font-family: var(--toc-font-mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--toc-gold-500);
+  padding-top: 8px;
+  border-top: .5px solid var(--toc-thread-soft);
+}
+.icon-theme-head .name{
+  border-top: .5px solid var(--toc-rule);
+  padding-top: 8px;
+  font-family: var(--toc-font-soul);
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 26px);
+  color: var(--toc-violet-800);
+  line-height: 1.2;
+}
+.icon-theme-head .name em{font-style: italic; color: var(--toc-gold-600);}
+.icon-theme-head .count{
+  font-family: var(--toc-font-mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--toc-ink-500);
+  padding-top: 8px;
+  border-top: .5px solid var(--toc-rule);
+}
+.icon-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  border: .5px solid var(--toc-rule);
+  background: var(--toc-bg-raised);
+}
+.icon-tile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 20px 12px 16px;
+  border-right: .5px solid var(--toc-rule);
+  border-bottom: .5px solid var(--toc-rule);
+  background: transparent;
+  cursor: copy;
+  transition: background var(--toc-dur-2) var(--toc-ease-out);
+  text-align: center;
+}
+.icon-tile:hover{background: var(--toc-bg-plate);}
+.icon-tile:hover .icon-glyph{color: var(--toc-gold-700);}
+.icon-glyph{
+  width: 30px; height: 30px;
+  color: var(--toc-violet-800);
+  display: block;
+  transition: color var(--toc-dur-2) var(--toc-ease-out);
+}
+.icon-glyph > svg{
+  width: 100%; height: 100%;
+  fill: currentColor;
+  stroke: currentColor;
+  display: block;
+}
+/* If a symbol uses stroke-only paths, override the fill default */
+.icon-glyph use{fill: currentColor;}
+.icon-label{
+  font-family: var(--toc-font-soul);
+  font-size: 14px;
+  color: var(--toc-violet-800);
+  line-height: 1.2;
+}
+.icon-code{
+  font-family: var(--toc-font-mono);
+  font-size: 9px;
+  letter-spacing: .12em;
+  color: var(--toc-gold-700);
+}
+
 /* ───────────────────────────────────────────────────────────
    COMPONENT PLATES
    ─────────────────────────────────────────────────────────── */
@@ -1885,7 +1975,7 @@ h1.opener-title, h2.opener-title{
 }
 .ux-placeholder-note .mono{color: var(--toc-gold-700);}
 
-/* Scroll-reveal demo preview — looping cascade (profile 18.f) */
+/* Scroll-reveal demo preview — looping cascade (profile 19.f) */
 .reveal-preview{
   display: flex; flex-direction: column;
   gap: var(--toc-s-3);
@@ -1926,7 +2016,7 @@ h1.opener-title, h2.opener-title{
   .reveal-preview .bar{animation: none; opacity: 1; transform: none;}
 }
 
-/* Interactive grid pattern — light-mode (profile 18.e) */
+/* Interactive grid pattern — light-mode (profile 19.e) */
 .grid-pattern-preview{
   background: var(--toc-ivory);
   min-height: 320px;
@@ -2091,7 +2181,7 @@ h1.opener-title, h2.opener-title{
   border: .5px solid var(--toc-thread-soft);
   padding: 2px 6px;
 }
-/* Functional drop zone for the gallery (Plate 19.b · open slot) */
+/* Functional drop zone for the gallery (Plate 20.b · open slot) */
 .gal-drop-zone{
   border: .5px dashed var(--toc-thread-soft);
   background: var(--toc-bg-plate);
@@ -2696,6 +2786,139 @@ h1.opener-title, h2.opener-title{
   <symbol id="icon-spark" viewBox="0 0 10 10">
     <path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" fill="currentColor"/>
   </symbol>
+
+  <!-- ── Iconography library (Chapter XII) ───────────────────────────
+       Themed glyphs for essential oils, science, nature, wellness,
+       meditation, energy, sound healing, feminine, personal & social.
+       All sharp / geometric where possible, solid fill, currentColor. -->
+
+  <!-- BOTANICAL & ESSENTIAL OILS -->
+  <symbol id="icon-leaf" viewBox="0 0 10 10">
+    <path d="M9 1 C9 5 6 9 1 9 C1 5 4 1 9 1 Z M5 5 L8 2" fill="currentColor" stroke="currentColor" stroke-width=".4"/>
+  </symbol>
+  <symbol id="icon-bottle" viewBox="0 0 10 10">
+    <path d="M3.5 0 L6.5 0 L6.5 1.5 L7.5 3 L7.5 10 L2.5 10 L2.5 3 L3.5 1.5 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-vial" viewBox="0 0 10 10">
+    <path d="M2.5 0 L7.5 0 L7.5 1 L6.5 1.5 L6.5 8.5 C6.5 9.33 5.83 10 5 10 C4.17 10 3.5 9.33 3.5 8.5 L3.5 1.5 L2.5 1 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-branch" viewBox="0 0 10 10">
+    <path d="M4.5 0 L5.5 0 L5.5 10 L4.5 10 Z M5.5 2.5 L8 1.5 L7 3.5 Z M4.5 5 L2 4 L3 6 Z M5.5 7 L8 6 L7 8 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-petal" viewBox="0 0 10 10">
+    <path d="M5 0 C8 1 9 4 8 7 C7 9 5 10 5 10 C5 10 3 9 2 7 C1 4 2 1 5 0 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- SCIENCE & CHEMISTRY -->
+  <symbol id="icon-atom" viewBox="0 0 10 10">
+    <g fill="none" stroke="currentColor" stroke-width=".8">
+      <ellipse cx="5" cy="5" rx="4" ry="1.6"/>
+      <ellipse cx="5" cy="5" rx="4" ry="1.6" transform="rotate(60 5 5)"/>
+      <ellipse cx="5" cy="5" rx="4" ry="1.6" transform="rotate(-60 5 5)"/>
+    </g>
+    <circle cx="5" cy="5" r="1.2" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-flask" viewBox="0 0 10 10">
+    <path d="M3.5 0 L6.5 0 L6.5 1 L6 1 L6 4 L9 9 L9 10 L1 10 L1 9 L4 4 L4 1 L3.5 1 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-molecule" viewBox="0 0 10 10">
+    <path d="M2.5 2.5 L7.5 2.5 M3 3 L5 7.5 M7 3 L5 7.5" stroke="currentColor" stroke-width=".8"/>
+    <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+    <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
+    <circle cx="5" cy="8" r="1.5" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-dna" viewBox="0 0 10 10">
+    <path d="M2 0 C5 2 5 8 2 10 M8 0 C5 2 5 8 8 10 M2.5 2 L7.5 2 M2.5 5 L7.5 5 M2.5 8 L7.5 8" stroke="currentColor" stroke-width=".8" fill="none"/>
+  </symbol>
+
+  <!-- NATURE & FARMING -->
+  <symbol id="icon-sun" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="2.4" fill="currentColor"/>
+    <path d="M5 0 L5 1.6 M5 8.4 L5 10 M0 5 L1.6 5 M8.4 5 L10 5 M1.5 1.5 L2.6 2.6 M7.4 7.4 L8.5 8.5 M8.5 1.5 L7.4 2.6 M1.5 8.5 L2.6 7.4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-mountain" viewBox="0 0 10 10">
+    <path d="M0 10 L3.2 4 L5.4 7 L6.8 4.6 L10 10 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-tree" viewBox="0 0 10 10">
+    <path d="M5 0 L9 7 L1 7 Z M4.2 7 L5.8 7 L5.8 10 L4.2 10 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-seedling" viewBox="0 0 10 10">
+    <path d="M5 10 L5 4 M5 5 C5 3 3.3 2 1.5 2 C1.5 4 3.3 5 5 5 M5 5 C5 3 6.7 2 8.5 2 C8.5 4 6.7 5 5 5" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-wheat" viewBox="0 0 10 10">
+    <path d="M5 10 L5 0 M5 2 L7.2 1 M5 2 L2.8 1 M5 4 L7.2 3 M5 4 L2.8 3 M5 6 L7.2 5 M5 6 L2.8 5 M5 8 L7.2 7 M5 8 L2.8 7" stroke="currentColor" stroke-width=".9" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- WELLNESS & MEDITATION -->
+  <symbol id="icon-lotus" viewBox="0 0 10 10">
+    <path d="M5 1 C5.8 3 5.8 5 5 6 C4.2 5 4.2 3 5 1 Z M1 5 C3 4 4.2 5 5 6 C4 6.5 2 7 1 5 Z M9 5 C7 4 5.8 5 5 6 C6 6.5 8 7 9 5 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-heart" viewBox="0 0 10 10">
+    <path d="M5 9 C2.4 7 0 5 0 3 C0 1.2 2 0 5 2 C8 0 10 1.2 10 3 C10 5 7.6 7 5 9 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-mortar" viewBox="0 0 10 10">
+    <path d="M1.5 1 L3.5 3 L2.5 4 L0.5 2 Z M0.8 5.5 L9.2 5.5 L8.5 9 C8.2 9.7 7.2 10 5 10 C2.8 10 1.8 9.7 1.5 9 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-hands" viewBox="0 0 10 10">
+    <path d="M4.5 0 L4.5 10 L3.2 10 L3.2 4 L1.6 5 L1 4 L4.5 0 Z M5.5 0 L5.5 10 L6.8 10 L6.8 4 L8.4 5 L9 4 L5.5 0 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-breath" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="4.5" fill="none" stroke="currentColor" stroke-width=".8"/>
+    <circle cx="5" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width=".8"/>
+    <circle cx="5" cy="5" r="1" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-mandala" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="3.5" fill="none" stroke="currentColor" stroke-width=".6"/>
+    <path d="M5 0 L5 2 M5 8 L5 10 M0 5 L2 5 M8 5 L10 5 M1.5 1.5 L3 3 M7 7 L8.5 8.5 M8.5 1.5 L7 3 M3 7 L1.5 8.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="5" cy="5" r="1.4" fill="currentColor"/>
+  </symbol>
+
+  <!-- ENERGY & SOUND -->
+  <symbol id="icon-flame" viewBox="0 0 10 10">
+    <path d="M5 0 C3 3 1 5 2 8 C2.5 9.2 3.6 10 5 10 C6.4 10 7.5 9.2 8 8 C9 5 7 3 5 0 Z M5 4 C4 6 3.5 7 4 8.5 C4.3 9.3 5.7 9.3 6 8.5 C6.5 7 6 6 5 4 Z" fill="currentColor" fill-rule="evenodd"/>
+  </symbol>
+  <symbol id="icon-bolt" viewBox="0 0 10 10">
+    <path d="M6 0 L1 6 L4 6 L3 10 L9 4 L6 4 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-wave" viewBox="0 0 10 10">
+    <path d="M0 5 Q1.25 0 2.5 5 Q3.75 10 5 5 Q6.25 0 7.5 5 Q8.75 10 10 5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-bell" viewBox="0 0 10 10">
+    <path d="M5 0 L5 1 C3 1.5 1.5 3 1.5 6 L0.5 8 L9.5 8 L8.5 6 C8.5 3 7 1.5 5 1 Z M4 9 L6 9 C6 9.6 5.5 10 5 10 C4.5 10 4 9.6 4 9 Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- FEMININE & CYCLES -->
+  <symbol id="icon-moon" viewBox="0 0 10 10">
+    <path d="M3 1 C6 1 8 3 8 5 C8 7 6 9 3 9 C5 8 6 6.5 6 5 C6 3.5 5 2 3 1 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-flower" viewBox="0 0 10 10">
+    <circle cx="5" cy="2" r="1.8" fill="currentColor"/>
+    <circle cx="8" cy="5" r="1.8" fill="currentColor"/>
+    <circle cx="5" cy="8" r="1.8" fill="currentColor"/>
+    <circle cx="2" cy="5" r="1.8" fill="currentColor"/>
+    <circle cx="5" cy="5" r="1.2" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-infinity" viewBox="0 0 10 10">
+    <path d="M2.5 3 C0.5 3 0.5 7 2.5 7 C4 7 4.5 5 5 5 C5.5 5 6 3 7.5 3 C9.5 3 9.5 7 7.5 7 C6 7 5.5 5 5 5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- PERSONAL & SOCIAL -->
+  <symbol id="icon-person" viewBox="0 0 10 10">
+    <circle cx="5" cy="2.5" r="2" fill="currentColor"/>
+    <path d="M1 10 C1 7 2.5 6 5 6 C7.5 6 9 7 9 10 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-message" viewBox="0 0 10 10">
+    <path d="M0 0 L10 0 L10 7 L4 7 L2 10 L2 7 L0 7 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-share" viewBox="0 0 10 10">
+    <circle cx="2" cy="5" r="1.6" fill="currentColor"/>
+    <circle cx="8" cy="2" r="1.6" fill="currentColor"/>
+    <circle cx="8" cy="8" r="1.6" fill="currentColor"/>
+    <path d="M3.2 4.5 L6.8 2.5 M3.2 5.5 L6.8 7.5" stroke="currentColor" stroke-width=".9"/>
+  </symbol>
+  <symbol id="icon-plus" viewBox="0 0 10 10">
+    <path d="M4 0 L6 0 L6 4 L10 4 L10 6 L6 6 L6 10 L4 10 L4 6 L0 6 L0 4 L4 4 Z" fill="currentColor"/>
+  </symbol>
 </svg>
 
 <!-- ═══════════════════════ TOPBAR ═══════════════════════ -->
@@ -2818,15 +3041,16 @@ h1.opener-title, h2.opener-title{
     <li><a class="toc-item" href="#tokens"><span class="toc-num">IX</span><span class="toc-name">Token reference</span><span class="toc-meta">System · 02</span></a></li>
     <li><a class="toc-item" href="#components"><span class="toc-num">X</span><span class="toc-name">Buttons</span><span class="toc-meta">Components · 01</span></a></li>
     <li><a class="toc-item" href="#chips"><span class="toc-num">XI</span><span class="toc-name">Chips &amp; badges</span><span class="toc-meta">Components · 02</span></a></li>
-    <li><a class="toc-item" href="#cards"><span class="toc-num">XII</span><span class="toc-name">Cards &amp; bento</span><span class="toc-meta">Components · 03</span></a></li>
-    <li><a class="toc-item" href="#forms"><span class="toc-num">XIII</span><span class="toc-name">Forms &amp; inputs</span><span class="toc-meta">Components · 04</span></a></li>
-    <li><a class="toc-item" href="#swatch"><span class="toc-num">XIV</span><span class="toc-name">Swatch &amp; shade selector</span><span class="toc-meta">Components · 05</span></a></li>
-    <li><a class="toc-item" href="#patterns"><span class="toc-num">XV</span><span class="toc-name">Bento composition</span><span class="toc-meta">Patterns · 01</span></a></li>
-    <li><a class="toc-item" href="#application"><span class="toc-num">XVI</span><span class="toc-name">In application</span><span class="toc-meta">Patterns · 02</span></a></li>
-    <li><a class="toc-item" href="#guidance"><span class="toc-num">XVII</span><span class="toc-name">Do &amp; <em>Don't</em></span><span class="toc-meta">Patterns · 03</span></a></li>
-    <li><a class="toc-item" href="#react"><span class="toc-num">XVIII</span><span class="toc-name">React UX <em>profiles</em></span><span class="toc-meta">Library · 01</span></a></li>
-    <li><a class="toc-item" href="#gallery"><span class="toc-num">XIX</span><span class="toc-name">Image gallery</span><span class="toc-meta">Library · 02</span></a></li>
-    <li><a class="toc-item" href="#applications"><span class="toc-num">XX</span><span class="toc-name">More <em>in application</em></span><span class="toc-meta">Library · 03</span></a></li>
+    <li><a class="toc-item" href="#icons"><span class="toc-num">XII</span><span class="toc-name">Iconography</span><span class="toc-meta">Components · 03</span></a></li>
+    <li><a class="toc-item" href="#cards"><span class="toc-num">XIII</span><span class="toc-name">Cards &amp; bento</span><span class="toc-meta">Components · 04</span></a></li>
+    <li><a class="toc-item" href="#forms"><span class="toc-num">XIV</span><span class="toc-name">Forms &amp; inputs</span><span class="toc-meta">Components · 05</span></a></li>
+    <li><a class="toc-item" href="#swatch"><span class="toc-num">XV</span><span class="toc-name">Swatch &amp; shade selector</span><span class="toc-meta">Components · 06</span></a></li>
+    <li><a class="toc-item" href="#patterns"><span class="toc-num">XVI</span><span class="toc-name">Bento composition</span><span class="toc-meta">Patterns · 01</span></a></li>
+    <li><a class="toc-item" href="#application"><span class="toc-num">XVII</span><span class="toc-name">In application</span><span class="toc-meta">Patterns · 02</span></a></li>
+    <li><a class="toc-item" href="#guidance"><span class="toc-num">XVIII</span><span class="toc-name">Do &amp; <em>Don't</em></span><span class="toc-meta">Patterns · 03</span></a></li>
+    <li><a class="toc-item" href="#react"><span class="toc-num">XIX</span><span class="toc-name">React UX <em>profiles</em></span><span class="toc-meta">Library · 01</span></a></li>
+    <li><a class="toc-item" href="#gallery"><span class="toc-num">XX</span><span class="toc-name">Image gallery</span><span class="toc-meta">Library · 02</span></a></li>
+    <li><a class="toc-item" href="#applications"><span class="toc-num">XXI</span><span class="toc-name">More <em>in application</em></span><span class="toc-meta">Library · 03</span></a></li>
   </ul>
 </section>
 
@@ -3664,18 +3888,323 @@ h1.opener-title, h2.opener-title{
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XII · CARDS ═══════════════════════ -->
-<section class="chapter" id="cards">
+
+<!-- ═══════════════════════ CHAPTER XII · ICONOGRAPHY ═══════════════════════ -->
+<section class="chapter" id="icons">
   <div class="opener">
     <div class="opener-num">XII.</div>
     <div class="opener-body">
-      <div class="opener-eyebrow">Components · 03 <span class="sep">·</span> Containers &amp; tints</div>
+      <div class="opener-eyebrow">Components · 03 <span class="sep">·</span> A glyph vocabulary</div>
+      <h2 class="opener-title"><em>Iconography.</em></h2>
+      <div class="opener-dek">A sanctioned set of solid, sharp-geometric glyphs that speak the brand's languages — essential oil &amp; ritual, science &amp; chemistry, nature &amp; farming, wellness, meditation, sound, feminine cycles, and the social surface where it all meets the audience. <em>Every icon inherits currentColor</em> so the same glyph reads in violet ink, ivory on dark, or gold thread depending on where it sits.</div>
+    </div>
+  </div>
+
+  <div class="col-prose">
+    <p class="prose">Click any tile to copy its <span class="mono">&lt;use&gt;</span> reference to your clipboard. Drop the SVG into any markup as <span class="mono">&lt;svg&gt;&lt;use href="#icon-name"/&gt;&lt;/svg&gt;</span> and size with width / height or font-size. The library reuses the seven glyphs already shipping in <em>Chips &amp; badges</em> so the visual vocabulary stays singular across the system.</p>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · a</div>
+    <div class="name">Botanical &amp; <em>essential oils</em></div>
+    <div class="count">6 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-drop" aria-label="Copy #icon-drop to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-drop"/></svg></span>
+          <span class="icon-label">Drop</span>
+          <span class="icon-code">#icon-drop</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-leaf" aria-label="Copy #icon-leaf to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-leaf"/></svg></span>
+          <span class="icon-label">Leaf</span>
+          <span class="icon-code">#icon-leaf</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-bottle" aria-label="Copy #icon-bottle to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-bottle"/></svg></span>
+          <span class="icon-label">Bottle</span>
+          <span class="icon-code">#icon-bottle</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-vial" aria-label="Copy #icon-vial to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-vial"/></svg></span>
+          <span class="icon-label">Vial</span>
+          <span class="icon-code">#icon-vial</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-branch" aria-label="Copy #icon-branch to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-branch"/></svg></span>
+          <span class="icon-label">Branch</span>
+          <span class="icon-code">#icon-branch</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-petal" aria-label="Copy #icon-petal to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-petal"/></svg></span>
+          <span class="icon-label">Petal</span>
+          <span class="icon-code">#icon-petal</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · b</div>
+    <div class="name">Science &amp; <em>chemistry</em></div>
+    <div class="count">5 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-cell" aria-label="Copy #icon-cell to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-cell"/></svg></span>
+          <span class="icon-label">Cell</span>
+          <span class="icon-code">#icon-cell</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-atom" aria-label="Copy #icon-atom to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-atom"/></svg></span>
+          <span class="icon-label">Atom</span>
+          <span class="icon-code">#icon-atom</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-flask" aria-label="Copy #icon-flask to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-flask"/></svg></span>
+          <span class="icon-label">Flask</span>
+          <span class="icon-code">#icon-flask</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-molecule" aria-label="Copy #icon-molecule to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-molecule"/></svg></span>
+          <span class="icon-label">Molecule</span>
+          <span class="icon-code">#icon-molecule</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-dna" aria-label="Copy #icon-dna to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-dna"/></svg></span>
+          <span class="icon-label">DNA</span>
+          <span class="icon-code">#icon-dna</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · c</div>
+    <div class="name">Nature &amp; <em>farming</em></div>
+    <div class="count">5 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-sun" aria-label="Copy #icon-sun to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-sun"/></svg></span>
+          <span class="icon-label">Sun</span>
+          <span class="icon-code">#icon-sun</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-mountain" aria-label="Copy #icon-mountain to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-mountain"/></svg></span>
+          <span class="icon-label">Mountain</span>
+          <span class="icon-code">#icon-mountain</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-tree" aria-label="Copy #icon-tree to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-tree"/></svg></span>
+          <span class="icon-label">Tree</span>
+          <span class="icon-code">#icon-tree</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-seedling" aria-label="Copy #icon-seedling to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-seedling"/></svg></span>
+          <span class="icon-label">Seedling</span>
+          <span class="icon-code">#icon-seedling</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-wheat" aria-label="Copy #icon-wheat to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-wheat"/></svg></span>
+          <span class="icon-label">Wheat</span>
+          <span class="icon-code">#icon-wheat</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · d</div>
+    <div class="name">Wellness &amp; <em>meditation</em></div>
+    <div class="count">6 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-lotus" aria-label="Copy #icon-lotus to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-lotus"/></svg></span>
+          <span class="icon-label">Lotus</span>
+          <span class="icon-code">#icon-lotus</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-heart" aria-label="Copy #icon-heart to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-heart"/></svg></span>
+          <span class="icon-label">Heart</span>
+          <span class="icon-code">#icon-heart</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-mortar" aria-label="Copy #icon-mortar to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-mortar"/></svg></span>
+          <span class="icon-label">Mortar</span>
+          <span class="icon-code">#icon-mortar</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-hands" aria-label="Copy #icon-hands to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-hands"/></svg></span>
+          <span class="icon-label">Hands</span>
+          <span class="icon-code">#icon-hands</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-breath" aria-label="Copy #icon-breath to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-breath"/></svg></span>
+          <span class="icon-label">Breath</span>
+          <span class="icon-code">#icon-breath</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-mandala" aria-label="Copy #icon-mandala to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-mandala"/></svg></span>
+          <span class="icon-label">Mandala</span>
+          <span class="icon-code">#icon-mandala</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · e</div>
+    <div class="name">Energy, sound &amp; <em>healing</em></div>
+    <div class="count">5 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-spark" aria-label="Copy #icon-spark to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-spark"/></svg></span>
+          <span class="icon-label">Spark</span>
+          <span class="icon-code">#icon-spark</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-flame" aria-label="Copy #icon-flame to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-flame"/></svg></span>
+          <span class="icon-label">Flame</span>
+          <span class="icon-code">#icon-flame</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-bolt" aria-label="Copy #icon-bolt to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-bolt"/></svg></span>
+          <span class="icon-label">Bolt</span>
+          <span class="icon-code">#icon-bolt</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-wave" aria-label="Copy #icon-wave to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-wave"/></svg></span>
+          <span class="icon-label">Wave</span>
+          <span class="icon-code">#icon-wave</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-bell" aria-label="Copy #icon-bell to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-bell"/></svg></span>
+          <span class="icon-label">Bell</span>
+          <span class="icon-code">#icon-bell</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · f</div>
+    <div class="name">Feminine &amp; <em>cycles</em></div>
+    <div class="count">4 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-moon" aria-label="Copy #icon-moon to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-moon"/></svg></span>
+          <span class="icon-label">Moon</span>
+          <span class="icon-code">#icon-moon</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-flower" aria-label="Copy #icon-flower to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-flower"/></svg></span>
+          <span class="icon-label">Flower</span>
+          <span class="icon-code">#icon-flower</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-infinity" aria-label="Copy #icon-infinity to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-infinity"/></svg></span>
+          <span class="icon-label">Infinity</span>
+          <span class="icon-code">#icon-infinity</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-cycle" aria-label="Copy #icon-cycle to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-cycle"/></svg></span>
+          <span class="icon-label">Cycle</span>
+          <span class="icon-code">#icon-cycle</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · g</div>
+    <div class="name">Personal &amp; <em>social</em></div>
+    <div class="count">5 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-person" aria-label="Copy #icon-person to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-person"/></svg></span>
+          <span class="icon-label">Person</span>
+          <span class="icon-code">#icon-person</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-message" aria-label="Copy #icon-message to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-message"/></svg></span>
+          <span class="icon-label">Message</span>
+          <span class="icon-code">#icon-message</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-share" aria-label="Copy #icon-share to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-share"/></svg></span>
+          <span class="icon-label">Share</span>
+          <span class="icon-code">#icon-share</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-plus" aria-label="Copy #icon-plus to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span>
+          <span class="icon-label">Plus</span>
+          <span class="icon-code">#icon-plus</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-bookmark" aria-label="Copy #icon-bookmark to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-bookmark"/></svg></span>
+          <span class="icon-label">Bookmark</span>
+          <span class="icon-code">#icon-bookmark</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · h</div>
+    <div class="name">Status &amp; <em>commerce</em></div>
+    <div class="count">2 glyphs</div>
+  </div>
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="icon-gem" aria-label="Copy #icon-gem to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-gem"/></svg></span>
+          <span class="icon-label">Gem</span>
+          <span class="icon-code">#icon-gem</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="icon-arrow-down" aria-label="Copy #icon-arrow-down to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#icon-arrow-down"/></svg></span>
+          <span class="icon-label">Arrow down</span>
+          <span class="icon-code">#icon-arrow-down</span>
+        </button>
+    </div>
+  </div>
+
+
+  <div class="col-prose">
+    <p class="prose"><b>Adding new glyphs.</b> Drop a new <span class="mono">&lt;symbol id="icon-name" viewBox="0 0 10 10"&gt;</span> into the inline SVG library at the top of the document, then add a tile here under the appropriate theme. Keep paths solid where possible (sharp geometric DNA), use <span class="mono">fill="currentColor"</span> so the glyph inherits its colour, and avoid sub-pixel detail that won't read at 18-20px.</p>
+  </div>
+
+  <div class="plate-caption" style="max-width: var(--col-wide); margin: var(--toc-s-12) auto 0;">
+    <div class="plate-caption-text">A growing vocabulary. The eight themes above cover the surfaces already in production; add more themes (commerce flow, sacred symbols, course icons) as new product lines arrive.</div>
+    <div class="plate-caption-meta">Plate 12 · Iconography</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAPTER XIII · CARDS ═══════════════════════ -->
+<section class="chapter" id="cards">
+  <div class="opener">
+    <div class="opener-num">XIII.</div>
+    <div class="opener-body">
+      <div class="opener-eyebrow">Components · 04 <span class="sep">·</span> Containers &amp; tints</div>
       <h2 class="opener-title">Cards.</h2>
       <div class="opener-dek">The card is the primary container. Compose multiple cards of varying span and tint to build a bento layout — the brand's signature page structure.</div>
     </div>
   </div>
 
-  <div class="subhead"><div class="subhead-mark">12 · a</div><div class="subhead-line">Anatomy</div></div>
+  <div class="subhead"><div class="subhead-mark">13 · a</div><div class="subhead-line">Anatomy</div></div>
 
   <div class="plate">
     <div class="plate-fig">
@@ -3691,12 +4220,12 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Eyebrow · title · body · action. Items appear in this order; reorder breaks the brand cadence.</div>
-        <div class="plate-caption-meta">Plate 12.a · Anatomy</div>
+        <div class="plate-caption-meta">Plate 13.a · Anatomy</div>
       </div>
     </div>
   </div>
 
-  <div class="subhead"><div class="subhead-mark">12 · b</div><div class="subhead-line">Tint family</div></div>
+  <div class="subhead"><div class="subhead-mark">13 · b</div><div class="subhead-line">Tint family</div></div>
 
   <div class="plate">
     <div class="plate-fig flush">
@@ -3712,13 +4241,13 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Eight tints. One layout commits to one pillar; ivory + dark + outlined function as neutrals across all three.</div>
-        <div class="plate-caption-meta">Plate 12.b · Tints</div>
+        <div class="plate-caption-meta">Plate 13.b · Tints</div>
       </div>
     </div>
   </div>
 
   <!-- 12 · c — Split feature (image-bleed pairing) -->
-  <div class="subhead"><div class="subhead-mark">12 · c</div><div class="subhead-line">Split feature</div></div>
+  <div class="subhead"><div class="subhead-mark">13 · c</div><div class="subhead-line">Split feature</div></div>
 
   <div class="col-prose">
     <p class="prose">A wide horizontal pairing for spotlight moments. The image bleeds the full height of the component on one side; eyebrow, title, dek, and a single action sit on the other. Use it as a hero panel in a bento, as a section break inside long-form pages, or as a standalone invitation. <em>Mirror the orientation between adjacent uses</em> so the eye crosses the page in a measured zig-zag rather than scanning the same edge twice.</p>
@@ -3740,7 +4269,7 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Image left, text right. The image bleeds the entire height of the component — no inset, no softened corner where the two sides meet. The action stays the primary violet (a quiet, considered invitation rather than a sale).</div>
-        <div class="plate-caption-meta">Plate 12.c.i · Split · image left</div>
+        <div class="plate-caption-meta">Plate 13.c.i · Split · image left</div>
       </div>
     </div>
   </div>
@@ -3761,18 +4290,18 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">The mirror — text left, image right — with both panels carrying photography. The text side stacks <em>Purple Lavender · blurred grain</em> under a violet-800 veil (.62 opacity) so ivory titles and gold accents still read cleanly. The gold button replaces the violet primary so the action keeps presence against the layered surface.</div>
-        <div class="plate-caption-meta">Plate 12.c.ii · Split · image right · lavender ground</div>
+        <div class="plate-caption-meta">Plate 13.c.ii · Split · image right · lavender ground</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XIII · FORMS ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XIV · FORMS ═══════════════════════ -->
 <section class="chapter" id="forms">
   <div class="opener">
-    <div class="opener-num">XIII.</div>
+    <div class="opener-num">XIV.</div>
     <div class="opener-body">
-      <div class="opener-eyebrow">Components · 04 <span class="sep">·</span> Inputs</div>
+      <div class="opener-eyebrow">Components · 05 <span class="sep">·</span> Inputs</div>
       <h2 class="opener-title">Forms &amp; inputs.</h2>
       <div class="opener-dek">Inputs use medium radius — not pill — so they read as containers, not actions. Labels are tracked Jost 500 in Sacred Gold. <em>Focus is a soft gold ring, never a harsh outline.</em></div>
     </div>
@@ -3800,18 +4329,18 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Two-column form on desktop, single-column on small viewports. Action row separates from fields with a hairline rule.</div>
-        <div class="plate-caption-meta">Plate 13 · Form</div>
+        <div class="plate-caption-meta">Plate 14 · Form</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XIV · SWATCH SELECTOR ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XV · SWATCH SELECTOR ═══════════════════════ -->
 <section class="chapter" id="swatch">
   <div class="opener">
-    <div class="opener-num">XIV.</div>
+    <div class="opener-num">XV.</div>
     <div class="opener-body">
-      <div class="opener-eyebrow">Components · 05 <span class="sep">·</span> Shade selectors</div>
+      <div class="opener-eyebrow">Components · 06 <span class="sep">·</span> Shade selectors</div>
       <h2 class="opener-title">Swatch &amp; shade.</h2>
       <div class="opener-dek">Round chip selectors for product shade, content pillar, or theme. The active state is a tight gold ring — never a tick.</div>
     </div>
@@ -3836,12 +4365,12 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Click any chip to select. The active ring is gold-500 at 18% halo — quiet, never bright.</div>
-        <div class="plate-caption-meta">Plate 14 · Swatch</div>
+        <div class="plate-caption-meta">Plate 15 · Swatch</div>
       </div>
     </div>
   </div>
 
-  <div class="subhead"><div class="subhead-mark">14 · b</div><div class="subhead-line">Sticky bar</div></div>
+  <div class="subhead"><div class="subhead-mark">15 · b</div><div class="subhead-line">Sticky bar</div></div>
 
   <div class="plate">
     <div class="plate-fig">
@@ -3863,16 +4392,16 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Sharp-cornered persistent action surfaces — bottom-of-screen on commerce, top-of-screen on announcement. Clean 90° corners on every edge.</div>
-        <div class="plate-caption-meta">Plate 14.b · Sticky</div>
+        <div class="plate-caption-meta">Plate 15.b · Sticky</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XV · BENTO ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XVI · BENTO ═══════════════════════ -->
 <section class="chapter" id="patterns">
   <div class="opener">
-    <div class="opener-num">XV.</div>
+    <div class="opener-num">XVI.</div>
     <div class="opener-body">
       <div class="opener-eyebrow">Patterns · 01 <span class="sep">·</span> Editorial composition</div>
       <h2 class="opener-title">Bento composition.</h2>
@@ -3881,7 +4410,7 @@ h1.opener-title, h2.opener-title{
   </div>
 
   <div class="subhead">
-    <div class="subhead-mark">15 · a</div>
+    <div class="subhead-mark">16 · a</div>
     <div class="subhead-line">Pillar composition</div>
   </div>
 
@@ -3946,14 +4475,14 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">A complete bento layout. One hero, one feature panel, one pillar feature, three supports. Three pillars co-exist because each occupies its own zone — no surface crosses families.</div>
-        <div class="plate-caption-meta">Plate 15.a · Pillar composition</div>
+        <div class="plate-caption-meta">Plate 16.a · Pillar composition</div>
       </div>
     </div>
   </div>
 
   <!-- 15 · b — Imagery-led bento (the library, composed) -->
   <div class="subhead">
-    <div class="subhead-mark">15 · b</div>
+    <div class="subhead-mark">16 · b</div>
     <div class="subhead-line">Imagery-led composition</div>
   </div>
 
@@ -4006,16 +4535,16 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Seven library plates in one composition. A moody palm hero. A green-grain caption surface. A wordless emerald plate that breathes without explanation. Four square studies — terracotta, iris, lavender, lilac — labeled only by a small ivory chip. The system permits silence; not every surface must say something.</div>
-        <div class="plate-caption-meta">Plate 15.b · Imagery-led</div>
+        <div class="plate-caption-meta">Plate 16.b · Imagery-led</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XVI · APPLICATION ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XVII · APPLICATION ═══════════════════════ -->
 <section class="chapter" id="application">
   <div class="opener">
-    <div class="opener-num">XVI.</div>
+    <div class="opener-num">XVII.</div>
     <div class="opener-body">
       <div class="opener-eyebrow">Patterns · 02 <span class="sep">·</span> A product, fully composed</div>
       <h2 class="opener-title">In application.</h2>
@@ -4072,16 +4601,16 @@ h1.opener-title, h2.opener-title{
     <div class="plate-fig flush" style="padding-top: var(--toc-s-4);">
       <div class="plate-caption">
         <div class="plate-caption-text">Every visible element — image frame, breadcrumb, title pair, star row, price rule, qty stepper, CTA, notice — descends from the token system above. Replace one token, and the page rewrites itself.</div>
-        <div class="plate-caption-meta">Plate 16 · Application</div>
+        <div class="plate-caption-meta">Plate 17 · Application</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XVII · DO / DON'T ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XVIII · DO / DON'T ═══════════════════════ -->
 <section class="chapter" id="guidance">
   <div class="opener">
-    <div class="opener-num">XVII.</div>
+    <div class="opener-num">XVIII.</div>
     <div class="opener-body">
       <div class="opener-eyebrow">Patterns · 03 <span class="sep">·</span> Discipline</div>
       <h2 class="opener-title">Do &amp; <em>Don't.</em></h2>
@@ -4117,10 +4646,10 @@ h1.opener-title, h2.opener-title{
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XVIII · REACT UX PROFILES ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XIX · REACT UX PROFILES ═══════════════════════ -->
 <section class="chapter" id="react">
   <div class="opener">
-    <div class="opener-num">XVIII.</div>
+    <div class="opener-num">XIX.</div>
     <div class="opener-body">
       <div class="opener-eyebrow">Library · 01 <span class="sep">·</span> Composed in code</div>
       <h2 class="opener-title">React UX <em>profiles.</em></h2>
@@ -4134,7 +4663,7 @@ h1.opener-title, h2.opener-title{
 
   <!-- 18.a — Sovereign CTA -->
   <div class="subhead">
-    <div class="subhead-mark">18 · a</div>
+    <div class="subhead-mark">19 · a</div>
     <div class="subhead-line">Sovereign CTA</div>
   </div>
 
@@ -4172,7 +4701,7 @@ h1.opener-title, h2.opener-title{
 
   <!-- 18.b — Pillar Chip -->
   <div class="subhead">
-    <div class="subhead-mark">18 · b</div>
+    <div class="subhead-mark">19 · b</div>
     <div class="subhead-line">Pillar chip</div>
   </div>
 
@@ -4213,7 +4742,7 @@ h1.opener-title, h2.opener-title{
 
   <!-- 18.c — Editorial Card -->
   <div class="subhead">
-    <div class="subhead-mark">18 · c</div>
+    <div class="subhead-mark">19 · c</div>
     <div class="subhead-line">Editorial card</div>
   </div>
 
@@ -4257,7 +4786,7 @@ h1.opener-title, h2.opener-title{
 
   <!-- 18.d — Sticky Action -->
   <div class="subhead">
-    <div class="subhead-mark">18 · d</div>
+    <div class="subhead-mark">19 · d</div>
     <div class="subhead-line">Sticky action</div>
   </div>
 
@@ -4307,7 +4836,7 @@ h1.opener-title, h2.opener-title{
 
   <!-- 18.e — Interactive grid pattern (was 18.f before the dot-pattern profile was retired) -->
   <div class="subhead">
-    <div class="subhead-mark">18 · e</div>
+    <div class="subhead-mark">19 · e</div>
     <div class="subhead-line">Interactive grid pattern</div>
   </div>
 
@@ -4362,7 +4891,7 @@ h1.opener-title, h2.opener-title{
 
   <!-- 18.f — Reveal on scroll -->
   <div class="subhead">
-    <div class="subhead-mark">18 · f</div>
+    <div class="subhead-mark">19 · f</div>
     <div class="subhead-line">Reveal on scroll</div>
   </div>
 
@@ -4448,14 +4977,14 @@ h1.opener-title, h2.opener-title{
 
   <div class="ux-placeholder-note">
     <span style="font-family: var(--toc-font-soul); font-style: italic;">More profiles awaiting client supply.</span>
-    <span class="mono" style="font-family: var(--toc-font-mono); font-style: normal; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; margin-left: auto;">slot · 18.g – 18.z</span>
+    <span class="mono" style="font-family: var(--toc-font-mono); font-style: normal; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; margin-left: auto;">slot · 19.g – 19.z</span>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XIX · IMAGE GALLERY ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XX · IMAGE GALLERY ═══════════════════════ -->
 <section class="chapter" id="gallery">
   <div class="opener">
-    <div class="opener-num">XIX.</div>
+    <div class="opener-num">XX.</div>
     <div class="opener-body">
       <div class="opener-eyebrow">Library · 02 <span class="sep">·</span> Curated reference</div>
       <h2 class="opener-title">Image <em>gallery.</em></h2>
@@ -4704,7 +5233,7 @@ h1.opener-title, h2.opener-title{
         <span class="gal-drop-zone-prompt">
           Drop sanctioned imagery here — or <span class="browse">browse files</span>
         </span>
-        <span class="gal-drop-zone-spec">accepts · jpg · png · webp · max 5 mb · 19.b</span>
+        <span class="gal-drop-zone-spec">accepts · jpg · png · webp · max 5 mb · 20.b</span>
         <span class="gal-drop-zone-note">
           Preview only — images are read in your browser and persist via localStorage on this device. To add an image permanently to the system, commit the file to <span class="mono">images/library/</span> and add a matching tile in this section.
         </span>
@@ -4717,16 +5246,16 @@ h1.opener-title, h2.opener-title{
 
       <div class="plate-caption">
         <div class="plate-caption-text">A growing photography library across grain textures, blurred grounds, and sanctioned imagery. The four anchors ship as grain landscapes &amp; squares; the blurred-grain set sits behind cards. The deliveries beneath — hand studies, founder portraits, petal close-ups, interior light, and glass / shadow textures — carry the brand register at full bleed. Filter to narrow the surface; <em class="it">All</em> resets.</div>
-        <div class="plate-caption-meta">Plate 19 · Gallery</div>
+        <div class="plate-caption-meta">Plate 20 · Gallery</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ CHAPTER XX · MORE IN APPLICATION ═══════════════════════ -->
+<!-- ═══════════════════════ CHAPTER XXI · MORE IN APPLICATION ═══════════════════════ -->
 <section class="chapter" id="applications">
   <div class="opener">
-    <div class="opener-num">XX.</div>
+    <div class="opener-num">XXI.</div>
     <div class="opener-body">
       <div class="opener-eyebrow">Library · 03 <span class="sep">·</span> Surfaces in the wild</div>
       <h2 class="opener-title">More <em>in application.</em></h2>
@@ -4736,7 +5265,7 @@ h1.opener-title, h2.opener-title{
 
   <!-- 20.a — Landing -->
   <div class="subhead">
-    <div class="subhead-mark">20 · a</div>
+    <div class="subhead-mark">21 · a</div>
     <div class="subhead-line">Landing page</div>
   </div>
 
@@ -4790,13 +5319,13 @@ h1.opener-title, h2.opener-title{
     </div>
     <div class="plate-caption">
       <div class="plate-caption-text">A full marquee landing surface — masthead, hero pair, and pillar band, every element honouring the token system. Sharp corners throughout. Coral appears exactly once.</div>
-      <div class="plate-caption-meta">Plate 20.a · Landing</div>
+      <div class="plate-caption-meta">Plate 21.a · Landing</div>
     </div>
   </div>
 
   <!-- 20.b — Blog -->
   <div class="subhead">
-    <div class="subhead-mark">20 · b</div>
+    <div class="subhead-mark">21 · b</div>
     <div class="subhead-line">Blog page</div>
   </div>
 
@@ -4832,13 +5361,13 @@ h1.opener-title, h2.opener-title{
     </div>
     <div class="plate-caption">
       <div class="plate-caption-text">An editorial reading surface. Sidebar nav at left, dated kicker row, serif headline, hero image, body in 56–60ch column. The pull-quote borrows the gold thread.</div>
-      <div class="plate-caption-meta">Plate 20.b · Blog</div>
+      <div class="plate-caption-meta">Plate 21.b · Blog</div>
     </div>
   </div>
 
   <!-- 20.c — Social -->
   <div class="subhead">
-    <div class="subhead-mark">20 · c</div>
+    <div class="subhead-mark">21 · c</div>
     <div class="subhead-line">Social media posts</div>
   </div>
 
@@ -4910,14 +5439,14 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Three squares, three registers. Ivory + display headline; violet + italic salon invite; sage + ritual caption. The audience reads them as a set — the same hand, three voices.</div>
-        <div class="plate-caption-meta">Plate 20.c · Social</div>
+        <div class="plate-caption-meta">Plate 21.c · Social</div>
       </div>
     </div>
   </div>
 
   <!-- 20.d — Social feed (post art only) -->
   <div class="subhead">
-    <div class="subhead-mark">20 · d</div>
+    <div class="subhead-mark">21 · d</div>
     <div class="subhead-line">Social feed · post art</div>
   </div>
 
@@ -5004,7 +5533,7 @@ h1.opener-title, h2.opener-title{
       </div>
       <div class="plate-caption">
         <div class="plate-caption-text">Six reference posts across three anchor grains and two ivory layouts. Where the source reference uses ovals and circles, this system uses sharp rectangles and squares — same compositional energy, brand DNA preserved. Type pairs across all six: Cormorant italic carries the soul moments; Jost tracked uppercase carries the structural beats.</div>
-        <div class="plate-caption-meta">Plate 20.d · Feed</div>
+        <div class="plate-caption-meta">Plate 21.d · Feed</div>
       </div>
     </div>
   </div>
@@ -5063,7 +5592,7 @@ h1.opener-title, h2.opener-title{
 
   // Gallery — tag filter with gentle ease (delight #6).
   // Items are queried fresh on each filter so newly-added preview uploads
-  // (from the drop zone in 19.b) are included automatically.
+  // (from the drop zone in 20.b) are included automatically.
   (function(){
     const tagRow = document.getElementById('galleryTags');
     const grid = document.getElementById('galleryGrid');
@@ -5121,7 +5650,7 @@ h1.opener-title, h2.opener-title{
     });
   })();
 
-  // Gallery drop zone (Plate 19.b) — client-side image preview library.
+  // Gallery drop zone (Plate 20.b) — client-side image preview library.
   // Accepts drag-drop OR click-to-browse, reads images as data URLs,
   // auto-suggests a label + tag from the filename, appends them to the
   // gallery grid, and persists per-browser via localStorage.
@@ -5427,6 +5956,7 @@ h1.opener-title, h2.opener-title{
       'tokens':       'system',
       'components':   'components',
       'chips':        'components',
+      'icons':        'components',
       'cards':        'components',
       'forms':        'components',
       'swatch':       'components',
@@ -5515,7 +6045,7 @@ h1.opener-title, h2.opener-title{
     });
   });
 
-  // Interactive grid pattern — build the SVG cells (profile 18.e)
+  // Interactive grid pattern — build the SVG cells (profile 19.e)
   (function(){
     const svg = document.getElementById('grid-pattern-svg');
     if (!svg) return;
@@ -5532,7 +6062,7 @@ h1.opener-title, h2.opener-title{
   })();
 
   // Scroll reveal — gentle fade + 16px lift on viewport entry.
-  // Wires the IntersectionObserver pattern documented in profile 18.f.
+  // Wires the IntersectionObserver pattern documented in profile 19.f.
   // Hero + colophon are intentionally excluded (already in view at start/end).
   (function(){
     // Respect the user preference — content shows immediately, no JS class added.
@@ -5620,6 +6150,22 @@ h1.opener-title, h2.opener-title{
     // Initial pass — anything already in the first viewport.
     requestAnimationFrame(() => requestAnimationFrame(revealInView));
   })();
+
+  // Iconography (Chapter XII) — click any icon tile to copy its
+  // <use href="#icon-name"/> reference to the clipboard. Surfaces the
+  // same gold-thread copy toast used by the colour ledger.
+  document.addEventListener('click', (e) => {
+    const tile = e.target.closest('.icon-tile[data-icon-id]');
+    if (!tile) return;
+    const id = tile.getAttribute('data-icon-id');
+    const snippet = '<svg><use href="#' + id + '"/></svg>';
+    if (navigator.clipboard){
+      navigator.clipboard.writeText(snippet).catch(() => {});
+    }
+    if (typeof showCopyToast === 'function'){
+      showCopyToast('Copied · ' + id, '');
+    }
+  });
 </script>
 
 </body>

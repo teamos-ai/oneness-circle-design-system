@@ -19,7 +19,7 @@ Twenty chapters, top to bottom:
 | I | Principles | Five rules of geometry & restraint |
 | II–VII | Foundations | Colour · Typography · Spacing · Radius · Elevation · Motion |
 | VIII–IX | System | Taxonomy & the three pillars · Token reference |
-| X–XIV | Components | Buttons · Chips · Cards · Forms · Swatch |
+| X–XIV | Components | Buttons · Chips · **Iconography** · Cards · Forms · Swatch |
 | XV–XVII | Patterns | Bento · In application · Do & Don't |
 | XVIII | React UX profiles | Live preview + copyable JSX |
 | XIX | Image gallery | Tagged & filterable |
@@ -34,6 +34,7 @@ These choices are intentional and must not drift:
 - **Two typefaces** — Cormorant Garamond (soul) + Jost (mind). No third family.
 - **Coral appears exactly once** per surface, as the action accent.
 - **No gradient text**, no side-stripe borders on callouts, no rounded chrome.
+- **One icon weight** — `regular`, sitewide. House glyphs (`#icon-*`) outrank the pack (`#i-*`).
 
 ## Tech
 
@@ -59,6 +60,13 @@ This repo is deploy-ready for Vercel as a zero-config static site. Push to GitHu
 ```
 .
 ├── index.html        # the complete design system, self-contained
+├── icons/            # Chapter XII — the icon layer
+│   ├── README.md               # the contract (start here)
+│   ├── oneness-icons.json      # token manifest — the AI-agent entry point
+│   ├── oneness-icons.svg       # full sprite · 1,512 glyphs
+│   ├── oneness-core.svg        # brand-core sprite · 53 glyphs
+│   ├── svg/                    # every glyph as a standalone file
+│   └── oneness-icon-pack.zip   # the complete pack · 6 weights · 4.1 MB
 ├── images/           # grain, library, and blurred asset folders
 │   ├── grain/        # the five anchor surfaces, landscape + square
 │   ├── library/      # founder, plant, interior, candid photo library
@@ -70,6 +78,18 @@ This repo is deploy-ready for Vercel as a zero-config static site. Push to GitHu
 │   └── chats/        # design conversation transcripts (intent & rationale)
 └── README.md
 ```
+
+## Iconography
+
+Two layers, one vocabulary: **39 bespoke house glyphs** carry brand meaning, and a
+**1,512-glyph standard pack** ([Phosphor](https://phosphoricons.com) v2.1.1, MIT) covers
+the long tail. Both inherit `currentColor` and size through the `--toc-icon-*` tokens.
+
+Everything lives in [`icons/`](icons/) — download the whole pack from Chapter XII on the
+live site, or read [`icons/README.md`](icons/README.md) for the reference contract.
+Coding agents should read [`icons/oneness-icons.json`](icons/oneness-icons.json): it maps
+60 brand meanings (`pillar.vitality`, `offering.arcea`, `action.virtual-tea`) to glyphs,
+and tags all 1,512 for search.
 
 ## Source of truth
 

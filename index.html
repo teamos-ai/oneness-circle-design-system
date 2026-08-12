@@ -130,6 +130,23 @@
   --toc-ease-in-out:cubic-bezier(.65,.05,.36,1);
   --toc-ease-soft:cubic-bezier(.4,0,.2,1);
   --toc-dur-1:120ms; --toc-dur-2:240ms; --toc-dur-3:400ms; --toc-dur-4:720ms;
+  /* ── ICONOGRAPHY ────────────────────────────────────────── */
+  /* Two layers, one vocabulary. The house glyphs (#icon-*) carry the brand
+     voice; the standard pack (#i-*) carries everything else. Both inherit
+     currentColor — a glyph never carries its own fill. Size through a token,
+     never a magic number, so a glyph scales with its surface. */
+  --toc-icon-xs:14px;  --toc-icon-sm:16px;  --toc-icon-md:20px;
+  --toc-icon-lg:24px;  --toc-icon-xl:32px;  --toc-icon-2xl:48px;
+  --toc-icon-ink:        currentColor;             /* the default — inherit the surface ink */
+  --toc-icon-ink-quiet:  var(--toc-ink-500);       /* meta and secondary glyphs */
+  --toc-icon-ink-thread: var(--toc-gold-700);      /* the AA-safe gold for glyphs on light */
+  --toc-icon-ink-onDark: var(--toc-ivory);         /* glyphs on violet / sage / blue grounds */
+  --toc-icon-weight:     regular;                  /* the one sanctioned pack weight */
+  --toc-icon-sprite:     '/icons/oneness-icons.svg';
+  --toc-icon-sprite-core:'/icons/oneness-core.svg';
+  --toc-icon-manifest:   '/icons/oneness-icons.json';
+  --toc-icon-pack:       '/icons/oneness-icon-pack.zip';
+
   /* ── TYPE ───────────────────────────────────────────────── */
   --toc-font-soul:'Cormorant Garamond', Georgia, serif;
   --toc-font-mind:'Jost', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
@@ -1725,6 +1742,147 @@ h1.opener-title, h2.opener-title{
 }
 
 /* ───────────────────────────────────────────────────────────
+   THE STANDARD PACK · Chapter XII · i
+   .ico is the one class every pack glyph wears. It never sets a
+   colour — currentColor does that — and never sets a raw pixel
+   size; a size token does. This is the whole contract.
+   ─────────────────────────────────────────────────────────── */
+.ico{
+  width: var(--toc-icon-md); height: var(--toc-icon-md);
+  fill: var(--toc-icon-ink);
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: -0.15em;
+}
+.ico-xs{width: var(--toc-icon-xs);  height: var(--toc-icon-xs);}
+.ico-sm{width: var(--toc-icon-sm);  height: var(--toc-icon-sm);}
+.ico-md{width: var(--toc-icon-md);  height: var(--toc-icon-md);}
+.ico-lg{width: var(--toc-icon-lg);  height: var(--toc-icon-lg);}
+.ico-xl{width: var(--toc-icon-xl);  height: var(--toc-icon-xl);}
+.ico-2xl{width: var(--toc-icon-2xl); height: var(--toc-icon-2xl);}
+/* The mask variant — for a single glyph, or where CSS must own it.
+   Point --g at a loose file; background:currentColor does the tinting,
+   so the same ink tokens still apply. */
+.ico-mask{
+  display: inline-block;
+  width: var(--toc-icon-md); height: var(--toc-icon-md);
+  background: currentColor;
+  flex-shrink: 0;
+  vertical-align: -0.15em;
+  -webkit-mask: var(--g) center / contain no-repeat;
+          mask: var(--g) center / contain no-repeat;
+}
+.ico-quiet{color: var(--toc-icon-ink-quiet);}
+.ico-thread{color: var(--toc-icon-ink-thread);}
+.ico-onDark{color: var(--toc-icon-ink-onDark);}
+
+/* The download plate — the one place the whole pack is handed over.
+   Centred on purpose: this is a destination, not a footnote. */
+.pack-plate{
+  max-width: var(--col-wide);
+  margin: var(--toc-s-12) auto 0;
+  padding: var(--toc-s-16) var(--gutter);
+  text-align: center;
+  background: var(--toc-bg-raised);
+  border: .5px solid var(--toc-gold-500);
+  box-shadow: var(--toc-e-2);
+}
+.pack-plate .pp-eyebrow{
+  font-family: var(--toc-font-mono);
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--toc-text-gold);
+  margin-bottom: var(--toc-s-4);
+}
+.pack-plate .pp-title{
+  font-family: var(--toc-font-soul);
+  font-weight: 300;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.1;
+  color: var(--toc-violet-800);
+  margin-bottom: var(--toc-s-4);
+}
+.pack-plate .pp-title em{font-style: italic; color: var(--toc-text-gold);}
+.pack-plate .pp-dek{
+  font-size: 15px; line-height: 1.7;
+  color: var(--toc-fg-muted);
+  max-width: 54ch;
+  margin: 0 auto var(--toc-s-8);
+}
+/* The count row — hairline-separated facts, not a table. */
+.pack-plate .pp-facts{
+  display: flex; flex-wrap: wrap;
+  justify-content: center; align-items: stretch;
+  gap: 0;
+  margin: 0 auto var(--toc-s-10);
+  border-top: .5px solid var(--toc-rule);
+  border-bottom: .5px solid var(--toc-rule);
+  max-width: 640px;
+}
+.pack-plate .pp-fact{
+  flex: 1 1 120px;
+  padding: var(--toc-s-5) var(--toc-s-3);
+  border-right: .5px solid var(--toc-rule);
+}
+.pack-plate .pp-fact:last-child{border-right: none;}
+.pack-plate .pp-fact .n{
+  font-family: var(--toc-font-soul);
+  font-size: 30px; line-height: 1;
+  color: var(--toc-violet-800);
+  display: block; margin-bottom: 6px;
+}
+.pack-plate .pp-fact .l{
+  font-family: var(--toc-font-mono);
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--toc-ink-500);
+}
+.pack-plate .pp-actions{
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: var(--toc-s-3);
+  margin-bottom: var(--toc-s-6);
+}
+.pack-plate .pp-meta{
+  font-family: var(--toc-font-mono);
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--toc-ink-300);
+}
+.pack-plate .pp-meta a{color: var(--toc-text-gold); text-decoration: none; border-bottom: .5px solid var(--toc-thread-soft);}
+.pack-plate .pp-meta a:hover{border-bottom-color: var(--toc-gold-500);}
+
+/* The token contract, stated on the page so an agent reading the
+   rendered system gets the same rules as one reading the JSON. */
+.pack-contract{
+  max-width: var(--col-wide);
+  margin: var(--toc-s-12) auto 0;
+  border-top: .5px solid var(--toc-rule);
+}
+.pack-contract .pc-row{
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: var(--toc-s-6);
+  padding: var(--toc-s-4) 0;
+  border-bottom: .5px solid var(--toc-rule);
+  align-items: baseline;
+}
+.pack-contract .pc-key{
+  font-family: var(--toc-font-mono);
+  font-size: 11px; letter-spacing: .06em;
+  color: var(--toc-text-gold);
+  word-break: break-word;
+}
+.pack-contract .pc-val{font-size: 14px; line-height: 1.6; color: var(--toc-fg-default);}
+.pack-contract .pc-val code{
+  font-family: var(--toc-font-mono);
+  font-size: 12px;
+  background: var(--toc-gold-50);
+  padding: 1px 5px;
+  color: var(--toc-violet-800);
+}
+@media (max-width: 640px){
+  .pack-contract .pc-row{grid-template-columns: 1fr; gap: var(--toc-s-1);}
+  .pack-plate{padding: var(--toc-s-10) var(--toc-s-5);}
+}
+
+/* ───────────────────────────────────────────────────────────
    COMPONENT PLATES
    ─────────────────────────────────────────────────────────── */
 .demo{
@@ -3271,6 +3429,42 @@ h1.opener-title, h2.opener-title{
   <symbol id="icon-plus" viewBox="0 0 10 10">
     <path d="M4 0 L6 0 L6 4 L10 4 L10 6 L6 6 L6 10 L4 10 L4 6 L0 6 L0 4 L4 4 Z" fill="currentColor"/>
   </symbol>
+
+  <!-- ── THE STANDARD PACK · preview symbols ────────────────────────────
+       Thirty glyphs from the standard pack, inlined so the Chapter XII
+       preview renders with no extra request. The other 1,482 live in
+       /icons/oneness-icons.svg — reference them there, or take the zip.
+       ID scheme is #i-{name}; the house glyphs above stay #icon-{name}. -->
+  <symbol id="i-leaf" viewBox="0 0 256 256" fill="currentColor"><path d="M223.45,40.07a8,8,0,0,0-7.52-7.52C139.8,28.08,78.82,51,52.82,94a87.09,87.09,0,0,0-12.76,49c.57,15.92,5.21,32,13.79,47.85l-19.51,19.5a8,8,0,0,0,11.32,11.32l19.5-19.51C81,210.73,97.09,215.37,113,215.94q1.67.06,3.33.06A86.93,86.93,0,0,0,162,203.18C205,177.18,227.93,116.21,223.45,40.07ZM153.75,189.5c-22.75,13.78-49.68,14-76.71.77l88.63-88.62a8,8,0,0,0-11.32-11.32L65.73,179c-13.19-27-13-54,.77-76.71,22.09-36.47,74.6-56.44,141.31-54.06C210.2,114.89,190.22,167.41,153.75,189.5Z"/></symbol>
+  <symbol id="i-plant" viewBox="0 0 256 256" fill="currentColor"><path d="M247.63,47.89a8,8,0,0,0-7.52-7.52c-51.76-3-93.32,12.74-111.18,42.22-11.8,19.49-11.78,43.16-.16,65.74a71.34,71.34,0,0,0-14.17,27L98.33,159c7.82-16.33,7.52-33.35-1-47.49-13.2-21.79-43.67-33.47-81.5-31.25a8,8,0,0,0-7.52,7.52c-2.23,37.83,9.46,68.3,31.25,81.5A45.82,45.82,0,0,0,63.44,176,54.58,54.58,0,0,0,87,170.33l25,25V224a8,8,0,0,0,16,0V194.51a55.61,55.61,0,0,1,12.27-35,73.91,73.91,0,0,0,33.31,8.4,60.9,60.9,0,0,0,31.83-8.86C234.89,141.21,250.67,99.65,247.63,47.89ZM47.81,155.6C32.47,146.31,23.79,124.32,24,96c28.32-.24,50.31,8.47,59.6,23.81,4.85,8,5.64,17.33,2.46,26.94L61.65,122.34a8,8,0,0,0-11.31,11.31l24.41,24.41C65.14,161.24,55.82,160.45,47.81,155.6Zm149.31-10.22c-13.4,8.11-29.15,8.73-45.15,2l53.69-53.7a8,8,0,0,0-11.31-11.31L140.65,136c-6.76-16-6.15-31.76,2-45.15,13.94-23,47-35.82,89.33-34.83C232.94,98.34,220.14,131.44,197.12,145.38Z"/></symbol>
+  <symbol id="i-flower-lotus" viewBox="0 0 256 256" fill="currentColor"><path d="M245.83,121.63a15.53,15.53,0,0,0-9.52-7.33,73.51,73.51,0,0,0-22.17-2.22c4-19.85,1-35.55-2.06-44.86a16.15,16.15,0,0,0-18.79-10.88,85.53,85.53,0,0,0-28.55,12.12,94.58,94.58,0,0,0-27.11-33.25,16.05,16.05,0,0,0-19.26,0A94.48,94.48,0,0,0,91.26,68.46,85.53,85.53,0,0,0,62.71,56.34,16.15,16.15,0,0,0,43.92,67.22c-3,9.31-6,25-2.06,44.86a73.51,73.51,0,0,0-22.17,2.22,15.53,15.53,0,0,0-9.52,7.33,16,16,0,0,0-1.6,12.27c3.39,12.57,13.8,36.48,45.33,55.32S113.13,208,128.05,208s42.67,0,74-18.78c31.53-18.84,41.94-42.75,45.33-55.32A16,16,0,0,0,245.83,121.63ZM59.14,72.14a.2.2,0,0,1,.23-.15A70.43,70.43,0,0,1,85.18,83.66,118.65,118.65,0,0,0,80,119.17c0,18.74,3.77,34,9.11,46.28A123.59,123.59,0,0,1,69.57,140C51.55,108.62,55.3,84,59.14,72.14Zm3,103.35C35.47,159.57,26.82,140.05,24,129.7a59.82,59.82,0,0,1,22.5-1.17,129.08,129.08,0,0,0,9.15,19.41,142.28,142.28,0,0,0,34,39.56A114.92,114.92,0,0,1,62.1,175.49ZM128,190.4c-9.33-6.94-32-28.23-32-71.23C96,76.7,118.38,55.24,128,48c9.62,7.26,32,28.72,32,71.19C160,162.17,137.33,183.46,128,190.4ZM170.82,83.66A70.43,70.43,0,0,1,196.63,72a.2.2,0,0,1,.23.15C200.7,84,204.45,108.62,186.43,140a123.32,123.32,0,0,1-19.54,25.48c5.34-12.26,9.11-27.54,9.11-46.28A118.65,118.65,0,0,0,170.82,83.66ZM232,129.72c-2.77,10.25-11.4,29.81-38.09,45.77a114.92,114.92,0,0,1-27.55,12,142.28,142.28,0,0,0,34-39.56,129.08,129.08,0,0,0,9.15-19.41A59.69,59.69,0,0,1,232,129.71Z"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 256 256" fill="currentColor"><path d="M174,47.75a254.19,254.19,0,0,0-41.45-38.3,8,8,0,0,0-9.18,0A254.19,254.19,0,0,0,82,47.75C54.51,79.32,40,112.6,40,144a88,88,0,0,0,176,0C216,112.6,201.49,79.32,174,47.75ZM128,216a72.08,72.08,0,0,1-72-72c0-57.23,55.47-105,72-118,16.53,13,72,60.75,72,118A72.08,72.08,0,0,1,128,216Zm55.89-62.66a57.6,57.6,0,0,1-46.56,46.55A8.75,8.75,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></symbol>
+  <symbol id="i-eyedropper" viewBox="0 0 256 256" fill="currentColor"><path d="M224,67.3a35.79,35.79,0,0,0-11.26-25.66c-14-13.28-36.72-12.78-50.62,1.13L142.8,62.2a24,24,0,0,0-33.14.77l-9,9a16,16,0,0,0,0,22.64l2,2.06-51,51a39.75,39.75,0,0,0-10.53,38l-8,18.41A13.68,13.68,0,0,0,36,219.3a15.92,15.92,0,0,0,17.71,3.35L71.23,215a39.89,39.89,0,0,0,37.06-10.75l51-51,2.06,2.06a16,16,0,0,0,22.62,0l9-9a24,24,0,0,0,.74-33.18l19.75-19.87A35.75,35.75,0,0,0,224,67.3ZM97,193a24,24,0,0,1-24,6,8,8,0,0,0-5.55.31l-18.1,7.91L57,189.41a8,8,0,0,0,.25-5.75A23.88,23.88,0,0,1,63,159l51-51,33.94,34ZM202.13,82l-25.37,25.52a8,8,0,0,0,0,11.3l4.89,4.89a8,8,0,0,1,0,11.32l-9,9L112,83.26l9-9a8,8,0,0,1,11.31,0l4.89,4.89a8,8,0,0,0,11.33,0l24.94-25.09c7.81-7.82,20.5-8.18,28.29-.81a20,20,0,0,1,.39,28.7Z"/></symbol>
+  <symbol id="i-tree" viewBox="0 0 256 256" fill="currentColor"><path d="M198.1,62.59a76,76,0,0,0-140.2,0A71.71,71.71,0,0,0,16,127.8C15.9,166,48,199,86.14,200A72.09,72.09,0,0,0,120,192.47V232a8,8,0,0,0,16,0V192.47A72.17,72.17,0,0,0,168,200l1.82,0C208,199,240.11,166,240,127.8A71.71,71.71,0,0,0,198.1,62.59ZM169.45,184a56.08,56.08,0,0,1-33.45-10v-41l43.58-21.78a8,8,0,1,0-7.16-14.32L136,115.06V88a8,8,0,0,0-16,0v51.06L83.58,120.84a8,8,0,1,0-7.16,14.32L120,156.94v17a56,56,0,0,1-33.45,10C56.9,183.23,31.92,157.52,32,127.84A55.77,55.77,0,0,1,67.11,76a8,8,0,0,0,4.53-4.67,60,60,0,0,1,112.72,0A8,8,0,0,0,188.89,76,55.79,55.79,0,0,1,224,127.84C224.08,157.52,199.1,183.23,169.45,184Z"/></symbol>
+  <symbol id="i-dna" viewBox="0 0 256 256" fill="currentColor"><path d="M200,204.5V232a8,8,0,0,1-16,0V204.5a63.67,63.67,0,0,0-35.38-57.25l-48.4-24.19A79.58,79.58,0,0,1,56,51.5V24a8,8,0,0,1,16,0V51.5a63.67,63.67,0,0,0,35.38,57.25l48.4,24.19A79.58,79.58,0,0,1,200,204.5ZM160,200H72.17a63.59,63.59,0,0,1,3.23-16h72.71a8,8,0,0,0,0-16H83.46a63.71,63.71,0,0,1,14.65-15.08A8,8,0,1,0,88.64,140,80.27,80.27,0,0,0,56,204.5V232a8,8,0,0,0,16,0V216h88a8,8,0,0,0,0-16ZM192,16a8,8,0,0,0-8,8V40H96a8,8,0,0,0,0,16h87.83a63.59,63.59,0,0,1-3.23,16H107.89a8,8,0,1,0,0,16h64.65a63.71,63.71,0,0,1-14.65,15.08,8,8,0,0,0,9.47,12.9A80.27,80.27,0,0,0,200,51.5V24A8,8,0,0,0,192,16Z"/></symbol>
+  <symbol id="i-atom" viewBox="0 0 256 256" fill="currentColor"><path d="M196.12,128c24.65-34.61,37.22-70.38,19.74-87.86S162.61,35.23,128,59.88C93.39,35.23,57.62,22.66,40.14,40.14S35.23,93.39,59.88,128c-24.65,34.61-37.22,70.38-19.74,87.86h0c5.63,5.63,13.15,8.14,21.91,8.14,18.48,0,42.48-11.17,66-27.88C151.47,212.83,175.47,224,194,224c8.76,0,16.29-2.52,21.91-8.14h0C233.34,198.38,220.77,162.61,196.12,128Zm8.43-76.55c7.64,7.64,2.48,32.4-18.52,63.28a300.33,300.33,0,0,0-21.19-23.57A300.33,300.33,0,0,0,141.27,70C172.15,49,196.91,43.8,204.55,51.45ZM176.29,128a289.14,289.14,0,0,1-22.76,25.53A289.14,289.14,0,0,1,128,176.29a289.14,289.14,0,0,1-25.53-22.76A289.14,289.14,0,0,1,79.71,128,298.62,298.62,0,0,1,128,79.71a289.14,289.14,0,0,1,25.53,22.76A289.14,289.14,0,0,1,176.29,128ZM51.45,51.45c2.2-2.21,5.83-3.35,10.62-3.35C73.89,48.1,92.76,55,114.72,70A304,304,0,0,0,91.16,91.16,300.33,300.33,0,0,0,70,114.73C49,83.85,43.81,59.09,51.45,51.45Zm0,153.1C43.81,196.91,49,172.15,70,141.27a300.33,300.33,0,0,0,21.19,23.57A304.18,304.18,0,0,0,114.73,186C83.85,207,59.09,212.2,51.45,204.55Zm153.1,0c-7.64,7.65-32.4,2.48-63.28-18.52a304.18,304.18,0,0,0,23.57-21.19A300.33,300.33,0,0,0,186,141.27C207,172.15,212.19,196.91,204.55,204.55ZM140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128Z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 256 256" fill="currentColor"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></symbol>
+  <symbol id="i-test-tube" viewBox="0 0 256 256" fill="currentColor"><path d="M237.66,86.34l-60-60a8,8,0,0,0-11.32,0L37.11,155.57a44.77,44.77,0,0,0,63.32,63.32L212.32,107l22.21-7.4a8,8,0,0,0,3.13-13.25ZM89.11,207.57a28.77,28.77,0,0,1-40.68-40.68l28.8-28.8c8.47-2.9,21.75-4,39.07,5,10.6,5.54,20.18,8,28.56,8.73ZM205.47,92.41a8,8,0,0,0-3.13,1.93l-39.57,39.57c-8.47,2.9-21.75,4-39.07-5-10.6-5.54-20.18-8-28.56-8.73L172,43.31,217.19,88.5Z"/></symbol>
+  <symbol id="i-microscope" viewBox="0 0 256 256" fill="currentColor"><path d="M224,208H203.94A88.05,88.05,0,0,0,144,64.37V32a16,16,0,0,0-16-16H80A16,16,0,0,0,64,32V136a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V80.46A72,72,0,0,1,181.25,208H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16Zm-96-72H80V32h48V136ZM72,184a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"/></symbol>
+  <symbol id="i-drop-half" viewBox="0 0 256 256" fill="currentColor"><path d="M174,47.75a254.19,254.19,0,0,0-41.45-38.3,8,8,0,0,0-9.18,0A254.19,254.19,0,0,0,82,47.75C54.51,79.32,40,112.6,40,144a88,88,0,0,0,176,0C216,112.6,201.49,79.32,174,47.75ZM200,144a70.57,70.57,0,0,1-.46,8H136V136h63.64Q200,140,200,144ZM183.39,88H136V72h36.89A175.85,175.85,0,0,1,183.39,88ZM136,200h37.19A71.67,71.67,0,0,1,136,215.54Zm0-16V168h59.87a72,72,0,0,1-8,16Zm0-64V104h55.39a116.84,116.84,0,0,1,5.45,16Zm23.89-64H136V32.6A257.22,257.22,0,0,1,159.89,56ZM56,144c0-50,42.26-92.71,64-111.4V215.54A72.08,72.08,0,0,1,56,144Z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 256 256" fill="currentColor"><path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z"/></symbol>
+  <symbol id="i-hand-heart" viewBox="0 0 256 256" fill="currentColor"><path d="M230.33,141.06a24.34,24.34,0,0,0-18.61-4.77C230.5,117.33,240,98.48,240,80c0-26.47-21.29-48-47.46-48A47.58,47.58,0,0,0,156,48.75,47.58,47.58,0,0,0,119.46,32C93.29,32,72,53.53,72,80c0,11,3.24,21.69,10.06,33a31.87,31.87,0,0,0-14.75,8.4L44.69,144H16A16,16,0,0,0,0,160v40a16,16,0,0,0,16,16H120a7.93,7.93,0,0,0,1.94-.24l64-16a6.94,6.94,0,0,0,1.19-.4L226,182.82l.44-.2a24.6,24.6,0,0,0,3.93-41.56ZM119.46,48A31.15,31.15,0,0,1,148.6,67a8,8,0,0,0,14.8,0,31.15,31.15,0,0,1,29.14-19C209.59,48,224,62.65,224,80c0,19.51-15.79,41.58-45.66,63.9l-11.09,2.55A28,28,0,0,0,140,112H100.68C92.05,100.36,88,90.12,88,80,88,62.65,102.41,48,119.46,48ZM16,160H40v40H16Zm203.43,8.21-38,16.18L119,200H56V155.31l22.63-22.62A15.86,15.86,0,0,1,89.94,128H140a12,12,0,0,1,0,24H112a8,8,0,0,0,0,16h32a8.32,8.32,0,0,0,1.79-.2l67-15.41.31-.08a8.6,8.6,0,0,1,6.3,15.9Z"/></symbol>
+  <symbol id="i-hands-praying" viewBox="0 0 256 256" fill="currentColor"><path d="M235.32,180l-36.24-36.25L162.62,23.46A21.76,21.76,0,0,0,128,12.93,21.76,21.76,0,0,0,93.38,23.46L56.92,143.76,20.68,180a16,16,0,0,0,0,22.62l32.69,32.69a16,16,0,0,0,22.63,0L124.28,187a40.68,40.68,0,0,0,3.72-4.29,40.68,40.68,0,0,0,3.72,4.29L180,235.32a16,16,0,0,0,22.63,0l32.69-32.69A16,16,0,0,0,235.32,180ZM64.68,224,32,191.32l12.69-12.69,32.69,32.69ZM120,158.75a23.85,23.85,0,0,1-7,17L88.68,200,56,167.32l13.65-13.66a8,8,0,0,0,2-3.34l37-122.22A5.78,5.78,0,0,1,120,29.78Zm23,17a23.85,23.85,0,0,1-7-17v-129a5.78,5.78,0,0,1,11.31-1.68l37,122.22a8,8,0,0,0,2,3.34l14.49,14.49-33.4,32ZM191.32,224l-12.56-12.57,33.39-32L224,191.32Z"/></symbol>
+  <symbol id="i-yin-yang" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM40,128a88.1,88.1,0,0,1,88-88,40,40,0,0,1,0,80A56,56,0,0,0,77.39,200,88,88,0,0,1,40,128Zm88,88a40,40,0,0,1,0-80,56,56,0,0,0,50.61-79.95A88,88,0,0,1,128,216Zm12-40a12,12,0,1,1-12-12A12,12,0,0,1,140,176ZM116,80a12,12,0,1,1,12,12A12,12,0,0,1,116,80Z"/></symbol>
+  <symbol id="i-spiral" viewBox="0 0 256 256" fill="currentColor"><path d="M248,144a8,8,0,0,1-16,0,96.11,96.11,0,0,0-96-96,88.1,88.1,0,0,0-88,88,80.09,80.09,0,0,0,80,80,72.08,72.08,0,0,0,72-72,64.07,64.07,0,0,0-64-64,56.06,56.06,0,0,0-56,56,48.05,48.05,0,0,0,48,48,40,40,0,0,0,40-40,32,32,0,0,0-32-32,24,24,0,0,0-24,24,16,16,0,0,0,16,16,8,8,0,0,0,8-8,8,8,0,0,1,0-16,16,16,0,0,1,16,16,24,24,0,0,1-24,24,32,32,0,0,1-32-32,40,40,0,0,1,40-40,48.05,48.05,0,0,1,48,48,56.06,56.06,0,0,1-56,56,64.07,64.07,0,0,1-64-64,72.08,72.08,0,0,1,72-72,80.09,80.09,0,0,1,80,80,88.1,88.1,0,0,1-88,88,96.11,96.11,0,0,1-96-96A104.11,104.11,0,0,1,136,32,112.12,112.12,0,0,1,248,144Z"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 256 256" fill="currentColor"><path d="M248,128a56,56,0,0,1-95.6,39.6l-.33-.35L92.12,99.55a40,40,0,1,0,0,56.9l8.52-9.62a8,8,0,1,1,12,10.61l-8.69,9.81-.33.35a56,56,0,1,1,0-79.2l.33.35,59.95,67.7a40,40,0,1,0,0-56.9l-8.52,9.62a8,8,0,1,1-12-10.61l8.69-9.81.33-.35A56,56,0,0,1,248,128Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 256 256" fill="currentColor"><path d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 256 256" fill="currentColor"><path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 256 256" fill="currentColor"><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></symbol>
+  <symbol id="i-mountains" viewBox="0 0 256 256" fill="currentColor"><path d="M164,80a28,28,0,1,0-28-28A28,28,0,0,0,164,80Zm0-40a12,12,0,1,1-12,12A12,12,0,0,1,164,40Zm90.88,155.92-54.56-92.08A15.87,15.87,0,0,0,186.55,96h0a15.85,15.85,0,0,0-13.76,7.84L146.63,148l-44.84-76.1a16,16,0,0,0-27.58,0L1.11,195.94A8,8,0,0,0,8,208H248a8,8,0,0,0,6.88-12.08ZM88,80l23.57,40H64.43ZM22,192l33-56h66l18.74,31.8,0,0L154,192Zm150.57,0-16.66-28.28L186.55,112,234,192Z"/></symbol>
+  <symbol id="i-waveform" viewBox="0 0 256 256" fill="currentColor"><path d="M56,96v64a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0ZM88,24a8,8,0,0,0-8,8V224a8,8,0,0,0,16,0V32A8,8,0,0,0,88,24Zm40,32a8,8,0,0,0-8,8V192a8,8,0,0,0,16,0V64A8,8,0,0,0,128,56Zm40,32a8,8,0,0,0-8,8v64a8,8,0,0,0,16,0V96A8,8,0,0,0,168,88Zm40-16a8,8,0,0,0-8,8v96a8,8,0,0,0,16,0V80A8,8,0,0,0,208,72Z"/></symbol>
+  <symbol id="i-wave-sine" viewBox="0 0 256 256" fill="currentColor"><path d="M239.24,131.4c-22,46.8-41.4,68.6-61.2,68.6-25.1,0-40.73-33.32-57.28-68.6C107.7,103.56,92.9,72,78,72c-16.4,0-36.31,37.21-46.72,59.4a8,8,0,0,1-14.48-6.8C38.71,77.8,58.16,56,78,56c25.1,0,40.73,33.32,57.28,68.6C148.3,152.44,163.1,184,178,184c16.4,0,36.31-37.21,46.72-59.4a8,8,0,0,1,14.48,6.8Z"/></symbol>
+  <symbol id="i-tea-bag" viewBox="0 0 256 256" fill="currentColor"><path d="M224,160a16,16,0,0,1-16-16V64A56,56,0,0,0,96,64v8H76.53a16.09,16.09,0,0,0-13.72,7.77L42.28,114A16.06,16.06,0,0,0,40,122.22V216a16,16,0,0,0,16,16h96a16,16,0,0,0,16-16V122.22a16.06,16.06,0,0,0-2.28-8.24L145.19,79.77A16.09,16.09,0,0,0,131.47,72H112V64a40,40,0,0,1,80,0v80a32,32,0,0,0,32,32,8,8,0,0,0,0-16ZM131.47,88,152,122.22V216H56V122.22L76.53,88H96v48a8,8,0,0,0,16,0V88Z"/></symbol>
+  <symbol id="i-calendar-blank" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></symbol>
+  <symbol id="i-book-open" viewBox="0 0 256 256" fill="currentColor"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64Z"/></symbol>
+  <symbol id="i-quotes" viewBox="0 0 256 256" fill="currentColor"><path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 256 256" fill="currentColor"><path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/></symbol>
+  <symbol id="i-seal-check" viewBox="0 0 256 256" fill="currentColor"><path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-11.55,39.29c-4.79,5-9.75,10.17-12.38,16.52-2.52,6.1-2.63,13.07-2.73,19.82-.1,7-.21,14.33-3.32,17.43s-10.39,3.22-17.43,3.32c-6.75.1-13.72.21-19.82,2.73-6.35,2.63-11.52,7.59-16.52,12.38S132,224,128,224s-9.15-4.92-14.11-9.69-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82-2.63-6.35-7.59-11.52-12.38-16.52S32,132,32,128s4.92-9.15,9.69-14.11,9.75-10.17,12.38-16.52c2.52-6.1,2.63-13.07,2.73-19.82.1-7,.21-14.33,3.32-17.43S70.51,56.9,77.55,56.8c6.75-.1,13.72-.21,19.82-2.73,6.35-2.63,11.52-7.59,16.52-12.38S124,32,128,32s9.15,4.92,14.11,9.69,10.17,9.75,16.52,12.38c6.1,2.52,13.07,2.63,19.82,2.73,7,.1,14.33.21,17.43,3.32s3.22,10.39,3.32,17.43c.1,6.75.21,13.72,2.73,19.82,2.63,6.35,7.59,11.52,12.38,16.52S224,124,224,128,219.08,137.15,214.31,142.11ZM173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34Z"/></symbol>
 </svg>
 
 <!-- ═══════════════════════ TOPBAR ═══════════════════════ -->
@@ -4272,7 +4466,7 @@ h1.opener-title, h2.opener-title{
     <div class="opener-body">
       <div class="opener-eyebrow">Components · 03 <span class="sep">·</span> A glyph vocabulary</div>
       <h2 class="opener-title"><em>Iconography.</em></h2>
-      <div class="opener-dek">A sanctioned set of solid, sharp-geometric glyphs that speak the brand's languages — essential oil &amp; ritual, science &amp; chemistry, nature &amp; farming, wellness, meditation, sound, feminine cycles, and the social surface where it all meets the audience. <em>Every icon inherits currentColor</em> so the same glyph reads in violet ink, ivory on dark, or gold thread depending on where it sits.</div>
+      <div class="opener-dek">Two layers. Thirty-nine bespoke house glyphs that speak the brand's languages — essential oil &amp; ritual, science &amp; chemistry, nature &amp; farming, wellness, meditation, sound, feminine cycles, and the social surface where it all meets the audience. <em>Every icon inherits currentColor</em> so the same glyph reads in violet ink, ivory on dark, or gold thread depending on where it sits.</div>
     </div>
   </div>
 
@@ -4559,12 +4753,251 @@ h1.opener-title, h2.opener-title{
   </div>
 
 
+
+  <div class="icon-theme-head">
+    <div class="mark">12 · i</div>
+    <div class="name">The standard <em>pack</em></div>
+    <div class="count">1,512 glyphs</div>
+  </div>
+
   <div class="col-prose">
-    <p class="prose"><b>Adding new glyphs.</b> Drop a new <span class="mono">&lt;symbol id="icon-name" viewBox="0 0 10 10"&gt;</span> into the inline SVG library at the top of the document, then add a tile here under the appropriate theme. Keep paths solid where possible (sharp geometric DNA), use <span class="mono">fill="currentColor"</span> so the glyph inherits its colour, and avoid sub-pixel detail that won't read at 18-20px.</p>
+    <p class="prose"><b>Two layers, one vocabulary.</b> The eight themes above are the <em>house glyphs</em> — thirty-nine bespoke marks that carry the brand voice, and the only glyphs permitted to speak for the brand itself. Everything else — utility, navigation, wayfinding, the long tail — comes from the <em>standard pack</em>: a single sanctioned library of 1,512 glyphs, one weight, drawn on the same 256-unit grid. Where a house glyph exists, it outranks the pack. Where it does not, the pack answers, and no new icon gets drawn.</p>
+    <p class="prose">The pack is not pasted into this page. Thirty glyphs preview below; the full library lives in one sprite at <span class="mono">/icons/oneness-icons.svg</span>, each glyph also stands alone at <span class="mono">/icons/svg/{name}.svg</span>, and every one is addressable as <span class="mono">#i-{name}</span>. Click a tile to copy its reference, exactly as with the house glyphs.</p>
+  </div>
+
+  <div class="col">
+    <div class="icon-grid">
+        <button type="button" class="icon-tile" data-icon-id="i-leaf" data-icon-pack="1" aria-label="Copy #i-leaf to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-leaf"/></svg></span>
+          <span class="icon-label">Leaf</span>
+          <span class="icon-code">#i-leaf</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-plant" data-icon-pack="1" aria-label="Copy #i-plant to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-plant"/></svg></span>
+          <span class="icon-label">Plant</span>
+          <span class="icon-code">#i-plant</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-flower-lotus" data-icon-pack="1" aria-label="Copy #i-flower-lotus to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-flower-lotus"/></svg></span>
+          <span class="icon-label">Lotus</span>
+          <span class="icon-code">#i-flower-lotus</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-drop" data-icon-pack="1" aria-label="Copy #i-drop to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-drop"/></svg></span>
+          <span class="icon-label">Drop</span>
+          <span class="icon-code">#i-drop</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-eyedropper" data-icon-pack="1" aria-label="Copy #i-eyedropper to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-eyedropper"/></svg></span>
+          <span class="icon-label">Dropper</span>
+          <span class="icon-code">#i-eyedropper</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-tree" data-icon-pack="1" aria-label="Copy #i-tree to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-tree"/></svg></span>
+          <span class="icon-label">Tree</span>
+          <span class="icon-code">#i-tree</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-dna" data-icon-pack="1" aria-label="Copy #i-dna to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-dna"/></svg></span>
+          <span class="icon-label">DNA</span>
+          <span class="icon-code">#i-dna</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-atom" data-icon-pack="1" aria-label="Copy #i-atom to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-atom"/></svg></span>
+          <span class="icon-label">Atom</span>
+          <span class="icon-code">#i-atom</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-flask" data-icon-pack="1" aria-label="Copy #i-flask to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-flask"/></svg></span>
+          <span class="icon-label">Flask</span>
+          <span class="icon-code">#i-flask</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-test-tube" data-icon-pack="1" aria-label="Copy #i-test-tube to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-test-tube"/></svg></span>
+          <span class="icon-label">Vial</span>
+          <span class="icon-code">#i-test-tube</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-microscope" data-icon-pack="1" aria-label="Copy #i-microscope to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-microscope"/></svg></span>
+          <span class="icon-label">Microscope</span>
+          <span class="icon-code">#i-microscope</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-drop-half" data-icon-pack="1" aria-label="Copy #i-drop-half to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-drop-half"/></svg></span>
+          <span class="icon-label">Cell</span>
+          <span class="icon-code">#i-drop-half</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-heart" data-icon-pack="1" aria-label="Copy #i-heart to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-heart"/></svg></span>
+          <span class="icon-label">Heart</span>
+          <span class="icon-code">#i-heart</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-hand-heart" data-icon-pack="1" aria-label="Copy #i-hand-heart to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-hand-heart"/></svg></span>
+          <span class="icon-label">Care</span>
+          <span class="icon-code">#i-hand-heart</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-hands-praying" data-icon-pack="1" aria-label="Copy #i-hands-praying to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-hands-praying"/></svg></span>
+          <span class="icon-label">Prayer</span>
+          <span class="icon-code">#i-hands-praying</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-yin-yang" data-icon-pack="1" aria-label="Copy #i-yin-yang to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-yin-yang"/></svg></span>
+          <span class="icon-label">Balance</span>
+          <span class="icon-code">#i-yin-yang</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-spiral" data-icon-pack="1" aria-label="Copy #i-spiral to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-spiral"/></svg></span>
+          <span class="icon-label">Spiral</span>
+          <span class="icon-code">#i-spiral</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-infinity" data-icon-pack="1" aria-label="Copy #i-infinity to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-infinity"/></svg></span>
+          <span class="icon-label">Infinity</span>
+          <span class="icon-code">#i-infinity</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-moon" data-icon-pack="1" aria-label="Copy #i-moon to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-moon"/></svg></span>
+          <span class="icon-label">Moon</span>
+          <span class="icon-code">#i-moon</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-sun" data-icon-pack="1" aria-label="Copy #i-sun to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-sun"/></svg></span>
+          <span class="icon-label">Sun</span>
+          <span class="icon-code">#i-sun</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-sparkle" data-icon-pack="1" aria-label="Copy #i-sparkle to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-sparkle"/></svg></span>
+          <span class="icon-label">Spark</span>
+          <span class="icon-code">#i-sparkle</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-mountains" data-icon-pack="1" aria-label="Copy #i-mountains to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-mountains"/></svg></span>
+          <span class="icon-label">Ground</span>
+          <span class="icon-code">#i-mountains</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-waveform" data-icon-pack="1" aria-label="Copy #i-waveform to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-waveform"/></svg></span>
+          <span class="icon-label">Waveform</span>
+          <span class="icon-code">#i-waveform</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-wave-sine" data-icon-pack="1" aria-label="Copy #i-wave-sine to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-wave-sine"/></svg></span>
+          <span class="icon-label">Sine</span>
+          <span class="icon-code">#i-wave-sine</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-tea-bag" data-icon-pack="1" aria-label="Copy #i-tea-bag to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-tea-bag"/></svg></span>
+          <span class="icon-label">Virtual tea</span>
+          <span class="icon-code">#i-tea-bag</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-calendar-blank" data-icon-pack="1" aria-label="Copy #i-calendar-blank to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-calendar-blank"/></svg></span>
+          <span class="icon-label">Book</span>
+          <span class="icon-code">#i-calendar-blank</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-book-open" data-icon-pack="1" aria-label="Copy #i-book-open to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-book-open"/></svg></span>
+          <span class="icon-label">Read</span>
+          <span class="icon-code">#i-book-open</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-quotes" data-icon-pack="1" aria-label="Copy #i-quotes to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-quotes"/></svg></span>
+          <span class="icon-label">Quote</span>
+          <span class="icon-code">#i-quotes</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-users" data-icon-pack="1" aria-label="Copy #i-users to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-users"/></svg></span>
+          <span class="icon-label">Circle</span>
+          <span class="icon-code">#i-users</span>
+        </button>
+        <button type="button" class="icon-tile" data-icon-id="i-seal-check" data-icon-pack="1" aria-label="Copy #i-seal-check to clipboard">
+          <span class="icon-glyph"><svg aria-hidden="true"><use href="#i-seal-check"/></svg></span>
+          <span class="icon-label">Verified</span>
+          <span class="icon-code">#i-seal-check</span>
+        </button>
+    </div>
+  </div>
+
+  <div class="col-prose" style="margin-top: var(--toc-s-6);">
+    <p class="prose" style="font-size:13px; color:var(--toc-fg-muted);">Thirty of 1,512 — chosen to show the range the brand actually reaches for: botanical, cellular, ritual, sound, editorial. The remainder are not lesser glyphs, only quieter ones.</p>
+  </div>
+
+  <!-- ── THE DOWNLOAD PLATE — the one place the pack is handed over ──── -->
+  <div class="pack-plate">
+    <div class="pp-eyebrow">Chapter XII · the standard pack</div>
+    <h3 class="pp-title">Take the <em>whole library</em>.</h3>
+    <p class="pp-dek">Every glyph, every weight, the sprite, and the token manifest — in one archive. Unpack it into a project and the tokens below resolve unchanged.</p>
+
+    <div class="pp-facts">
+      <div class="pp-fact"><span class="n">1,512</span><span class="l">Glyphs</span></div>
+      <div class="pp-fact"><span class="n">6</span><span class="l">Weights</span></div>
+      <div class="pp-fact"><span class="n">9,072</span><span class="l">SVG files</span></div>
+      <div class="pp-fact"><span class="n">MIT</span><span class="l">Licence</span></div>
+    </div>
+
+    <div class="pp-actions">
+      <a class="btn btn-primary btn-lg" href="icons/oneness-icon-pack.zip" download>
+        <svg class="ico ico-sm" aria-hidden="true"><use href="#i-drop"/></svg>
+        Download the pack · 4.1 MB
+      </a>
+      <a class="btn btn-secondary btn-lg" href="icons/oneness-icons.json">Token manifest · JSON</a>
+    </div>
+
+    <div class="pp-meta">
+      <a href="icons/oneness-icons.svg">Full sprite</a> ·
+      <a href="icons/oneness-core.svg">Brand-core sprite</a> ·
+      <a href="icons/README.md">The contract</a> ·
+      <a href="icons/LICENSE-phosphor.txt">Licence</a>
+    </div>
+  </div>
+
+  <!-- ── THE TOKEN CONTRACT — the same rules the JSON carries ────────── -->
+  <div class="col-prose" style="margin-top: var(--toc-s-16);">
+    <p class="prose"><b>The token contract.</b> Nothing about an icon is chosen at the point of use. The glyph comes from a semantic token, the size from a size token, the colour from the surface. An agent that holds to the five rows below will produce icon usage indistinguishable from hand-authored work — and one that reads <span class="mono">/icons/oneness-icons.json</span> gets these same rules in machine form, with all 1,512 glyphs tagged and categorised for search.</p>
+  </div>
+
+  <div class="pack-contract">
+    <div class="pc-row">
+      <div class="pc-key">reference</div>
+      <div class="pc-val">Inject a sprite <em>once</em> per document, then reference by hash — exactly as the house glyphs already work:<br>
+        <code>fetch('/icons/oneness-core.svg').then(r=&gt;r.text()).then(t=&gt;{const d=document.createElement('div');d.hidden=true;d.innerHTML=t;document.body.prepend(d)})</code><br>
+        <code>&lt;svg class="ico ico-md"&gt;&lt;use href="#i-leaf"/&gt;&lt;/svg&gt;</code></div>
+    </div>
+    <div class="pc-row">
+      <div class="pc-key">reference · single glyph</div>
+      <div class="pc-val">Where injecting a sprite is overkill, or CSS must own the glyph, mask a loose file — <code>background: currentColor</code> still does the tinting:<br>
+        <code>&lt;span class="ico-mask ico-md" style="--g:url('/icons/svg/leaf.svg')"&gt;&lt;/span&gt;</code></div>
+    </div>
+    <div class="pc-row">
+      <div class="pc-key">never</div>
+      <div class="pc-val"><code>&lt;use href="/icons/oneness-icons.svg#i-leaf"/&gt;</code> — cross-document <span class="mono">&lt;use&gt;</span> is SVG 2 and was never shipped in Blink or WebKit. It renders <em>nothing</em> in Chrome, Edge, or Safari. Firefox alone resolves it, which is what makes the mistake so easy to miss.</div>
+    </div>
+    <div class="pc-row">
+      <div class="pc-key">--toc-icon-{xs…2xl}</div>
+      <div class="pc-val">14 · 16 · <b>20 (default)</b> · 24 · 32 · 48px, wearable as <code>.ico-xs</code> through <code>.ico-2xl</code>. A raw pixel size is a defect.</div>
+    </div>
+    <div class="pc-row">
+      <div class="pc-key">--toc-icon-ink</div>
+      <div class="pc-val"><code>currentColor</code> by default — the glyph takes the ink of whatever it sits in. Reach for <code>--toc-icon-ink-thread</code> (gold-700) when a glyph must be gold on a light ground; Sacred Gold itself fails AA as ink. <code>--toc-icon-ink-onDark</code> for violet, sage, and blue grounds.</div>
+    </div>
+    <div class="pc-row">
+      <div class="pc-key">--toc-icon-weight</div>
+      <div class="pc-val"><code>regular</code>, sitewide, without exception. The other five weights ship in the archive for completeness; mixing them dissolves the vocabulary.</div>
+    </div>
+    <div class="pc-row">
+      <div class="pc-key">semantic.*</div>
+      <div class="pc-val">Sixty brand meanings resolve to a glyph before any name is guessed — <code>pillar.vitality</code>, <code>offering.arcea</code>, <code>action.virtual-tea</code>, <code>science.cell</code>. Ask the manifest for the meaning; let it name the icon.</div>
+    </div>
+  </div>
+
+  <div class="col-prose">
+    <p class="prose"><b>Adding new glyphs.</b> First check the standard pack — 1,512 glyphs answer most needs, and reaching for one costs nothing. A <em>new house glyph</em> is warranted only when the mark must carry brand meaning the pack cannot. When it is, drop a new <span class="mono">&lt;symbol id="icon-name" viewBox="0 0 10 10"&gt;</span> into the inline SVG library at the top of the document, then add a tile here under the appropriate theme. Keep paths solid where possible (sharp geometric DNA), use <span class="mono">fill="currentColor"</span> so the glyph inherits its colour, and avoid sub-pixel detail that won't read at 18-20px.</p>
   </div>
 
   <div class="plate-caption" style="max-width: var(--col-wide); margin: var(--toc-s-12) auto 0;">
-    <div class="plate-caption-text">A growing vocabulary. The eight themes above cover the surfaces already in production; add more themes (commerce flow, sacred symbols, course icons) as new product lines arrive.</div>
+    <div class="plate-caption-text">A closed vocabulary, deliberately. Eight house themes cover the surfaces that carry brand meaning; the standard pack covers the long tail beneath them. Between the two there is no gap worth drawing into — which is the point.</div>
     <div class="plate-caption-meta">Plate 12 · Iconography</div>
   </div>
 </section>
@@ -6926,7 +7359,15 @@ h1.opener-title, h2.opener-title{
     const tile = e.target.closest('.icon-tile[data-icon-id]');
     if (!tile) return;
     const id = tile.getAttribute('data-icon-id');
-    const snippet = '<svg><use href="#' + id + '"/></svg>';
+    // House glyphs live in this document's sprite and resolve as a bare hash.
+    // Pack glyphs (#i-*) live in the shared sprite, so they carry its path and
+    // the .ico class that binds them to the size and ink tokens.
+    // Both layers resolve as a bare hash — pack glyphs assume the sprite has
+    // been injected into the document, because cross-document <use> renders
+    // nothing outside Firefox. The .ico class binds size and ink tokens.
+    const snippet = tile.hasAttribute('data-icon-pack')
+      ? '<svg class="ico ico-md"><use href="#' + id + '"/></svg>'
+      : '<svg><use href="#' + id + '"/></svg>';
     if (navigator.clipboard){
       navigator.clipboard.writeText(snippet).catch(() => {});
     }

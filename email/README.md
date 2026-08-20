@@ -1,100 +1,115 @@
-# Newsletter plates I–III · The Oneness Circle
+# The Oneness Letter · newsletter master
 
-Three email designs built on the Edition II design system, for the nurture sequence
-and the weekly newsletter.
+One newsletter design, held long term. Documented as **Chapter XXII** of the
+design system.
 
-| File | Plate | Register | Words | Ask |
-|---|---|---|---|---|
-| `01-the-letter.html` | I · The Letter | Private correspondence | 120–350 | Zero, or one text link |
-| `02-the-broadsheet.html` | II · The Broadsheet | Published essay | 500–800 | One, at the very end |
-| `03-the-plate.html` | III · The Plate | Stated invitation | 150–250 | Exactly one |
+| File | What it is |
+|---|---|
+| `newsletter.html` | The master. Paste into an ESP, swap the merge fields, send. |
 
-`newsletter-plates.html` is the comparison document — all three rendered at 600px
-with the spec, the footer architecture and the pre-send rules.
-
----
-
-## Which plate for which send
-
-**Plate I — the sequence workhorse.** The email playbook is explicit: *don't send a
-designed template with a hero image*. Plate I is the answer to that — a centred
-masthead and one gold thread, then plain left-ranged prose. Use it for welcome
-emails 1–4 and for every nurture send after.
-
-**Plate II — the weekly newsletter.** A different rhythm and a different job. This
-is the only publication surface, so it is the only place a masthead plate,
-a pull-quote and a CTA band are earned.
-
-**Plate III — rationed.** Welcome email 5 (the invitation), and occasional
-single-idea broadcasts. Its whole effect depends on being rare. If it goes out
-monthly it stops meaning anything.
-
-> Recommended spine for the nurture sequence: **Plate I × 4, then Plate III once.**
+A newsletter earns trust by arriving the same way every time. Variation belongs
+**inside** the letter — in the three body registers — never in its chrome. The
+masthead, the thread, the sign-off and the footer do not change between issues.
 
 ---
 
-## The six movements (Plate II)
+## Format
 
-Structure is from the newsletter playbook, expressed in the design:
+| Element | Spec |
+|---|---|
+| Send width | 600px, single column, nested tables |
+| Length | 500–800 words. Under 500 is a note; over 800 is a blog post |
+| Cadence | Weekly. Fortnightly is the floor. Consistency beats frequency |
+| Byline | Always Rachel Mense, never the brand. Date always visible |
+| Subject | 4–8 words, sentence case, states the idea — never a curiosity gap |
+| Ask | Zero or one. Delete the ask block and the design still resolves |
 
-| # | Movement | Design treatment |
-|---|---|---|
-| I | The observation | Plain prose, ivory ground |
-| II | The turn | Gold plate, `#FBF6EC`, 2px gold left border, Cormorant italic |
-| III | The reasoning | Plain prose, closed by a three-diamond mark |
-| IV | The qualification | Gold-700 label — *Where this breaks down* |
-| V | The small thing | Paper inset `#f4f1ea`, hairline gold border |
-| VI | The close + one ask | Sign-off, then the CTA band |
+## Anatomy
 
-The turn is the paragraph that must not hedge, which is why it gets the only
-pull-quote treatment in the system. If a draft's turn doesn't survive being set
-at 24px italic, the draft doesn't have a turn.
-
----
-
-## Footer architecture — identical in all three
-
-1. **Signature block** — Cormorant italic wordmark + positioning line
-2. **Sender identification** — name, business, city/country, real reply-to (never no-reply)
-3. **Wellness & medical disclaimer** — bordered inset, not fine print
-4. **Legal links** — Privacy · Terms · Full disclaimer (mirrors the site's `legalNav`)
-5. **Consent reminder** — *"You're receiving this because you asked to hear from me."*
-6. **Exit** — Unsubscribe **and** *Write less often*
-
-Five of the six are there because of a regulator, not a designer. None is optional.
+1. Gold rule + apothecary locator — coordinate, lunar phase, place
+2. Centred masthead — eyebrow, issue number, display line, byline and date
+3. Gold diamond thread — closes the header, the last centred element
+4. Body — three registers, left-ranged. **Prose is never centred**
+5. Cormorant italic sign-off — first person, first name, every time
+6. The ask — one coral button and the permission line
+7. Footer — six blocks, none optional
 
 ---
 
-## CTA rules encoded in the templates
+## The three body registers
 
-- **One ask per surface.** Never a button plus a link.
-- **Coral exactly once, or not at all.** Plate III only.
-- **Coral carries violet ink `#1E0A2E`, never ivory.** Coral + ivory measures
-  2.26:1 and fails WCAG AA; coral + violet-800 measures 7.75:1.
-  The same defect exists in the design system's `.btn-coral` and `.btn-gold` —
-  worth fixing upstream.
-- **The permission line is part of the ask**, set directly beneath every CTA:
+All permitted variation lives here. Two tints, close enough to belong to one
+paper stock and far enough apart to read as different.
+
+### 01 · Prose — the default
+
+Ground ivory `#f9f9f7` · Jost 300 · 16 / 1.78 · ink-700 `#3D2E1A` · no border.
+Carries the argument.
+
+### 02 · Quote plate — turns and asides
+
+Ground gold-50 `#FBF6EC` · **2px gold-500 left rule** · Cormorant italic 23 / 1.34 ·
+violet-800 ink. Optional tracked gold-700 label beneath.
+For the turn, a pulled line, or an editorial side note.
+
+### 03 · Highlight box — practical notes
+
+Ground paper `#f4f1ea` · **1px gold hairline all round** · Jost 300 · 16 / 1.75 ·
+tracked gold-700 label on top.
+For the small thing, a standing note, anything the reader is meant to *do*.
+
+> The quote plate is **ruled on one edge**; the highlight box is **enclosed**.
+> That structural difference, not the colour, is what tells a reader which is which.
+> **Never run the two tints back to back** — separate them with prose or they
+> read as one band.
+
+Both blocks are reusable: duplicate the whole `<tr>` and change the label.
+Each ships with the background set as **both** a `bgcolor` attribute and an
+inline style, so Outlook and the webmail clients agree.
+
+---
+
+## The ask
+
+- **Coral `#ff856b` ground, violet-800 `#1E0A2E` ink.** Never Ivory — coral with
+  ivory measures 2.26:1 and fails WCAG AA. Violet on coral measures **7.75:1**.
+- **Coral appears once per send and nowhere else** — not as a rule, not as a dot,
+  not as a border.
+- **The permission line is part of the ask**, set directly beneath the button:
   *"If it's not for you, that's completely fine — there's nothing you need to do."*
 - **Approved wording only:** *Book a Virtual Tea* · *Book a free Virtual Tea* ·
   *Let's share a pot of tea*. Never *book now*, *schedule a discovery call*,
   *claim your free session*.
+- **One ask, or none. Never stacked.** No button plus text link.
+
+---
+
+## Footer — six blocks, none optional
+
+1. **Signature** — Cormorant italic wordmark + positioning line
+2. **Sender identification** — name, business, city/country, real reply-to (never no-reply)
+3. **Wellness & medical disclaimer** — bordered inset, not fine print
+4. **Legal links** — Privacy · Terms · Full disclaimer · browser view
+5. **Consent reminder** — *"You're receiving this because you asked to hear from me."*
+6. **Exit** — Unsubscribe **and** *Write less often*
+
+Five of the six are there because a regulator put them there.
 
 ---
 
 ## Tokens, inlined
 
-Email has no CSS variables. Every value below is a literal in the files.
+Email has no CSS variables. Every value is a literal in the file.
 
 | Role | Value |
 |---|---|
 | Ground | Ivory `#f9f9f7` |
-| Inverse ground | Violet noir `#1E0A2E` (footer `#11051A`) |
+| Quote tint | Gold-50 `#FBF6EC` |
+| Highlight tint | Paper `#f4f1ea` |
 | Body ink | Ink-700 `#3D2E1A` |
 | Thread (decorative only) | Gold-500 `#B8965A` |
-| Text gold on light | Gold-700 `#7B6435` — 4.6:1 |
-| Gold on dark | Gold-300 `#D4AF7A` — 8.97:1 |
-| Action | Coral `#ff856b` with violet ink |
-| Paper inset | `#f4f1ea` |
+| Text gold | Gold-700 `#7B6435` — 4.6:1 |
+| Action | Coral `#ff856b` with violet-800 ink |
 | Radius | `0px`, everywhere |
 | Display | Cormorant Garamond 300, one italic gold word per send |
 | Body | Jost 300 · 16px / 1.78 |
@@ -102,20 +117,16 @@ Email has no CSS variables. Every value below is a literal in the files.
 
 Pure `#fff` and `#000` appear nowhere.
 
-**Per-issue colour decision (Plate II only):** the masthead ground. Violet (default),
-sage `#283b20`, or blue `#0b286d`. Swap it wholesale — pillars never mix surfaces
-in one layout.
-
 ---
 
 ## Email-client reality
 
 | Where | What happens | Handling |
 |---|---|---|
-| Gmail / Outlook | Webfonts stripped | Georgia + Helvetica/Arial fallbacks declared on every element. The serif/grotesque tension survives; the letterforms don't. |
-| Outlook desktop | No radius, no flex | All tables; buttons are padded anchors inside a coloured `<td>`. Radius is 0 anyway. |
-| Gmail dark mode | May force-invert Plates I & II | **Test before first send.** Plate III inverts least. |
-| Apple Mail | Honours `color-scheme` | Declared in all three heads. |
+| Gmail / Outlook | Webfonts stripped | Georgia + Helvetica/Arial fallbacks on every element. The serif/grotesque tension survives; the letterforms don't. |
+| Outlook desktop | No radius, no flex | All tables; the CTA is a padded anchor inside a coloured `<td>`. |
+| Tinted blocks | Outlook ignores some inline backgrounds | Set as both `bgcolor` attribute and inline style. |
+| Gmail dark mode | May force-invert the ivory ground and flatten the two tints into one | **Test before the first send.** |
 
 Merge fields to swap for your ESP's tokens: `{{unsubscribe_url}}`,
 `{{preferences_url}}`, `{{webview_url}}`.
@@ -124,23 +135,19 @@ Merge fields to swap for your ESP's tokens: `{{unsubscribe_url}}`,
 
 ## Content provenance
 
-- **Plate I** — welcome email 4, verbatim from `40-content-engine/channel-playbooks/email-playbook.md`,
-  with the specific income figure removed (per the Amber-gate note: safer to say
-  "almost nothing" without the number, unless the full IDS is attached).
-- **Plate II** — the worked example from `40-content-engine/core-content/newsletter-playbook.md`.
-  632 words, Pillar 2, Green gate.
-- **Plate III** — **newly written.** Assembled from the verified published description
-  of the Virtual Tea plus the permission line. **Needs Rachel's sign-off before it sends.**
+The filled issue is the newsletter playbook's own approved worked example —
+*"Your cells don't just need nutrients"*, 632 words, Pillar 2, Green gate.
+No product, no claim, one contrast pair, a qualification that admits ignorance,
+and a free small thing.
 
 ---
 
 ## Blockers that outrank the design
 
 1. **The Virtual Tea cannot be booked.** `bookingEmbedUrl` is empty and
-   `theonenesscircle.com` does not resolve. Every CTA converts at zero until wired.
+   `theonenesscircle.com` does not resolve. The CTA converts at zero until wired.
 2. **No ESP and no list exist.** Consent must be evidenced per recipient —
    source, date, mechanism — before any send.
-3. **Plate III's copy is unapproved.** See above.
 
 ---
 
@@ -152,12 +159,13 @@ Merge fields to swap for your ESP's tokens: `{{unsubscribe_url}}`,
 - [ ] No product testimonial from Rachel (TGA s24(4))
 - [ ] No income or earnings reference without the full IDS
 - [ ] No price quoted — none are confirmed
-- [ ] Within the plate's word range
+- [ ] 500–800 words
 - [ ] One ask, or none. Never stacked
-- [ ] The turn paragraph does not hedge (Plate II)
-- [ ] The qualification section exists (Plate II)
+- [ ] The turn does not hedge
+- [ ] The qualification section exists
 - [ ] Bylined Rachel Mense, date visible
 - [ ] Coral used exactly once, or not at all
+- [ ] The two tints are not adjacent
 - [ ] Consent evidenced · unsubscribe functional · sender identified
 - [ ] Scanned for AI tells — rule of three, uniform rhythm
 - [ ] Rendered in Gmail dark mode before send

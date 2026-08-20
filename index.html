@@ -3201,6 +3201,55 @@ h1.opener-title, h2.opener-title{
   .opener-body, .subhead-line{border-top: none; padding-top: 0;}
   .tok{grid-template-columns: 1fr 1fr;}
 }
+/* ── CHAPTER XXII · NEWSLETTER PLATES ───────────────────────── */
+/* Email is the one surface the system cannot control. Previews are
+   real files in /email, loaded in isolated frames so the plate can
+   never drift from what actually ships. */
+.mail-bleed{max-width: var(--col-bleed); margin: var(--toc-s-10) auto 0;}
+.mail-grid{display: grid; grid-template-columns: repeat(3, 372px); justify-content: center; gap: var(--toc-s-8) var(--toc-s-6);}
+.mail-card{display: flex; flex-direction: column;}
+.mail-chrome{
+  display: grid; grid-template-columns: auto 1fr auto; gap: var(--toc-s-3); align-items: center;
+  padding: 9px 12px;
+  background: var(--toc-bg-plate);
+  border: .5px solid var(--toc-rule); border-bottom: none;
+}
+.mail-chrome .dot{width: 7px; height: 7px; background: var(--toc-gold-500);}
+.mail-chrome .subj{
+  font-family: var(--toc-font-mono); font-size: 10px; color: var(--toc-ink-500);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mail-chrome .w{font-family: var(--toc-font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--toc-ink-300);}
+.mail-view{
+  height: 640px; overflow-y: auto; overflow-x: hidden;
+  border: .5px solid var(--toc-rule);
+  background: var(--toc-bg-canvas);
+  box-shadow: var(--toc-e-2);
+}
+.mail-view.dark{background: var(--toc-violet-800);}
+.mail-view iframe{width: 600px; border: 0; display: block; zoom: .62;}
+.mail-cap{margin-top: var(--toc-s-3); padding-top: var(--toc-s-3); border-top: .5px solid var(--toc-rule);}
+.mail-cap .roman{font-family: var(--toc-font-mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--toc-text-gold);}
+.mail-cap .name{font-family: var(--toc-font-soul); font-weight: 500; font-size: 21px; line-height: 1.2; color: var(--toc-violet-800); margin-top: 4px;}
+.mail-cap .use{font-size: 13px; line-height: 1.6; font-weight: 300; color: var(--toc-ink-700); margin-top: 8px;}
+.mail-cap .stats{
+  display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 10px; padding-top: 8px;
+  border-top: .5px solid var(--toc-thread-faint);
+  font-family: var(--toc-font-mono); font-size: 9.5px; letter-spacing: .1em; color: var(--toc-ink-300);
+}
+.mail-cap .open{
+  display: inline-block; margin-top: 12px;
+  font-family: var(--toc-font-mind); font-weight: 500; font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--toc-text-gold); text-decoration: none; border-bottom: .5px solid var(--toc-thread-soft); padding-bottom: 3px;
+}
+.mail-cap .open:hover{color: var(--toc-violet-800); border-bottom-color: var(--toc-violet-800);}
+@media (max-width: 1240px){.mail-grid{grid-template-columns: repeat(2, 372px);}}
+@media (max-width: 860px){.mail-grid{grid-template-columns: 372px;}}
+@media (max-width: 440px){
+  .mail-grid{grid-template-columns: 288px;}
+  .mail-view iframe{zoom: .48;}
+  .mail-view{height: 520px;}
+}
 </style>
 </head>
 <body>
@@ -3484,6 +3533,7 @@ h1.opener-title, h2.opener-title{
       <a href="#react">React</a>
       <a href="#gallery">Gallery</a>
       <a href="#applications">Applications</a>
+      <a href="#email">Email</a>
     </nav>
     <div class="topbar-end">Edition II · MMXXVI</div>
   </div>
@@ -3621,6 +3671,7 @@ h1.opener-title, h2.opener-title{
     <li><a class="toc-item" href="#react"><span class="toc-num">XIX</span><span class="toc-name">React UX <em>profiles</em></span><span class="toc-meta">Library · 01</span></a></li>
     <li><a class="toc-item" href="#gallery"><span class="toc-num">XX</span><span class="toc-name">Image gallery</span><span class="toc-meta">Library · 02</span></a></li>
     <li><a class="toc-item" href="#applications"><span class="toc-num">XXI</span><span class="toc-name">More <em>in application</em></span><span class="toc-meta">Library · 03</span></a></li>
+    <li><a class="toc-item" href="#email"><span class="toc-num">XXII</span><span class="toc-name">Newsletters &amp; <em>the inbox</em></span><span class="toc-meta">Library · 04</span></a></li>
   </ul>
 </section>
 
@@ -6410,6 +6461,217 @@ h1.opener-title, h2.opener-title{
       </div>
     </div>
   </div>
+</section>
+
+
+<!-- ═══════════════════════ CHAPTER XXII · NEWSLETTERS ═══════════════════════ -->
+<section class="chapter" id="email">
+  <div class="opener">
+    <div class="opener-num">XXII.</div>
+    <div class="opener-body">
+      <div class="opener-eyebrow">Library · 04 <span class="sep">·</span> The inbox surface</div>
+      <h2 class="opener-title">Newsletters.</h2>
+      <div class="opener-dek">The one surface the system cannot control. No variables, no grid, no guaranteed webfont &mdash; every token arrives inlined as a literal. Three plates, three registers: <em>a private letter, a published essay, a stated invitation.</em></div>
+    </div>
+  </div>
+
+  <div class="col-prose">
+    <p class="prose">An email is not a page that happens to be small. It is rendered by two dozen engines, half of which predate flexbox, and it is the only place in the system where the fallback stack <em class="it">is</em> the design rather than the safety net. Gmail, Outlook and most Android clients strip webfonts outright, so Cormorant falls to <span class="mono">Georgia</span> and Jost to <span class="mono">Helvetica</span>. The letterforms change. The relationship between them &mdash; a serif carrying soul against a grotesque carrying precision &mdash; does not, and that relationship is what the reader recognises.</p>
+    <p class="prose">Each plate below is a live frame of the real file shipping in <span class="mono">/email</span>, so a preview can never drift from what actually sends. Everything is tables and inlined literals. Radius is <span class="mono">r-0</span> throughout, which email prefers anyway.</p>
+  </div>
+
+  <!-- 22.a — THE THREE PLATES -->
+  <div class="subhead">
+    <div class="subhead-mark">22 · a</div>
+    <div class="subhead-line">The three plates</div>
+  </div>
+
+  <div class="mail-bleed">
+    <div class="mail-grid">
+
+      <div class="mail-card">
+        <div class="mail-chrome">
+          <span class="dot"></span>
+          <span class="subj">The part I should probably mention</span>
+          <span class="w">248 w</span>
+        </div>
+        <div class="mail-view">
+          <iframe src="email/01-the-letter.html" style="height: 1440px;" loading="lazy" title="Plate I — The Letter"></iframe>
+        </div>
+        <div class="mail-cap">
+          <div class="roman">Plate I</div>
+          <div class="name">The Letter</div>
+          <div class="use">Near-plain, ivory, no button. Reads as though it were typed to one person, because structurally it was. The only design decisions are the centred masthead and a single gold thread.</div>
+          <div class="stats"><span>120–350 words</span><span>zero or one ask</span><span>ivory ground</span></div>
+          <a class="open" href="email/01-the-letter.html" target="_blank" rel="noopener">Open the file &rarr;</a>
+        </div>
+      </div>
+
+      <div class="mail-card">
+        <div class="mail-chrome">
+          <span class="dot"></span>
+          <span class="subj">Your cells don't just need nutrients</span>
+          <span class="w">632 w</span>
+        </div>
+        <div class="mail-view">
+          <iframe src="email/02-the-broadsheet.html" style="height: 2390px;" loading="lazy" title="Plate II — The Broadsheet"></iframe>
+        </div>
+        <div class="mail-cap">
+          <div class="roman">Plate II</div>
+          <div class="name">The Broadsheet</div>
+          <div class="use">A published masthead plate over an ivory column. Carries the six-movement structure &mdash; observation, turn, reasoning, qualification, the small thing, the close &mdash; with one CTA band at the foot.</div>
+          <div class="stats"><span>500–800 words</span><span>one ask</span><span>violet mast</span></div>
+          <a class="open" href="email/02-the-broadsheet.html" target="_blank" rel="noopener">Open the file &rarr;</a>
+        </div>
+      </div>
+
+      <div class="mail-card">
+        <div class="mail-chrome">
+          <span class="dot"></span>
+          <span class="subj">Come and feel it for yourself</span>
+          <span class="w">181 w</span>
+        </div>
+        <div class="mail-view dark">
+          <iframe src="email/03-the-plate.html" style="height: 1590px;" loading="lazy" title="Plate III — The Plate"></iframe>
+        </div>
+        <div class="mail-cap">
+          <div class="roman">Plate III</div>
+          <div class="name">The Plate</div>
+          <div class="use">Full violet noir, centred throughout, one coral button. The most designed and therefore the most rationed &mdash; it announces that this send is different from the others, so it only works if it is.</div>
+          <div class="stats"><span>150–250 words</span><span>exactly one ask</span><span>violet noir</span></div>
+          <a class="open" href="email/03-the-plate.html" target="_blank" rel="noopener">Open the file &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="plate" style="margin-top: var(--toc-s-12);">
+    <div class="plate-fig flush">
+      <div class="plate-caption" style="border-top: .5px solid var(--toc-thread-soft); padding-top: var(--toc-s-4);">
+        <div class="plate-caption-text">Three registers, one vocabulary. The difference between them is not decoration &mdash; it is <em class="it">how much design is permitted to be visible.</em></div>
+        <div class="plate-caption-meta">Plate 22.a · Newsletters</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 22.b — WHICH PLATE, WHEN -->
+  <div class="subhead">
+    <div class="subhead-mark">22 · b</div>
+    <div class="subhead-line">Which plate, when</div>
+  </div>
+
+  <div class="plate">
+    <div class="plate-fig flush">
+      <div class="tokens">
+        <div class="tok">
+          <span class="tok-name">plate-i · letter</span>
+          <span class="tok-desc">The sequence workhorse. Every nurture and welcome send. Ships with zero buttons as its default state &mdash; delete the ask block entirely and the design still resolves.</span>
+          <span class="tok-value">120–350 / 0–1 ask</span>
+          <span class="tok-chip" style="background: var(--toc-ivory); border: .5px solid var(--toc-thread-soft);"></span>
+        </div>
+        <div class="tok">
+          <span class="tok-name">plate-ii · broadsheet</span>
+          <span class="tok-desc">The weekly newsletter &mdash; a different rhythm and a different job. The only publication surface, and therefore the only place a masthead plate, a pull-quote and a CTA band are earned.</span>
+          <span class="tok-value">500–800 / 1 ask</span>
+          <span class="tok-chip" style="background: var(--toc-violet-800);"></span>
+        </div>
+        <div class="tok">
+          <span class="tok-name">plate-iii · plate</span>
+          <span class="tok-desc">Invitations and single-idea broadcasts. Rationed on purpose: its whole effect depends on being rare. Sent monthly, it stops meaning anything.</span>
+          <span class="tok-value">150–250 / 1 ask</span>
+          <span class="tok-chip" style="background: var(--toc-coral-500);"></span>
+        </div>
+      </div>
+      <div class="plate-caption">
+        <div class="plate-caption-text">The masthead ground on Plate II is the only per-issue colour decision. Swap it wholesale &mdash; violet, sage <em class="it">or</em> blue. <em class="it">Pillars never mix surfaces in one layout.</em></div>
+        <div class="plate-caption-meta">Plate 22.b · Registers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 22.c — THE FOOTER -->
+  <div class="subhead">
+    <div class="subhead-mark">22 · c</div>
+    <div class="subhead-line">The footer is the licence to send</div>
+  </div>
+
+  <div class="col-prose">
+    <p class="prose">Six blocks, in this order, identical in all three plates. Five of them are there because a regulator put them there, not a designer. None is optional, and none may be shortened to improve the composition.</p>
+  </div>
+
+  <div class="plate">
+    <div class="plate-fig flush">
+      <div class="tokens">
+        <div class="tok"><span class="tok-name">i · signature</span><span class="tok-desc">Cormorant italic wordmark and the positioning line. The only purely brand element in the footer.</span><span class="tok-value">brand</span><span class="tok-chip" style="background: var(--toc-gold-50); border: .5px solid var(--toc-thread-soft);"></span></div>
+        <div class="tok"><span class="tok-name">ii · sender id</span><span class="tok-desc">Name, business, city and country, plus a real reply-to address. <b>Never a no-reply.</b></span><span class="tok-value">required</span><span class="tok-chip" style="background: var(--toc-gold-100);"></span></div>
+        <div class="tok"><span class="tok-name">iii · disclaimer</span><span class="tok-desc">The Wellness &amp; Medical Disclaimer, set in a bordered inset so it reads as a standing notice rather than fine print.</span><span class="tok-value">required</span><span class="tok-chip" style="background: var(--toc-gold-200);"></span></div>
+        <div class="tok"><span class="tok-name">iv · legal</span><span class="tok-desc">Privacy · Terms · Full disclaimer. Mirrors the site's own legal navigation so the two never drift apart.</span><span class="tok-value">required</span><span class="tok-chip" style="background: var(--toc-gold-300);"></span></div>
+        <div class="tok"><span class="tok-name">v · consent</span><span class="tok-desc">One plain line stating why this arrived. Also the single best-performing sentence in any footer.</span><span class="tok-value">required</span><span class="tok-chip" style="background: var(--toc-gold-500);"></span></div>
+        <div class="tok"><span class="tok-name">vi · exit</span><span class="tok-desc">Unsubscribe <em class="it">and</em> a lower-friction alternative. Both functional. Nobody is guilted for leaving.</span><span class="tok-value">required</span><span class="tok-chip" style="background: var(--toc-gold-700);"></span></div>
+      </div>
+      <div class="plate-caption">
+        <div class="plate-caption-text">A footer that treats compliance as part of the composition rather than an apology beneath it.</div>
+        <div class="plate-caption-meta">Plate 22.c · Footer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 22.d — WHAT EMAIL BREAKS -->
+  <div class="subhead">
+    <div class="subhead-mark">22 · d</div>
+    <div class="subhead-line">What email breaks</div>
+  </div>
+
+  <div class="plate">
+    <div class="plate-fig flush">
+      <div class="tokens">
+        <div class="tok"><span class="tok-name">webfonts</span><span class="tok-desc">Stripped by Gmail, Outlook and most Android clients. Georgia and Helvetica fallbacks are declared on every single element, not just on body.</span><span class="tok-value">handled</span><span class="tok-chip" style="background: var(--toc-sage-100);"></span></div>
+        <div class="tok"><span class="tok-name">layout</span><span class="tok-desc">No flexbox, no grid, no custom properties. Everything is nested tables at a 600px send width, every value a literal.</span><span class="tok-value">handled</span><span class="tok-chip" style="background: var(--toc-sage-100);"></span></div>
+        <div class="tok"><span class="tok-name">buttons</span><span class="tok-desc">Padding on an anchor is unreliable in Outlook. Every CTA is a padded anchor inside a coloured cell. Radius is <span class="mono">0</span> regardless.</span><span class="tok-value">handled</span><span class="tok-chip" style="background: var(--toc-sage-100);"></span></div>
+        <div class="tok"><span class="tok-name">dark mode</span><span class="tok-desc">Gmail may force-invert the two ivory plates. <b>Test before the first send.</b> Plate III is already dark and inverts least.</span><span class="tok-value">test</span><span class="tok-chip" style="background: var(--toc-coral-100);"></span></div>
+        <div class="tok"><span class="tok-name">merge fields</span><span class="tok-desc">Unsubscribe, preferences and browser-view tokens ship as placeholders. Swap for the ESP's own before the first send.</span><span class="tok-value">swap</span><span class="tok-chip" style="background: var(--toc-coral-100);"></span></div>
+      </div>
+      <div class="plate-caption">
+        <div class="plate-caption-text">The fallback stack is the design, not the safety net. Most of a list will never see Cormorant or Jost.</div>
+        <div class="plate-caption-meta">Plate 22.d · Translation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 22.e — DISCIPLINE -->
+  <div class="subhead">
+    <div class="subhead-mark">22 · e</div>
+    <div class="subhead-line">Discipline in the inbox</div>
+  </div>
+
+  <div class="col">
+    <div class="dodont">
+      <div class="do">
+        <div class="dd-h">Do · Honour the surface</div>
+        <div class="dd-item"><div class="dd-glyph">i.</div><div>Centre the masthead. <b>Left-range the prose.</b> Body copy is never centred beyond a short invitation.</div></div>
+        <div class="dd-item"><div class="dd-glyph">ii.</div><div>One italic gold word in the display line. <b>One</b>, never two.</div></div>
+        <div class="dd-item"><div class="dd-glyph">iii.</div><div>Set gold text at <span class="mono">gold-700</span> on light and <span class="mono">gold-300</span> on dark.</div></div>
+        <div class="dd-item"><div class="dd-glyph">iv.</div><div>Pair every ask with the permission line, directly beneath it.</div></div>
+        <div class="dd-item"><div class="dd-glyph">v.</div><div>Keep one gold hairline in the header and one in the footer &mdash; the thread that ties the send to the system.</div></div>
+        <div class="dd-item"><div class="dd-glyph">vi.</div><div>Sign as one person. First name, Cormorant italic, every time.</div></div>
+      </div>
+      <div class="dont">
+        <div class="dd-h">Don't · Break the surface</div>
+        <div class="dd-item"><div class="dd-glyph">i.</div><div>Stack CTAs, or pair a button with a text link. <b>One ask, or none.</b></div></div>
+        <div class="dd-item"><div class="dd-glyph">ii.</div><div>Put coral on more than one element, or use it as a border or fill.</div></div>
+        <div class="dd-item"><div class="dd-glyph">iii.</div><div>Set <span class="mono">gold-500</span> as text. It is a thread colour &mdash; rules and dots only.</div></div>
+        <div class="dd-item"><div class="dd-glyph">iv.</div><div>Open a nurture email with a hero image. The strategy is one person writing to one person.</div></div>
+        <div class="dd-item"><div class="dd-glyph">v.</div><div>Mix two pillar grounds in one send.</div></div>
+        <div class="dd-item"><div class="dd-glyph">vi.</div><div>Ship without a functional unsubscribe, a real reply-to, and evidenced consent.</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--toc-s-12); padding: var(--toc-s-8) 0; border-top: .5px solid var(--toc-thread-soft); border-bottom: .5px solid var(--toc-thread-soft); text-align: center;">
+      <div class="it" style="font-size: clamp(20px, 2.2vw, 26px); color: var(--toc-violet-800); line-height: 1.4; max-width: 56ch; margin: 0 auto;">"In every other chapter the system decides how the work looks. Here it can only decide what the work <em style="color: var(--toc-text-gold);">is</em> &mdash; and that turns out to be the more durable instruction."</div>
+    </div>
+  </div>
+
 </section>
 
 </div><!-- /.edition -->
